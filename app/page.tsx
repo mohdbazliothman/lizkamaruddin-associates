@@ -79,32 +79,39 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden">
       <Header />
 
-      <section className="relative px-5 pb-14 pt-28 sm:px-8 lg:px-10 lg:pb-24 lg:pt-36">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
+      <section className="relative isolate px-5 pb-14 pt-28 sm:px-8 lg:px-10 lg:pb-20 lg:pt-32">
+        <div className="pointer-events-none absolute left-1/2 top-20 -z-10 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-emerald/8 blur-3xl" />
+        <div className="pointer-events-none absolute right-0 top-28 -z-10 h-[26rem] w-[26rem] rounded-full bg-gold/10 blur-3xl" />
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.95fr_0.82fr] lg:gap-16">
           <Reveal>
-            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-emerald">
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-white/75 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-emerald shadow-[0_1px_0_rgba(8,17,31,0.03)] backdrop-blur-xl">
               <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
               Boutique Executive Advisory
             </p>
-            <h1 className="max-w-4xl font-display text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-[45rem] font-display text-[2.22rem] leading-[1.04] text-ink sm:text-5xl md:text-6xl lg:text-[4.35rem]">
               Strategic Communications for Leaders Who Shape the Future
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-navy/70 sm:text-xl">
+            <p className="mt-6 max-w-[40rem] text-base leading-8 text-navy/72 sm:text-lg">
               LizKamaruddin & Associates partners with boards, CEOs and leadership teams to
               strengthen executive communication, stakeholder engagement and organisational
               reputation.
             </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="#contact" variant="dark">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <HeroButtonLink href="#contact" variant="dark">
                 Book a Consultation
-              </ButtonLink>
-              <ButtonLink href="#services" variant="light">
+              </HeroButtonLink>
+              <HeroButtonLink href="#services" variant="light">
                 View Services
-              </ButtonLink>
+              </HeroButtonLink>
+            </div>
+            <div className="mt-8 hidden max-w-[35rem] grid-cols-3 gap-3 text-xs font-semibold text-navy/62 sm:grid">
+              <span className="rounded-2xl border border-line bg-white/65 px-3 py-3 backdrop-blur-xl">Board advisory</span>
+              <span className="rounded-2xl border border-line bg-white/65 px-3 py-3 backdrop-blur-xl">Executive presence</span>
+              <span className="rounded-2xl border border-line bg-white/65 px-3 py-3 backdrop-blur-xl">Reputation strategy</span>
             </div>
           </Reveal>
           <Reveal delay={0.12}>
-            <ExecutiveVisual />
+            <HeroPortrait />
           </Reveal>
         </div>
       </section>
@@ -363,6 +370,60 @@ function ButtonLink({ href, variant, children }: { href: string; variant: "dark"
       {children}
       <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
     </Link>
+  );
+}
+
+function HeroButtonLink({
+  href,
+  variant,
+  children
+}: {
+  href: string;
+  variant: "dark" | "light";
+  children: React.ReactNode;
+}) {
+  const isDark = variant === "dark";
+
+  return (
+    <Link
+      href={href}
+      className={`focus-ring group inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-[0_14px_36px_rgba(8,17,31,0.08)] transition hover:-translate-y-0.5 ${
+        isDark
+          ? "bg-ink text-white hover:bg-emerald"
+          : "border border-line bg-white/78 text-ink backdrop-blur-xl hover:border-emerald/35 hover:text-emerald"
+      }`}
+    >
+      {children}
+      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
+    </Link>
+  );
+}
+
+function HeroPortrait() {
+  return (
+    <div className="relative mx-auto w-full max-w-[31rem] lg:mr-0">
+      <div className="absolute -left-8 top-10 h-36 w-36 rounded-full bg-gold/18 blur-3xl" />
+      <div className="absolute -right-6 bottom-8 h-44 w-44 rounded-full bg-emerald/14 blur-3xl" />
+      <div className="relative overflow-hidden rounded-[34px] border border-line bg-white/72 p-3 shadow-premium backdrop-blur-2xl">
+        <div className="relative min-h-[27rem] overflow-hidden rounded-[26px] bg-[linear-gradient(145deg,#eef4f0_0%,#ffffff_52%,#dce8e2_100%)] sm:min-h-[32rem]">
+          <div className="absolute inset-x-8 top-8 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+          <img
+            src="/liz-profile.png"
+            alt="Liz Kamaruddin professional portrait"
+            className="absolute inset-x-0 bottom-0 mx-auto h-[94%] w-full object-contain object-bottom drop-shadow-[0_28px_55px_rgba(8,17,31,0.18)]"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-white/92 to-transparent" />
+          <div className="absolute left-5 top-5 rounded-2xl border border-white/70 bg-white/72 px-4 py-3 shadow-soft backdrop-blur-xl">
+            <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-emerald">Led by</p>
+            <p className="mt-1 text-sm font-semibold text-ink">Liz Kamaruddin</p>
+          </div>
+          <div className="absolute bottom-5 right-5 max-w-[13rem] rounded-2xl border border-white/70 bg-ink/88 px-4 py-4 text-white shadow-soft backdrop-blur-xl">
+            <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-gold">Executive advisory</p>
+            <p className="mt-2 text-sm leading-5 text-white/82">Clarity, credibility and influence for high-stakes leadership.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
