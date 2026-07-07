@@ -92,7 +92,7 @@ export default function Home() {
               Strategic Communications for Leaders Who Shape the Future
             </h1>
             <p className="mt-6 max-w-[40rem] text-base leading-8 text-navy/72 sm:text-lg">
-              LizKamaruddin & Associates partners with boards, CEOs and leadership teams to
+              Liz Kamaruddin & Associates partners with boards, CEOs and leadership teams to
               strengthen executive communication, stakeholder engagement and organisational
               reputation.
             </p>
@@ -139,7 +139,7 @@ export default function Home() {
             </div>
             <p className="text-xl leading-9 text-navy/75">
               With over three decades of experience in strategic communications, executive
-              leadership and organisational transformation, LizKamaruddin & Associates provides
+              leadership and organisational transformation, Liz Kamaruddin & Associates provides
               trusted advisory services to corporations, government agencies and senior executives.
               We help leaders communicate with confidence, manage reputation, develop executive
               presence and navigate today&apos;s complex stakeholder landscape.
@@ -230,7 +230,7 @@ export default function Home() {
               Ready to strengthen the way your leaders communicate?
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-navy/70">
-              Let&apos;s discuss how LizKamaruddin & Associates can support your organisation&apos;s
+              Let&apos;s discuss how Liz Kamaruddin & Associates can support your organisation&apos;s
               communication, leadership and reputation goals.
             </p>
             <div className="mt-9 flex justify-center">
@@ -269,14 +269,14 @@ export default function Home() {
       <footer className="border-t border-line bg-white px-5 py-10 sm:px-8 lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-7 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-lg font-semibold text-ink">LizKamaruddin & Associates</p>
+            <p className="text-lg font-semibold text-ink">Liz Kamaruddin & Associates</p>
             <p className="mt-2 text-sm text-navy/60">
               Strategic Communications. Leadership Advisory. Executive Coaching.
             </p>
           </div>
           <div className="text-sm text-navy/60 md:text-right">
             <p>hello@lizkamaruddin.com · Phone placeholder · LinkedIn placeholder</p>
-            <p className="mt-2">© {year} LizKamaruddin & Associates. All rights reserved.</p>
+            <p className="mt-2">© {year} Liz Kamaruddin & Associates. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -296,7 +296,7 @@ function Header() {
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-line/70 bg-white/75 px-5 backdrop-blur-2xl sm:px-8 lg:px-10">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6">
         <Link href="#" className="focus-ring text-sm font-semibold tracking-[-0.01em] text-ink sm:text-base">
-          LizKamaruddin & Associates
+          Liz Kamaruddin & Associates
         </Link>
         <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex">
           {navItems.map((item) => (

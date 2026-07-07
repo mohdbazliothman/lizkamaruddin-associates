@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "LizKamaruddin & Associates | Strategic Communications Advisory",
+  title: "Liz Kamaruddin & Associates | Strategic Communications Advisory",
   description:
     "Boutique executive advisory and strategic communications consultancy for boards, CEOs, senior leaders and organisations.",
   keywords: [
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "executive coaching"
   ],
   openGraph: {
-    title: "LizKamaruddin & Associates",
+    title: "Liz Kamaruddin & Associates",
     description:
       "Strategic communications, stakeholder engagement and executive presence advisory for senior leaders.",
     type: "website"

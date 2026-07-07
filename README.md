@@ -1,6 +1,6 @@
-# LizKamaruddin & Associates
+# Liz Kamaruddin & Associates
 
-Premium one-page website for LizKamaruddin & Associates, built with Next.js, TypeScript, Tailwind CSS, Framer Motion, Lucide React, and React Hook Form.
+Premium one-page website for Liz Kamaruddin & Associates, built with Next.js, TypeScript, Tailwind CSS, Framer Motion, Lucide React, and React Hook Form.
 
 ## Local Development
 
