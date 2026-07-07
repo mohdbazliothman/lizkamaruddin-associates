@@ -7,6 +7,7 @@ import {
   Mail,
   MessageSquareText,
   Phone,
+  RadioTower,
   ShieldCheck,
   Sparkles,
   Target,
@@ -97,7 +98,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <HeroButtonLink href="#contact" variant="dark">
-                Book Consultation
+                Book a Consultation
               </HeroButtonLink>
               <HeroButtonLink href="#services" variant="light">
                 View Services
@@ -105,7 +106,7 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={0.12}>
-            <StrategicEcosystem />
+            <ExecutiveVisual />
           </Reveal>
         </div>
       </section>
@@ -393,80 +394,38 @@ function HeroButtonLink({
   );
 }
 
-function StrategicEcosystem() {
+function ExecutiveVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[34rem] lg:mr-0">
-      <div className="absolute -left-8 top-10 h-40 w-40 rounded-full bg-gold/16 blur-3xl" />
-      <div className="absolute -right-6 bottom-8 h-48 w-48 rounded-full bg-emerald/14 blur-3xl" />
-      <div className="relative overflow-hidden rounded-[34px] border border-line bg-white/72 p-3 shadow-premium backdrop-blur-2xl">
-        <div className="relative overflow-hidden rounded-[26px] bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.95),rgba(234,241,237,0.62)_42%,rgba(215,228,222,0.52)_100%)] p-5 sm:min-h-[33rem] sm:p-7">
-          <div className="absolute inset-x-10 top-16 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-          <div className="relative z-10">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-emerald">Strategic communications ecosystem</p>
-            <p className="mt-3 max-w-[18rem] text-xl font-semibold leading-tight text-ink">
-              Aligning leadership, communication and stakeholder influence.
-            </p>
-          </div>
-
-          <div className="relative z-10 mt-7 grid gap-3 sm:hidden">
-            <MobileEcosystemItem
-              eyebrow="CEOs & Leaders"
-              title="Executive Presence"
-              detail="Leadership Influence"
-            />
-            <div className="mx-auto flex w-full max-w-[15rem] items-center justify-center rounded-3xl bg-ink px-5 py-5 text-center text-white shadow-premium">
-              <div>
-                <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-gold">Strategy</p>
-                <p className="mt-1 text-lg font-semibold leading-none">Message</p>
-                <p className="mt-1 text-[0.68rem] font-medium uppercase tracking-[0.16em] text-white/65">Impact</p>
-              </div>
+    <div className="relative mx-auto aspect-[0.92] w-full max-w-[34rem] rounded-[36px] border border-line bg-white p-4 shadow-premium lg:mr-0">
+      <div className="relative h-full overflow-hidden rounded-[28px] bg-[linear-gradient(145deg,#f8faf9_0%,#eaf1ed_48%,#d7e4de_100%)] p-6">
+        <div className="absolute inset-x-10 top-9 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-white/90 to-transparent" />
+        <div className="relative flex h-full flex-col justify-between">
+          <div className="flex items-center justify-between gap-5">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal/70">
+                Strategic signal map
+              </p>
+              <p className="mt-3 max-w-[14rem] text-2xl font-semibold leading-tight text-ink">
+                Aligning leaders, stakeholders and reputation.
+              </p>
             </div>
-            <div className="grid gap-3">
-              <MobileEcosystemItem
-                eyebrow="Media"
-                title="Spokesperson Training"
-                detail="Media Engagement"
-              />
-              <MobileEcosystemItem
-                eyebrow="Stakeholders"
-                title="Stakeholder Engagement"
-                detail="Reputation Management"
-              />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/80 text-emerald shadow-soft">
+              <RadioTower className="h-5 w-5" aria-hidden="true" />
             </div>
           </div>
-
-          <div className="absolute inset-x-7 bottom-8 top-[8rem] hidden sm:block" aria-hidden="true">
-            <svg className="absolute inset-0 h-full w-full" viewBox="0 0 440 330">
-              <path d="M220 82 C142 96 92 156 96 232" fill="none" stroke="#b59358" strokeOpacity="0.48" strokeWidth="1.3" />
-              <path d="M220 82 C298 96 348 156 344 232" fill="none" stroke="#b59358" strokeOpacity="0.48" strokeWidth="1.3" />
-              <path d="M118 244 C174 292 268 292 322 244" fill="none" stroke="#0d6b57" strokeOpacity="0.34" strokeWidth="1.3" />
-              <path d="M220 128 C206 162 203 189 220 218" fill="none" stroke="#0d6b57" strokeOpacity="0.24" strokeWidth="1" />
-              <path d="M147 229 C173 205 189 194 220 218" fill="none" stroke="#102033" strokeOpacity="0.14" strokeWidth="1" />
-              <path d="M293 229 C267 205 251 194 220 218" fill="none" stroke="#102033" strokeOpacity="0.14" strokeWidth="1" />
+          <div className="relative mx-auto mb-5 h-60 w-60 sm:mb-8 sm:h-72 sm:w-72">
+            <NetworkNode className="left-[42%] top-[3%]" label="CEO" active />
+            <NetworkNode className="left-[6%] top-[34%]" label="Board" />
+            <NetworkNode className="right-[2%] top-[32%]" label="Media" />
+            <NetworkNode className="bottom-[8%] left-[18%]" label="Gov" />
+            <NetworkNode className="bottom-[4%] right-[14%]" label="Investors" />
+            <svg className="absolute inset-0 h-full w-full" viewBox="0 0 288 288" aria-hidden="true">
+              <path d="M144 32 L48 118 L236 114 Z" fill="none" stroke="#b59358" strokeOpacity="0.55" />
+              <path d="M48 118 L92 238 L144 32 L203 242 L236 114" fill="none" stroke="#0d6b57" strokeOpacity="0.28" />
+              <path d="M92 238 L203 242" fill="none" stroke="#102033" strokeOpacity="0.16" />
             </svg>
-            <EcosystemCircle
-              className="left-1/2 top-0 -translate-x-1/2"
-              eyebrow="CEOs & Leaders"
-              title="Executive Presence"
-              detail="Leadership Influence"
-            />
-            <EcosystemCircle
-              className="bottom-0 left-0"
-              eyebrow="Media"
-              title="Spokesperson Training"
-              detail="Media Engagement"
-            />
-            <EcosystemCircle
-              className="bottom-0 right-0"
-              eyebrow="Stakeholders"
-              title="Stakeholder Engagement"
-              detail="Reputation Management"
-            />
-            <div className="absolute left-1/2 top-[54%] flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-white/80 bg-ink text-center text-white shadow-premium ring-8 ring-white/35 sm:h-32 sm:w-32">
-              <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-gold">Strategy</p>
-              <p className="mt-1 text-base font-semibold leading-none">Message</p>
-              <p className="mt-1 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-white/65">Impact</p>
-            </div>
+            <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/70 bg-white/50 shadow-soft" />
           </div>
         </div>
       </div>
@@ -474,42 +433,16 @@ function StrategicEcosystem() {
   );
 }
 
-function MobileEcosystemItem({
-  eyebrow,
-  title,
-  detail
-}: {
-  eyebrow: string;
-  title: string;
-  detail: string;
-}) {
+function NetworkNode({ className, label, active }: { className: string; label: string; active?: boolean }) {
   return (
-    <div className="rounded-2xl border border-white/80 bg-white/78 px-4 py-4 text-center shadow-soft backdrop-blur-xl">
-      <p className="text-[0.6rem] font-semibold uppercase tracking-[0.17em] text-emerald">{eyebrow}</p>
-      <p className="mt-1 text-sm font-semibold leading-tight text-ink">{title}</p>
-      <p className="mt-1 text-[0.72rem] leading-tight text-navy/58">{detail}</p>
-    </div>
-  );
-}
-
-function EcosystemCircle({
-  className,
-  eyebrow,
-  title,
-  detail
-}: {
-  className: string;
-  eyebrow: string;
-  title: string;
-  detail: string;
-}) {
-  return (
-    <div
-      className={`absolute z-10 flex h-32 w-32 flex-col items-center justify-center rounded-full border border-white/80 bg-white/82 px-4 text-center shadow-soft backdrop-blur-xl sm:h-36 sm:w-36 ${className}`}
-    >
-      <p className="text-[0.58rem] font-semibold uppercase tracking-[0.17em] text-emerald">{eyebrow}</p>
-      <p className="mt-2 text-sm font-semibold leading-tight text-ink">{title}</p>
-      <p className="mt-1 text-[0.68rem] leading-tight text-navy/58">{detail}</p>
+    <div className={`absolute z-10 ${className}`}>
+      <div
+        className={`flex h-14 w-14 items-center justify-center rounded-full border text-xs font-semibold shadow-soft sm:h-16 sm:w-16 ${
+          active ? "border-emerald/25 bg-emerald text-white" : "border-white/80 bg-white/80 text-navy"
+        }`}
+      >
+        {label}
+      </div>
     </div>
   );
 }
