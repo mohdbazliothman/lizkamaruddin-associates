@@ -13,7 +13,6 @@ import {
   Target,
   UsersRound
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { PortraitImage } from "@/components/portrait-image";
@@ -415,17 +414,7 @@ function ExecutiveVisual() {
               <RadioTower className="h-5 w-5" aria-hidden="true" />
             </div>
           </div>
-          <div className="relative mt-5 overflow-hidden rounded-[22px] border border-white/80 bg-white/55 shadow-soft sm:hidden">
-            <Image
-              src="/leaders.png"
-              alt="Strategic communications ecosystem linking CEOs and leaders, board, media, government and investors around strategy, message and impact."
-              width={1410}
-              height={1130}
-              className="h-auto w-full object-contain"
-              priority
-            />
-          </div>
-          <div className="relative mx-auto mb-8 mt-9 hidden h-72 w-72 sm:block">
+          <div className="relative mx-auto mb-4 mt-7 h-64 w-64 sm:mb-8 sm:mt-9 sm:h-72 sm:w-72">
             <NetworkNode className="left-[42%] top-[3%]" label="CEO" active />
             <NetworkNode className="left-[6%] top-[34%]" label="Board" />
             <NetworkNode className="right-[2%] top-[32%]" label="Media" />
@@ -448,7 +437,7 @@ function NetworkNode({ className, label, active }: { className: string; label: s
   return (
     <div className={`absolute z-10 ${className}`}>
       <div
-        className={`flex h-16 w-16 items-center justify-center rounded-full border text-xs font-semibold shadow-soft ${
+        className={`flex h-14 w-14 items-center justify-center rounded-full border text-[0.68rem] font-semibold shadow-soft sm:h-16 sm:w-16 sm:text-xs ${
           active ? "border-emerald/25 bg-emerald text-white" : "border-white/80 bg-white/80 text-navy"
         }`}
       >
