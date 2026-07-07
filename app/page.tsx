@@ -399,7 +399,7 @@ function StrategicEcosystem() {
       <div className="absolute -left-8 top-10 h-40 w-40 rounded-full bg-gold/16 blur-3xl" />
       <div className="absolute -right-6 bottom-8 h-48 w-48 rounded-full bg-emerald/14 blur-3xl" />
       <div className="relative overflow-hidden rounded-[34px] border border-line bg-white/72 p-3 shadow-premium backdrop-blur-2xl">
-        <div className="relative min-h-[30rem] overflow-hidden rounded-[26px] bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.95),rgba(234,241,237,0.62)_42%,rgba(215,228,222,0.52)_100%)] p-5 sm:min-h-[33rem] sm:p-7">
+        <div className="relative overflow-hidden rounded-[26px] bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.95),rgba(234,241,237,0.62)_42%,rgba(215,228,222,0.52)_100%)] p-5 sm:min-h-[33rem] sm:p-7">
           <div className="absolute inset-x-10 top-16 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
           <div className="relative z-10">
             <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-emerald">Strategic communications ecosystem</p>
@@ -408,7 +408,34 @@ function StrategicEcosystem() {
             </p>
           </div>
 
-          <div className="absolute inset-x-5 bottom-7 top-[8.5rem] sm:inset-x-7 sm:bottom-8 sm:top-[8rem]" aria-hidden="true">
+          <div className="relative z-10 mt-7 grid gap-3 sm:hidden">
+            <MobileEcosystemItem
+              eyebrow="CEOs & Leaders"
+              title="Executive Presence"
+              detail="Leadership Influence"
+            />
+            <div className="mx-auto flex w-full max-w-[15rem] items-center justify-center rounded-3xl bg-ink px-5 py-5 text-center text-white shadow-premium">
+              <div>
+                <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-gold">Strategy</p>
+                <p className="mt-1 text-lg font-semibold leading-none">Message</p>
+                <p className="mt-1 text-[0.68rem] font-medium uppercase tracking-[0.16em] text-white/65">Impact</p>
+              </div>
+            </div>
+            <div className="grid gap-3">
+              <MobileEcosystemItem
+                eyebrow="Media"
+                title="Spokesperson Training"
+                detail="Media Engagement"
+              />
+              <MobileEcosystemItem
+                eyebrow="Stakeholders"
+                title="Stakeholder Engagement"
+                detail="Reputation Management"
+              />
+            </div>
+          </div>
+
+          <div className="absolute inset-x-7 bottom-8 top-[8rem] hidden sm:block" aria-hidden="true">
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 440 330">
               <path d="M220 82 C142 96 92 156 96 232" fill="none" stroke="#b59358" strokeOpacity="0.48" strokeWidth="1.3" />
               <path d="M220 82 C298 96 348 156 344 232" fill="none" stroke="#b59358" strokeOpacity="0.48" strokeWidth="1.3" />
@@ -443,6 +470,24 @@ function StrategicEcosystem() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function MobileEcosystemItem({
+  eyebrow,
+  title,
+  detail
+}: {
+  eyebrow: string;
+  title: string;
+  detail: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-white/80 bg-white/78 px-4 py-4 text-center shadow-soft backdrop-blur-xl">
+      <p className="text-[0.6rem] font-semibold uppercase tracking-[0.17em] text-emerald">{eyebrow}</p>
+      <p className="mt-1 text-sm font-semibold leading-tight text-ink">{title}</p>
+      <p className="mt-1 text-[0.72rem] leading-tight text-navy/58">{detail}</p>
     </div>
   );
 }
