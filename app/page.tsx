@@ -413,13 +413,15 @@ function HeroPortrait() {
             className="absolute inset-x-0 bottom-0 mx-auto h-[94%] w-full object-contain object-bottom drop-shadow-[0_28px_55px_rgba(8,17,31,0.18)]"
           />
           <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-white/92 to-transparent" />
-          <div className="absolute left-5 top-5 rounded-2xl border border-white/70 bg-white/72 px-4 py-3 shadow-soft backdrop-blur-xl">
-            <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-emerald">Led by</p>
-            <p className="mt-1 text-sm font-semibold text-ink">Liz Kamaruddin</p>
+          <div className="absolute left-5 top-5 max-w-[15rem] rounded-2xl border border-white/70 bg-white/76 px-4 py-4 shadow-soft backdrop-blur-xl">
+            <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-emerald">Strategic communications</p>
+            <p className="mt-2 text-base font-semibold leading-5 text-ink">
+              Aligning leaders, stakeholders and reputation.
+            </p>
           </div>
-          <div className="absolute bottom-5 right-5 max-w-[13rem] rounded-2xl border border-white/70 bg-ink/88 px-4 py-4 text-white shadow-soft backdrop-blur-xl">
-            <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-gold">Executive advisory</p>
-            <p className="mt-2 text-sm leading-5 text-white/82">Clarity, credibility and influence for high-stakes leadership.</p>
+          <div className="absolute bottom-5 right-5 rounded-2xl border border-white/70 bg-ink/88 px-4 py-3 text-white shadow-soft backdrop-blur-xl">
+            <p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-gold">Boardroom ready</p>
+            <p className="mt-1 text-sm leading-5 text-white/82">Clear. Calm. Credible.</p>
           </div>
         </div>
       </div>
