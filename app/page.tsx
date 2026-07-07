@@ -397,11 +397,11 @@ function HeroButtonLink({
 
 function ExecutiveVisual() {
   return (
-    <div className="relative mx-auto aspect-[0.92] w-full max-w-[34rem] rounded-[36px] border border-line bg-white p-4 shadow-premium lg:mr-0">
-      <div className="relative h-full overflow-hidden rounded-[28px] bg-[linear-gradient(145deg,#f8faf9_0%,#eaf1ed_48%,#d7e4de_100%)] p-6">
+    <div className="relative mx-auto w-full max-w-[34rem] rounded-[36px] border border-line bg-white p-3 shadow-premium sm:aspect-[0.92] sm:p-4 lg:mr-0">
+      <div className="relative h-auto overflow-hidden rounded-[28px] bg-[linear-gradient(145deg,#f8faf9_0%,#eaf1ed_48%,#d7e4de_100%)] p-4 sm:h-full sm:p-6">
         <div className="absolute inset-x-10 top-9 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-white/90 to-transparent" />
-        <div className="relative flex h-full flex-col justify-between">
+        <div className="relative flex h-full flex-col sm:justify-between">
           <div className="flex items-center justify-between gap-5">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal/70">
@@ -415,13 +415,13 @@ function ExecutiveVisual() {
               <RadioTower className="h-5 w-5" aria-hidden="true" />
             </div>
           </div>
-          <div className="relative mt-7 overflow-hidden rounded-[24px] border border-white/80 bg-white/55 shadow-soft sm:mt-9">
+          <div className="relative mt-5 overflow-hidden rounded-[22px] border border-white/80 bg-white/55 shadow-soft sm:mt-9 sm:rounded-[24px]">
             <Image
               src="/leaders.png"
               alt="Strategic communications ecosystem linking CEOs and leaders, board, media, government and investors around strategy, message and impact."
               width={1410}
               height={1130}
-              className="h-auto w-full object-cover"
+              className="h-auto w-full object-contain"
               priority
             />
           </div>
