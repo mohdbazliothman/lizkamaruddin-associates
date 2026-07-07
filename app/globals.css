@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background: #fbfcfb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(181, 147, 88, 0.10), transparent 26rem),
+    linear-gradient(180deg, #fbfcfb 0%, #ffffff 42%, #f6f8f7 100%);
+  color: #08111f;
+  text-rendering: geometricPrecision;
+}
+
+::selection {
+  background: rgba(13, 107, 87, 0.16);
+}
+
+.glass-panel {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(247, 250, 248, 0.70));
+  border: 1px solid rgba(221, 228, 223, 0.78);
+  box-shadow: 0 24px 80px rgba(8, 17, 31, 0.10);
+  backdrop-filter: blur(22px);
+}
+
+.noise {
+  background-image: linear-gradient(rgba(8, 17, 31, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 17, 31, 0.03) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.focus-ring {
+  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald;
+}
+
+@layer components {
+  .field-input {
+    @apply w-full rounded-2xl border border-line bg-white/85 px-4 py-3.5 text-base text-ink shadow-[0_1px_0_rgba(8,17,31,0.03)] transition placeholder:text-navy/35 focus:border-emerald/45 focus:outline-none focus:ring-4 focus:ring-emerald/10;
+  }
+}
