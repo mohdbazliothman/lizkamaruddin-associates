@@ -13,6 +13,7 @@ import {
   Target,
   UsersRound
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { PortraitImage } from "@/components/portrait-image";
@@ -414,34 +415,17 @@ function ExecutiveVisual() {
               <RadioTower className="h-5 w-5" aria-hidden="true" />
             </div>
           </div>
-          <div className="relative mx-auto mb-5 h-60 w-60 sm:mb-8 sm:h-72 sm:w-72">
-            <NetworkNode className="left-[42%] top-[3%]" label="CEO" active />
-            <NetworkNode className="left-[6%] top-[34%]" label="Board" />
-            <NetworkNode className="right-[2%] top-[32%]" label="Media" />
-            <NetworkNode className="bottom-[8%] left-[18%]" label="Gov" />
-            <NetworkNode className="bottom-[4%] right-[14%]" label="Investors" />
-            <svg className="absolute inset-0 h-full w-full" viewBox="0 0 288 288" aria-hidden="true">
-              <path d="M144 32 L48 118 L236 114 Z" fill="none" stroke="#b59358" strokeOpacity="0.55" />
-              <path d="M48 118 L92 238 L144 32 L203 242 L236 114" fill="none" stroke="#0d6b57" strokeOpacity="0.28" />
-              <path d="M92 238 L203 242" fill="none" stroke="#102033" strokeOpacity="0.16" />
-            </svg>
-            <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/70 bg-white/50 shadow-soft" />
+          <div className="relative mt-7 overflow-hidden rounded-[24px] border border-white/80 bg-white/55 shadow-soft sm:mt-9">
+            <Image
+              src="/leaders.png"
+              alt="Strategic communications ecosystem linking CEOs and leaders, board, media, government and investors around strategy, message and impact."
+              width={1410}
+              height={1130}
+              className="h-auto w-full object-cover"
+              priority
+            />
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function NetworkNode({ className, label, active }: { className: string; label: string; active?: boolean }) {
-  return (
-    <div className={`absolute z-10 ${className}`}>
-      <div
-        className={`flex h-14 w-14 items-center justify-center rounded-full border text-xs font-semibold shadow-soft sm:h-16 sm:w-16 ${
-          active ? "border-emerald/25 bg-emerald text-white" : "border-white/80 bg-white/80 text-navy"
-        }`}
-      >
-        {label}
       </div>
     </div>
   );
