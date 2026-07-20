@@ -6,9 +6,15 @@ type ExpertPortraitProps = {
   src: string;
   alt: string;
   initials: string;
+  imagePosition?: string;
 };
 
-export function ExpertPortrait({ src, alt, initials }: ExpertPortraitProps) {
+export function ExpertPortrait({
+  src,
+  alt,
+  initials,
+  imagePosition = "center top"
+}: ExpertPortraitProps) {
   const [hasImage, setHasImage] = useState(true);
 
   return (
@@ -17,7 +23,8 @@ export function ExpertPortrait({ src, alt, initials }: ExpertPortraitProps) {
         <img
           src={src}
           alt={alt}
-          className="absolute inset-0 h-full w-full object-cover object-[center_top] grayscale-[8%]"
+          className="absolute inset-0 h-full w-full object-cover grayscale-[8%]"
+          style={{ objectPosition: imagePosition }}
           loading="lazy"
           decoding="async"
           onError={() => setHasImage(false)}

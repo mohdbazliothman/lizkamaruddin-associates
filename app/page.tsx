@@ -95,6 +95,33 @@ const reedCredentials = [
   "Strategic communication, stakeholder management and crisis-response expertise"
 ];
 
+const teamExperts = [
+  {
+    name: "Liz Kamaruddin",
+    label: "Principal",
+    role: "Principal, Adjunct Professor & Lead Expert Trainer",
+    image: "/images/team/liz-kamaruddin-executive-portrait.png",
+    imageAlt: "Liz Kamaruddin professional executive portrait",
+    initials: "LK",
+    imagePosition: "center top",
+    biography:
+      "Liz Kamaruddin is a senior strategic communications specialist with more than 30 years of experience supporting organisations across ASEAN, the Middle East and the Americas. Her expertise includes reputation management, strategic crisis communication, ESG communication, corporate social responsibility, branding, media relations and internal communication.",
+    credentials: lizCredentials.slice(0, 6)
+  },
+  {
+    name: "Reed Samsudin",
+    label: "Expert Trainer",
+    role: "Expert Trainer, Communications Advisor, Media & Crisis Expert",
+    image: "/images/team/reed-samsudin-executive-portrait.png",
+    imageAlt: "Reed Samsudin professional executive portrait",
+    initials: "RS",
+    imagePosition: "center top",
+    biography:
+      "Reed Samsudin is a senior communications professional with more than 20 years of experience across financial services, energy and FMCG. He has prepared senior leaders at major organisations for media engagement, reputation management and crisis response across ASEAN, the Middle East, North America and Africa.",
+    credentials: reedCredentials
+  }
+];
+
 const recognition = [
   "PRWeek Power Book 2014 and 2015",
   "PRWeek Asia Power List 2014",
@@ -358,53 +385,27 @@ export default function Home() {
 
       <Section id="team" title="Meet the Experts" eyebrow="Team">
         <div className="grid items-stretch gap-6 lg:grid-cols-2">
-          <Reveal>
-            <article className="flex h-full flex-col border border-line bg-white p-5 shadow-soft sm:p-6 md:p-8">
-              <ExpertPortrait
-                src="/liz-profile.png"
-                alt="Liz Kamaruddin professional portrait"
-                initials="LK"
-              />
-              <div className="flex flex-1 flex-col pt-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Principal</p>
-                <h3 className="mt-3 font-display text-4xl text-ink">Liz Kamaruddin</h3>
-                <p className="mt-2 text-sm font-semibold text-emerald">
-                  Principal, Adjunct Professor & Lead Expert Trainer
-                </p>
-                <p className="mt-6 text-base leading-7 text-navy/72">
-                  Liz Kamaruddin is a senior strategic communications specialist with more than 30
-                  years of experience supporting organisations across ASEAN, the Middle East and the
-                  Americas. Her expertise includes reputation management, strategic crisis
-                  communication, ESG communication, corporate social responsibility, branding, media
-                  relations and internal communication.
-                </p>
-                <CredentialList items={lizCredentials.slice(0, 6)} />
-              </div>
-            </article>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <article className="flex h-full flex-col border border-line bg-white p-5 shadow-soft sm:p-6 md:p-8">
-              <ExpertPortrait
-                src="/reed-profile.png"
-                alt="Reed Samsudin professional portrait"
-                initials="RS"
-              />
-              <div className="flex flex-1 flex-col pt-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Expert Trainer</p>
-                <h3 className="mt-3 font-display text-4xl text-ink">Reed Samsudin</h3>
-                <p className="mt-2 text-sm font-semibold text-emerald">
-                  Expert Trainer, Communications Advisor, Media & Crisis Expert
-                </p>
-                <p className="mt-6 text-base leading-7 text-navy/72">
-                  Reed Samsudin is a senior communications professional with more than 20 years of
-                  experience across financial services, energy and FMCG. He has prepared senior
-                  leaders at major organisations for media engagement, reputation management and
-                  crisis response across ASEAN, the Middle East, North America and Africa.
-                </p>
-                <CredentialList items={reedCredentials} />
-              </div>
-            </article>
-          </Reveal>
+          {teamExperts.map((expert, index) => (
+            <Reveal key={expert.name} delay={index * 0.08}>
+              <article className="flex h-full flex-col border border-line bg-white p-5 shadow-soft sm:p-6 md:p-8">
+                <ExpertPortrait
+                  src={expert.image}
+                  alt={expert.imageAlt}
+                  initials={expert.initials}
+                  imagePosition={expert.imagePosition}
+                />
+                <div className="flex flex-1 flex-col pt-7">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                    {expert.label}
+                  </p>
+                  <h3 className="mt-3 font-display text-4xl text-ink">{expert.name}</h3>
+                  <p className="mt-2 text-sm font-semibold text-emerald">{expert.role}</p>
+                  <p className="mt-6 text-base leading-7 text-navy/72">{expert.biography}</p>
+                  <CredentialList items={expert.credentials} />
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </Section>
 

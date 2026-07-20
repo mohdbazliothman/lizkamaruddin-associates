@@ -8,25 +8,25 @@ export type ClientExperience = {
 };
 
 export const clientExperience: ClientExperience[] = [
-  { name: "PETRONAS", logo: "/client-logos/petronas.jpg", size: "compact", featured: true },
-  { name: "EPF / KWSP", logo: "/client-logos/kwsp.jpg", size: "wide", featured: true },
-  { name: "Khazanah Nasional", logo: "/client-logos/khazanah.jpg", size: "standard", featured: true },
-  { name: "Telekom Malaysia", logo: "/client-logos/telekom-malaysia.jpg", size: "wide", featured: true },
-  { name: "Mastercard", logo: "/client-logos/mastercard.png", size: "standard", featured: true },
-  { name: "Tabung Haji", logo: "/client-logos/tabung-haji.webp", size: "compact", featured: true },
-  { name: "Tenaga Nasional Berhad", logo: "/client-logos/tenaga-nasional-berhad.png", size: "wide", featured: true },
-  { name: "Ministry of Tourism, Arts and Culture Malaysia", logo: "/client-logos/motac.jpg", size: "wide", featured: true },
-  { name: "Bank Rakyat", logo: "/client-logos/bank-rakyat.png", size: "wide", featured: true },
-  { name: "Prasarana Malaysia", logo: "/client-logos/prasarana.png", size: "wide", featured: true },
-  { name: "Ministry of Health Malaysia", logo: "/client-logos/ministry-of-health.jfif", size: "wide", featured: true },
-  { name: "Hess", logo: "/client-logos/hess.webp", size: "wide", featured: true },
-  { name: "ANOC Medicare & Diagnostic", logo: "/client-logos/anoc.jpg", size: "wide" },
-  { name: "International Islamic Liquidity Management Corporation", logo: "/client-logos/iilm.png", size: "wide" },
-  { name: "Duopharma", logo: "/client-logos/duopharma.jfif", size: "standard" },
-  { name: "KPS", logo: "/client-logos/kps.png", size: "wide" },
-  { name: "Jentayu Sustainables", logo: "/client-logos/jentayu-sustainables.png", size: "standard" },
-  { name: "Institute of Corporate Directors Malaysia", logo: "/client-logos/icdm.jpg", size: "wide" },
-  { name: "Ministry of Communications Malaysia", logo: "/client-logos/ministry-of-communications.png", size: "compact" }
+  { name: "PETRONAS", logo: "/images/clients/petronas.png", size: "compact", featured: true },
+  { name: "EPF / KWSP", logo: "/images/clients/employees-provident-fund-kwsp.png", size: "wide", featured: true },
+  { name: "Khazanah Nasional", logo: "/images/clients/khazanah-nasional.png", size: "standard", featured: true },
+  { name: "Telekom Malaysia", logo: "/images/clients/telekom-malaysia.png", size: "wide", featured: true },
+  { name: "Mastercard", logo: "/images/clients/mastercard.png", size: "standard", featured: true },
+  { name: "Tabung Haji", logo: "/images/clients/tabung-haji.png", size: "compact", featured: true },
+  { name: "Tenaga Nasional Berhad", logo: "/images/clients/tenaga-nasional-berhad.png", size: "wide", featured: true },
+  { name: "Ministry of Tourism, Arts and Culture Malaysia", logo: "/images/clients/ministry-of-tourism-arts-and-culture-malaysia.png", size: "wide", featured: true },
+  { name: "Bank Rakyat", logo: "/images/clients/bank-rakyat.png", size: "wide", featured: true },
+  { name: "Prasarana Malaysia", logo: "/images/clients/prasarana-malaysia.png", size: "wide", featured: true },
+  { name: "Ministry of Health Malaysia", logo: "/images/clients/ministry-of-health-malaysia.png", size: "wide", featured: true },
+  { name: "Hess", logo: "/images/clients/hess.png", size: "wide", featured: true },
+  { name: "ANOC Medicare & Diagnostic", logo: "/images/clients/anoc-medicare-diagnostic.png", size: "wide" },
+  { name: "International Islamic Liquidity Management Corporation", logo: "/images/clients/international-islamic-liquidity-management-corporation.png", size: "wide" },
+  { name: "Duopharma", logo: "/images/clients/duopharma.png", size: "standard" },
+  { name: "KPS", logo: "/images/clients/kps.png", size: "wide" },
+  { name: "Jentayu Sustainables", logo: "/images/clients/jentayu-sustainables.png", size: "standard" },
+  { name: "Institute of Corporate Directors Malaysia", logo: "/images/clients/institute-of-corporate-directors-malaysia.png", size: "wide" },
+  { name: "Ministry of Communications Malaysia", logo: "/images/clients/ministry-of-communications-malaysia.png", size: "compact" }
 ];
 
 export const featuredClientExperience = clientExperience.filter((client) => client.featured);

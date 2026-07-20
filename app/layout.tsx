@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "Liz Kamaruddin & Associates",
     images: [
       {
-        url: "/liz-profile.png",
+        url: "/images/team/liz-kamaruddin-executive-portrait.png",
         width: 1200,
         height: 630,
         alt: "Liz Kamaruddin & Associates strategic communications advisory"
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "Liz Kamaruddin & Associates | Strategic Communications Advisory",
     description:
       "Strategic communications advisory for reputation, crisis preparedness, stakeholder engagement, coaching and capability development.",
-    images: ["/liz-profile.png"]
+    images: ["/images/team/liz-kamaruddin-executive-portrait.png"]
   }
 };
 
