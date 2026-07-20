@@ -6,14 +6,14 @@ import { SiteHeader } from "@/components/site-header";
 import { academyDivisions, futureAcademyAdditions } from "@/lib/comms-academy";
 
 export const metadata: Metadata = {
-  title: "Comms Academy | LizKamaruddin & Associates",
+  title: "Comms Academy | Liz Kamaruddin & Associates",
   description:
-    "Comms Academy is the dedicated capability-building division of LizKamaruddin & Associates, offering leadership programmes, communications team upskilling, AI for communications, media training and custom corporate programmes.",
+    "Comms Academy is the dedicated capability-building division of Liz Kamaruddin & Associates, offering leadership programmes, communications team upskilling, AI for communications, media training and custom corporate programmes.",
   alternates: {
     canonical: "https://www.example.com/comms-academy"
   },
   openGraph: {
-    title: "Comms Academy | LizKamaruddin & Associates",
+    title: "Comms Academy | Liz Kamaruddin & Associates",
     description:
       "Premium communication capability-building for leaders and communications teams.",
     url: "https://www.example.com/comms-academy",

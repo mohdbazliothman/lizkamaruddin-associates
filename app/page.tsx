@@ -17,40 +17,19 @@ import {
 } from "lucide-react";
 import Script from "next/script";
 import Link from "next/link";
+import { ClientLogoWall } from "@/components/client-logo-wall";
 import { EnquiryForm } from "@/components/enquiry-form";
-import { PortraitImage } from "@/components/portrait-image";
+import { ExpertPortrait } from "@/components/expert-portrait";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
 import { academyCapabilities } from "@/lib/comms-academy";
+import { additionalClientExperience, featuredClientExperience } from "@/lib/client-experience";
 
 const proofPoints = [
   "50+ Years Combined Experience",
   "Senior Corporate & Public-Sector Expertise",
   "Regional and Global Communications Experience",
   "Reputation, Crisis & Leadership Advisory"
-];
-
-// TODO: Add only approved client logo files here after logo usage rights are confirmed.
-const selectedClients = [
-  { name: "ANOC Medicare & Diagnostic", logo: "/client-logos/anoc.jpg" },
-  { name: "EPF / KWSP", logo: "/client-logos/kwsp.jpg" },
-  { name: "Telekom Malaysia", logo: "/client-logos/telekom-malaysia.jpg" },
-  { name: "Mastercard", logo: "/client-logos/mastercard.png" },
-  { name: "PETRONAS", logo: "/client-logos/petronas.jpg" },
-  { name: "Khazanah Nasional", logo: "/client-logos/khazanah.jpg" },
-  { name: "Ministry of Tourism, Arts and Culture Malaysia", logo: "/client-logos/motac.jpg" },
-  { name: "International Islamic Liquidity Management Corporation" },
-  { name: "Tabung Haji" },
-  { name: "Tenaga Nasional Berhad" },
-  { name: "Duopharma" },
-  { name: "Ministry of Health Malaysia" },
-  { name: "KPS" },
-  { name: "Hess" },
-  { name: "Jentayu Sustainables" },
-  { name: "Prasarana Malaysia" },
-  { name: "Institute of Corporate Directors Malaysia" },
-  { name: "Bank Rakyat" },
-  { name: "Ministry of Communications Malaysia" }
 ];
 
 const pillars = [
@@ -141,7 +120,7 @@ const supportAreas = [
 const organisationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "LizKamaruddin & Associates",
+  name: "Liz Kamaruddin & Associates",
   alternateName: "LK&A",
   description:
     "Boutique strategic communications advisory supporting boards, senior leaders and communication teams in reputation management, crisis preparedness, stakeholder engagement, coaching and capability development.",
@@ -156,7 +135,7 @@ const personSchema = {
   jobTitle: "Principal, Adjunct Professor & Lead Expert Trainer",
   worksFor: {
     "@type": "Organization",
-    name: "LizKamaruddin & Associates"
+    name: "Liz Kamaruddin & Associates"
   }
 };
 
@@ -190,7 +169,7 @@ export default function Home() {
               Strategic Communications for Moments That Matter
             </h1>
             <p className="mt-6 max-w-[40rem] text-base leading-8 text-navy/72 sm:text-lg">
-              LizKamaruddin & Associates advises boards, senior leaders and communications teams on
+              Liz Kamaruddin & Associates advises boards, senior leaders and communications teams on
               reputation, stakeholder engagement, transformation and crisis preparedness.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -221,42 +200,48 @@ export default function Home() {
         </div>
       </section>
 
-      <Section eyebrow="Selected Client Experience" title="Trusted by Leading Organisations">
-        <Reveal>
-          <p className="mb-8 max-w-3xl text-lg leading-8 text-navy/70">
-            Our team has supported prominent organisations across energy, finance, infrastructure,
-            government, healthcare and professional services.
-          </p>
-        </Reveal>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
-          {selectedClients.map((client, index) => (
-            <Reveal key={client.name} delay={index * 0.015}>
-              <div
-                className="flex min-h-28 items-center justify-center border border-line bg-white/72 px-4 py-5 text-center text-xs font-semibold uppercase tracking-[0.12em] text-navy/55 transition hover:border-gold/40 hover:text-ink"
-                aria-label={`${client.name} selected client experience`}
-              >
-                {client.logo ? (
-                  <img
-                    src={client.logo}
-                    alt={`${client.name} logo`}
-                    className="max-h-16 w-full max-w-[9rem] object-contain opacity-80 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
-                    loading="lazy"
-                  />
-                ) : (
-                  client.name
-                )}
-              </div>
-            </Reveal>
-          ))}
+      <section id="clients" className="relative isolate overflow-hidden bg-mist px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <img
+          src="/lka-signature.png"
+          alt=""
+          className="pointer-events-none absolute right-[-5rem] top-10 -z-10 hidden w-[24rem] opacity-[0.035] lg:block"
+          aria-hidden="true"
+        />
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <div className="mx-auto mb-5 h-px w-16 bg-gold/70" aria-hidden="true" />
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald">
+              Selected Client Experience
+            </p>
+            <h2 className="mt-5 font-display text-4xl leading-tight text-ink sm:text-5xl lg:text-6xl">
+              Trusted Across Sectors and Critical Environments
+            </h2>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-navy/70">
+              Our team has supported leading organisations across energy, finance,
+              infrastructure, government, healthcare and professional services.
+            </p>
+          </Reveal>
+
+          <ClientLogoWall
+            featuredClients={featuredClientExperience}
+            additionalClients={additionalClientExperience}
+          />
+
+          <Reveal>
+            <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-6 text-navy/50 sm:text-sm">
+              Selected organisational experience of LK&A team members. Engagements may have
+              been undertaken in current or previous professional capacities.
+            </p>
+          </Reveal>
         </div>
-      </Section>
+      </section>
 
       <Section id="about" eyebrow="Who We Are" title="Seasoned Communications Counsel for Complex Environments" watermark>
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <Reveal>
             <div className="border-l-2 border-gold bg-white/65 py-2 pl-7">
               <p className="text-xl leading-9 text-navy/76">
-                LizKamaruddin & Associates is a team of seasoned communications professionals
+                Liz Kamaruddin & Associates is a team of seasoned communications professionals
                 driven by a passion for empowering leadership and communications teams. With more
                 than 50 years of combined experience in senior corporate and public-sector
                 communications roles, we help organisations manage stakeholder relationships,
@@ -313,7 +298,7 @@ export default function Home() {
 
       <Section
         id="comms-academy"
-        eyebrow="Comms Academy by LizKamaruddin & Associates"
+        eyebrow="Comms Academy by Liz Kamaruddin & Associates"
         title="Developing Leaders. Strengthening Organisations."
       >
         <div className="relative overflow-hidden border border-gold/30 bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(250,246,238,0.78))] p-6 shadow-soft sm:p-8 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:p-12">
@@ -334,7 +319,7 @@ export default function Home() {
                 communicate them with clarity, confidence and credibility.
               </p>
               <p className="mt-5 text-lg leading-8 text-navy/76">
-                Comms Academy is the capability-building division of LizKamaruddin & Associates,
+                Comms Academy is the capability-building division of Liz Kamaruddin & Associates,
                 designed to equip executives, leadership teams and communication professionals with
                 the skills to navigate transformation, manage stakeholder expectations and lead
                 effectively during moments that matter.
@@ -372,11 +357,15 @@ export default function Home() {
       </Section>
 
       <Section id="team" title="Meet the Experts" eyebrow="Team">
-        <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="grid items-stretch gap-6 lg:grid-cols-2">
           <Reveal>
-            <article className="grid gap-7 border border-line bg-white p-6 shadow-soft md:grid-cols-[0.72fr_1.28fr] md:p-8">
-              <Portrait />
-              <div>
+            <article className="flex h-full flex-col border border-line bg-white p-5 shadow-soft sm:p-6 md:p-8">
+              <ExpertPortrait
+                src="/liz-profile.png"
+                alt="Liz Kamaruddin professional portrait"
+                initials="LK"
+              />
+              <div className="flex flex-1 flex-col pt-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Principal</p>
                 <h3 className="mt-3 font-display text-4xl text-ink">Liz Kamaruddin</h3>
                 <p className="mt-2 text-sm font-semibold text-emerald">
@@ -394,29 +383,26 @@ export default function Home() {
             </article>
           </Reveal>
           <Reveal delay={0.08}>
-            <article className="h-full border border-line bg-white p-6 shadow-soft md:p-8">
-              <div className="mb-7 flex min-h-48 items-center justify-center bg-mist text-center">
-                <div>
-                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-emerald/20 bg-white font-display text-2xl text-emerald">
-                    RS
-                  </div>
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-navy/45">
-                    Photo placeholder
-                  </p>
-                </div>
+            <article className="flex h-full flex-col border border-line bg-white p-5 shadow-soft sm:p-6 md:p-8">
+              <ExpertPortrait
+                src="/reed-profile.png"
+                alt="Reed Samsudin professional portrait"
+                initials="RS"
+              />
+              <div className="flex flex-1 flex-col pt-7">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Expert Trainer</p>
+                <h3 className="mt-3 font-display text-4xl text-ink">Reed Samsudin</h3>
+                <p className="mt-2 text-sm font-semibold text-emerald">
+                  Expert Trainer, Communications Advisor, Media & Crisis Expert
+                </p>
+                <p className="mt-6 text-base leading-7 text-navy/72">
+                  Reed Samsudin is a senior communications professional with more than 20 years of
+                  experience across financial services, energy and FMCG. He has prepared senior
+                  leaders at major organisations for media engagement, reputation management and
+                  crisis response across ASEAN, the Middle East, North America and Africa.
+                </p>
+                <CredentialList items={reedCredentials} />
               </div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Expert Trainer</p>
-              <h3 className="mt-3 font-display text-3xl text-ink">Reed Samsudin</h3>
-              <p className="mt-2 text-sm font-semibold text-emerald">
-                Expert Trainer, Communications Advisor, Media & Crisis Expert
-              </p>
-              <p className="mt-6 text-base leading-7 text-navy/72">
-                Reed Samsudin is a senior communications professional with more than 20 years of
-                experience across financial services, energy and FMCG. He has prepared senior
-                leaders at major organisations for media engagement, reputation management and
-                crisis response across ASEAN, the Middle East, North America and Africa.
-              </p>
-              <CredentialList items={reedCredentials} />
             </article>
           </Reveal>
         </div>
@@ -437,7 +423,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section id="clients" eyebrow="Who We Support" title="Who We Support">
+      <Section id="support" eyebrow="Who We Support" title="Who We Support">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {supportAreas.map((item, index) => (
             <Reveal key={item} delay={index * 0.02}>
@@ -663,15 +649,6 @@ function CredentialList({ items }: { items: string[] }) {
   );
 }
 
-function Portrait() {
-  return (
-    <div className="relative min-h-[24rem] overflow-hidden bg-[linear-gradient(145deg,#0d1a2a,#164e57)]">
-      <PortraitImage />
-      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/70 to-transparent" />
-    </div>
-  );
-}
-
 function ContactLine({ icon: Icon, text }: { icon: typeof Mail; text: string }) {
   return (
     <div className="flex items-center gap-3">
@@ -699,10 +676,10 @@ function Footer({ year }: { year: number }) {
         <div>
           <img
             src="/lka-signature.png"
-            alt="LizKamaruddin & Associates signature logo"
+            alt="Liz Kamaruddin & Associates signature logo"
             className="mb-6 h-16 w-auto object-contain sm:h-20"
           />
-          <p className="text-lg font-semibold text-ink">LizKamaruddin & Associates</p>
+          <p className="text-lg font-semibold text-ink">Liz Kamaruddin & Associates</p>
           <p className="mt-2 text-sm text-navy/60">
             Strategic Communications for Moments That Matter
           </p>
@@ -722,7 +699,7 @@ function Footer({ year }: { year: number }) {
             <p>hello@lizkamaruddin.com</p>
             <p className="mt-2">Telephone placeholder</p>
             <p className="mt-2">LinkedIn placeholder</p>
-            <p className="mt-4">&copy; {year} LizKamaruddin & Associates. All rights reserved.</p>
+            <p className="mt-4">&copy; {year} Liz Kamaruddin & Associates. All rights reserved.</p>
           </div>
         </div>
       </div>

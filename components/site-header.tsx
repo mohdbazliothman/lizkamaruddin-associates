@@ -30,8 +30,8 @@ export function SiteHeader() {
             aria-hidden="true"
             className="h-6 w-auto shrink-0 object-contain sm:h-7"
           />
-          <span className="hidden sm:inline">LizKamaruddin & Associates</span>
-          <span className="sm:hidden">LizKamaruddin</span>
+          <span className="hidden sm:inline">Liz Kamaruddin & Associates</span>
+          <span className="sm:hidden">Liz Kamaruddin</span>
         </Link>
         <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex">
           {navItems.map((item) => (
