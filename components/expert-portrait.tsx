@@ -30,18 +30,17 @@ export function ExpertPortrait({
           onError={() => setHasImage(false)}
         />
       ) : null}
-      <div
-        className={`absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(145deg,#0d1a2a,#164e57)] text-white transition-opacity ${
-          hasImage ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        <div className="flex h-24 w-24 items-center justify-center rounded-full border border-white/20 bg-white/10 font-display text-3xl shadow-premium">
-          {initials}
+      {!hasImage ? (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(145deg,#0d1a2a,#164e57)] text-white">
+          <div
+            className="flex h-24 w-24 items-center justify-center rounded-full border border-white/20 bg-white/10 font-display text-3xl shadow-premium"
+            aria-hidden="true"
+          >
+            {initials}
+          </div>
+          <p className="sr-only">Portrait image unavailable for {alt}.</p>
         </div>
-        <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
-          Portrait placeholder
-        </p>
-      </div>
+      ) : null}
       <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ink/25 to-transparent" />
     </div>
   );

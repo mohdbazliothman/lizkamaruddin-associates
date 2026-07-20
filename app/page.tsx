@@ -4,11 +4,9 @@ import {
   Building2,
   Check,
   Landmark,
-  Linkedin,
   Mail,
   MessageSquareText,
   Mic2,
-  Phone,
   RadioTower,
   ShieldCheck,
   Sparkles,
@@ -131,17 +129,28 @@ const recognition = [
   "MMU communication excellence award named in Liz's honour"
 ];
 
-const supportAreas = [
-  "Boards and C-Suite Leaders",
-  "Corporate Communications Teams",
-  "Government and Public Institutions",
-  "Government-Linked Companies",
-  "Energy and Infrastructure Organisations",
-  "Financial Services",
-  "Healthcare and Pharmaceuticals",
-  "Telecommunications",
-  "Organisations Undergoing Transformation",
-  "Organisations Facing Reputational Risk"
+const supportGroups = [
+  {
+    title: "Leadership",
+    items: ["Boards and C-Suite Leaders", "Corporate Communications Teams"]
+  },
+  {
+    title: "Institutions",
+    items: ["Government and Public Institutions", "Government-Linked Companies"]
+  },
+  {
+    title: "Industries",
+    items: [
+      "Energy and Infrastructure",
+      "Financial Services",
+      "Healthcare and Pharmaceuticals",
+      "Telecommunications"
+    ]
+  },
+  {
+    title: "Critical Situations",
+    items: ["Organisational Transformation", "Reputational Risk"]
+  }
 ];
 
 const organisationSchema = {
@@ -330,7 +339,7 @@ export default function Home() {
               </p>
               <div className="h-px w-20 bg-gold/60" />
               <p className="mt-8 text-lg leading-8 text-navy/76">
-                Today&apos;s leaders do not just need to make the right decisions&mdash;they need to
+                Today&apos;s leaders do not just need to make the right decisions, they need to
                 communicate them with clarity, confidence and credibility.
               </p>
               <p className="mt-5 text-lg leading-8 text-navy/76">
@@ -344,7 +353,7 @@ export default function Home() {
                   Explore Comms Academy
                 </ButtonLink>
                 <Link
-                  href="/?areaOfInterest=Custom%20Training%20Programme&preferredEngagement=Training#contact"
+                  href="/?areaOfInterest=Custom%20Training%20Programme#contact"
                   className="focus-ring group inline-flex items-center gap-2 px-1 py-3 text-sm font-semibold text-ink transition hover:text-emerald"
                 >
                   Discuss a Custom Programme
@@ -412,13 +421,22 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section id="support" eyebrow="Who We Support" title="Who We Support">
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {supportAreas.map((item, index) => (
-            <Reveal key={item} delay={index * 0.02}>
-              <div className="min-h-24 border border-line bg-white px-4 py-5 text-sm font-semibold leading-6 text-navy/75 transition hover:border-emerald/30 hover:text-emerald">
-                {item}
-              </div>
+      <Section id="support" eyebrow="Who We Support" title="Strategic Support Across Sectors and Situations">
+        <div className="grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2 lg:grid-cols-4">
+          {supportGroups.map((group, index) => (
+            <Reveal key={group.title} delay={index * 0.03}>
+              <article className="h-full bg-white p-6 sm:p-7">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                  {group.title}
+                </p>
+                <ul className="mt-5 grid gap-3">
+                  {group.items.map((item) => (
+                    <li key={item} className="border-t border-line/70 pt-3 text-sm font-semibold leading-6 text-navy/75">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </article>
             </Reveal>
           ))}
         </div>
@@ -462,8 +480,6 @@ export default function Home() {
               </p>
               <div className="mt-8 grid gap-4 text-sm text-navy/70">
                 <ContactLine icon={Mail} text="hello@lizkamaruddin.com" />
-                <ContactLine icon={Phone} text="Telephone placeholder" />
-                <ContactLine icon={Linkedin} text="LinkedIn placeholder" />
               </div>
             </div>
           </Reveal>
@@ -559,7 +575,7 @@ function StrategicEcosystem() {
             </div>
           </div>
           <div className="relative mx-auto mb-4 mt-7 h-[17rem] w-[17rem] sm:mb-8 sm:mt-9 sm:h-72 sm:w-72">
-            <NetworkNode className="left-[41%] top-[1%]" label="CEOs" subLabel="Leaders" active />
+            <NetworkNode className="left-[41%] top-[1%]" label="CEOs &" subLabel="Leaders" active />
             <NetworkNode className="left-[3%] top-[34%]" label="Board" icon={Building2} />
             <NetworkNode className="right-[1%] top-[34%]" label="Media" icon={Mic2} />
             <NetworkNode className="bottom-[6%] left-[14%]" label="Government" icon={Landmark} />
@@ -676,8 +692,6 @@ function Footer({ year }: { year: number }) {
           </nav>
           <div>
             <p>hello@lizkamaruddin.com</p>
-            <p className="mt-2">Telephone placeholder</p>
-            <p className="mt-2">LinkedIn placeholder</p>
             <p className="mt-4">&copy; {year} Liz Kamaruddin & Associates. All rights reserved.</p>
           </div>
         </div>

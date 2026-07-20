@@ -9,12 +9,9 @@ import { z } from "zod";
 const enquirySchema = z.object({
   fullName: z.string().min(2, "Please enter your full name."),
   organisation: z.string().min(2, "Please enter your organisation."),
-  jobTitle: z.string().min(2, "Please enter your job title."),
   workEmail: z.string().email("Please enter a valid work email address."),
-  phone: z.string().min(6, "Please enter a phone number."),
   areaOfInterest: z.string().min(1, "Please select an area of interest."),
-  preferredEngagement: z.string().min(1, "Please select a preferred engagement."),
-  message: z.string().min(10, "Please share a brief message."),
+  message: z.string().min(10, "Please share a brief context."),
   website: z.string().max(0, "Spam protection triggered.")
 });
 
@@ -34,15 +31,6 @@ const areasOfInterest = [
   "Other"
 ];
 
-const preferredEngagements = [
-  "Advisory",
-  "Training",
-  "Coaching",
-  "Workshop",
-  "Speaking Engagement",
-  "Not Sure Yet"
-];
-
 export function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
   const {
@@ -56,11 +44,8 @@ export function EnquiryForm() {
     defaultValues: {
       fullName: "",
       organisation: "",
-      jobTitle: "",
       workEmail: "",
-      phone: "",
       areaOfInterest: "",
-      preferredEngagement: "",
       message: "",
       website: ""
     }
@@ -69,14 +54,9 @@ export function EnquiryForm() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const areaOfInterest = params.get("areaOfInterest");
-    const preferredEngagement = params.get("preferredEngagement");
 
     if (areaOfInterest && areasOfInterest.includes(areaOfInterest)) {
       setValue("areaOfInterest", areaOfInterest, { shouldValidate: true });
-    }
-
-    if (preferredEngagement && preferredEngagements.includes(preferredEngagement)) {
-      setValue("preferredEngagement", preferredEngagement, { shouldValidate: true });
     }
   }, [setValue]);
 
@@ -120,16 +100,8 @@ export function EnquiryForm() {
             </Field>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
-            <Field label="Job Title" error={errors.jobTitle?.message}>
-              <input {...register("jobTitle")} autoComplete="organization-title" className="field-input" />
-            </Field>
             <Field label="Work Email" error={errors.workEmail?.message}>
               <input {...register("workEmail")} type="email" autoComplete="email" className="field-input" />
-            </Field>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            <Field label="Phone Number" error={errors.phone?.message}>
-              <input {...register("phone")} type="tel" autoComplete="tel" className="field-input" />
             </Field>
             <Field label="Area of Interest" error={errors.areaOfInterest?.message}>
               <select {...register("areaOfInterest")} className="field-input">
@@ -142,21 +114,11 @@ export function EnquiryForm() {
               </select>
             </Field>
           </div>
-          <Field label="Preferred Engagement" error={errors.preferredEngagement?.message}>
-            <select {...register("preferredEngagement")} className="field-input">
-              <option value="">Select an engagement type</option>
-              {preferredEngagements.map((engagement) => (
-                <option key={engagement} value={engagement}>
-                  {engagement}
-                </option>
-              ))}
-            </select>
-          </Field>
-          <Field label="Message" error={errors.message?.message}>
+          <Field label="Briefly tell us what your organisation is navigating." error={errors.message?.message}>
             <textarea {...register("message")} rows={5} className="field-input resize-none" />
           </Field>
           <label className="hidden" aria-hidden="true">
-            Website
+            Leave this field empty
             <input {...register("website")} tabIndex={-1} autoComplete="off" />
           </label>
           {errors.website?.message ? (

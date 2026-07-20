@@ -44,7 +44,7 @@ export default function CommsAcademyPage() {
               <ButtonLink href="#programmes" variant="dark">
                 View Programmes
               </ButtonLink>
-              <ButtonLink href="/?areaOfInterest=Custom%20Training%20Programme&preferredEngagement=Training#contact" variant="light">
+              <ButtonLink href="/?areaOfInterest=Custom%20Training%20Programme#contact" variant="light">
                 Discuss a Custom Programme
               </ButtonLink>
             </div>
@@ -154,7 +154,7 @@ export default function CommsAcademyPage() {
               spokespersons or communications teams.
             </p>
             <div className="mt-9 flex justify-center">
-              <ButtonLink href="/?areaOfInterest=Custom%20Training%20Programme&preferredEngagement=Training#contact" variant="dark">
+              <ButtonLink href="/?areaOfInterest=Custom%20Training%20Programme#contact" variant="dark">
                 Discuss a Custom Programme
               </ButtonLink>
             </div>

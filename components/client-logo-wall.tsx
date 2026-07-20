@@ -11,9 +11,9 @@ type ClientLogoWallProps = {
 };
 
 const logoSizeClasses: Record<ClientLogoSize, string> = {
-  compact: "max-h-[4.25rem] max-w-[10.5rem] sm:max-w-[11.5rem]",
-  standard: "max-h-[4.5rem] max-w-[11.5rem] sm:max-w-[12.25rem]",
-  wide: "max-h-[4.75rem] max-w-[12rem] sm:max-w-[13rem]"
+  compact: "max-h-16 max-w-[10.5rem] sm:max-h-[4.5rem] sm:max-w-[11.5rem]",
+  standard: "max-h-16 max-w-[11.5rem] sm:max-h-[4.75rem] sm:max-w-[12.5rem]",
+  wide: "max-h-16 max-w-[12.5rem] sm:max-h-[4.75rem] sm:max-w-[13.25rem]"
 };
 
 export function ClientLogoWall({ featuredClients, additionalClients }: ClientLogoWallProps) {
@@ -66,14 +66,14 @@ function ClientLogoCell({ client }: { client: ClientExperience }) {
   const sizeClass = logoSizeClasses[client.size ?? "standard"];
 
   return (
-    <div className="group flex h-32 items-center justify-center border-b border-r border-line/75 bg-white/60 px-5 py-5 transition duration-300 hover:bg-white/90 focus-within:bg-white/90 sm:h-36 sm:px-7">
+    <div className="group flex h-32 items-center justify-center border-b border-r border-line/75 bg-white/70 px-5 py-5 transition duration-200 hover:bg-white/95 focus-within:bg-white/95 sm:h-36 sm:px-7 lg:h-40">
       {client.logo ? (
         <img
           src={client.logo}
           alt={client.name}
           width={1200}
           height={480}
-          className={`${sizeClass} h-auto w-auto object-contain opacity-100 transition duration-300 group-hover:opacity-95`}
+          className={`${sizeClass} h-auto w-auto object-contain`}
           loading="lazy"
         />
       ) : (
