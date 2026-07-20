@@ -8,21 +8,37 @@ import { z } from "zod";
 
 const enquirySchema = z.object({
   fullName: z.string().min(2, "Please enter your full name."),
-  company: z.string().min(2, "Please enter your organisation."),
-  email: z.string().email("Please enter a valid email address."),
+  organisation: z.string().min(2, "Please enter your organisation."),
+  jobTitle: z.string().min(2, "Please enter your job title."),
+  workEmail: z.string().email("Please enter a valid work email address."),
   phone: z.string().min(6, "Please enter a phone number."),
-  service: z.string().min(1, "Please select a service."),
-  message: z.string().min(10, "Please share a brief message.")
+  areaOfInterest: z.string().min(1, "Please select an area of interest."),
+  preferredEngagement: z.string().min(1, "Please select a preferred engagement."),
+  message: z.string().min(10, "Please share a brief message."),
+  website: z.string().max(0, "Spam protection triggered.")
 });
 
 type EnquiryFormValues = z.infer<typeof enquirySchema>;
 
-const services = [
+const areasOfInterest = [
   "Strategic Communications Advisory",
-  "Executive & Leadership Coaching",
-  "Spokesperson & Media Training",
-  "Corporate Communication Skills Training",
-  "Crisis & Reputation Management"
+  "Reputation & Issues Management",
+  "Crisis Preparedness & Response",
+  "Stakeholder & Public Affairs",
+  "Communication Audit",
+  "Leadership Coaching",
+  "Media Training",
+  "Custom Training Programme",
+  "Other"
+];
+
+const preferredEngagements = [
+  "Advisory",
+  "Training",
+  "Coaching",
+  "Workshop",
+  "Speaking Engagement",
+  "Not Sure Yet"
 ];
 
 export function EnquiryForm() {
@@ -36,22 +52,28 @@ export function EnquiryForm() {
     resolver: zodResolver(enquirySchema),
     defaultValues: {
       fullName: "",
-      company: "",
-      email: "",
+      organisation: "",
+      jobTitle: "",
+      workEmail: "",
       phone: "",
-      service: "",
-      message: ""
+      areaOfInterest: "",
+      preferredEngagement: "",
+      message: "",
+      website: ""
     }
   });
 
-  function onSubmit(data: EnquiryFormValues) {
-    console.log("Enquiry submission", data);
+  async function onSubmit(data: EnquiryFormValues) {
+    // Demo behaviour only: no email service or backend endpoint is connected yet.
+    // Ready to connect later to Resend, Formspree or a Next.js API route.
+    await new Promise((resolve) => setTimeout(resolve, 450));
+    console.log("Demo enquiry submission", data);
     setSubmitted(true);
     reset();
   }
 
   return (
-    <div className="glass-panel rounded-[28px] p-5 sm:p-8 lg:p-10">
+    <div className="glass-panel rounded-[24px] p-5 sm:p-8 lg:p-10">
       {submitted ? (
         <div className="flex min-h-[26rem] flex-col items-start justify-center">
           <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-emerald/10 text-emerald">
@@ -59,8 +81,8 @@ export function EnquiryForm() {
           </div>
           <h3 className="font-display text-3xl text-ink">Thank you for your enquiry.</h3>
           <p className="mt-4 max-w-xl text-base leading-7 text-navy/70">
-            Your details have been received. The next step would be to connect this form to the
-            preferred email service or backend endpoint.
+            This demo form has logged your enquiry in the browser console. Connect it to Resend,
+            Formspree or an API endpoint before using it for live email delivery.
           </p>
           <button
             type="button"
@@ -76,24 +98,39 @@ export function EnquiryForm() {
             <Field label="Full Name" error={errors.fullName?.message}>
               <input {...register("fullName")} autoComplete="name" className="field-input" />
             </Field>
-            <Field label="Company / Organisation" error={errors.company?.message}>
-              <input {...register("company")} autoComplete="organization" className="field-input" />
+            <Field label="Organisation" error={errors.organisation?.message}>
+              <input {...register("organisation")} autoComplete="organization" className="field-input" />
             </Field>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
-            <Field label="Email" error={errors.email?.message}>
-              <input {...register("email")} type="email" autoComplete="email" className="field-input" />
+            <Field label="Job Title" error={errors.jobTitle?.message}>
+              <input {...register("jobTitle")} autoComplete="organization-title" className="field-input" />
             </Field>
+            <Field label="Work Email" error={errors.workEmail?.message}>
+              <input {...register("workEmail")} type="email" autoComplete="email" className="field-input" />
+            </Field>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
             <Field label="Phone Number" error={errors.phone?.message}>
               <input {...register("phone")} type="tel" autoComplete="tel" className="field-input" />
             </Field>
+            <Field label="Area of Interest" error={errors.areaOfInterest?.message}>
+              <select {...register("areaOfInterest")} className="field-input">
+                <option value="">Select an area</option>
+                {areasOfInterest.map((area) => (
+                  <option key={area} value={area}>
+                    {area}
+                  </option>
+                ))}
+              </select>
+            </Field>
           </div>
-          <Field label="Service Interested In" error={errors.service?.message}>
-            <select {...register("service")} className="field-input">
-              <option value="">Select a service</option>
-              {services.map((service) => (
-                <option key={service} value={service}>
-                  {service}
+          <Field label="Preferred Engagement" error={errors.preferredEngagement?.message}>
+            <select {...register("preferredEngagement")} className="field-input">
+              <option value="">Select an engagement type</option>
+              {preferredEngagements.map((engagement) => (
+                <option key={engagement} value={engagement}>
+                  {engagement}
                 </option>
               ))}
             </select>
@@ -101,12 +138,19 @@ export function EnquiryForm() {
           <Field label="Message" error={errors.message?.message}>
             <textarea {...register("message")} rows={5} className="field-input resize-none" />
           </Field>
+          <label className="hidden" aria-hidden="true">
+            Website
+            <input {...register("website")} tabIndex={-1} autoComplete="off" />
+          </label>
+          {errors.website?.message ? (
+            <p className="text-xs font-medium text-red-700">{errors.website.message}</p>
+          ) : null}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="focus-ring group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-emerald disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+            className="focus-ring group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-emerald disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            Submit Enquiry
+            {isSubmitting ? "Preparing enquiry..." : "Submit Enquiry"}
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
           </button>
         </form>

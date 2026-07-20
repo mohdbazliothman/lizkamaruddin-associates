@@ -1,11 +1,14 @@
 import {
   ArrowRight,
   BadgeCheck,
+  Building2,
   Check,
-  Layers3,
+  CircleDot,
+  Landmark,
   Linkedin,
   Mail,
   MessageSquareText,
+  Mic2,
   Phone,
   RadioTower,
   ShieldCheck,
@@ -13,110 +16,237 @@ import {
   Target,
   UsersRound
 } from "lucide-react";
+import Script from "next/script";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { PortraitImage } from "@/components/portrait-image";
 import { Reveal } from "@/components/reveal";
+import { SiteHeader } from "@/components/site-header";
 
-const services = [
+const proofPoints = [
+  "50+ Years Combined Experience",
+  "Senior Corporate & Public-Sector Expertise",
+  "Regional and Global Communications Experience",
+  "Reputation, Crisis & Leadership Advisory"
+];
+
+// TODO: Replace text placeholders with approved logo artwork only after client approval and logo usage rights are confirmed.
+const selectedClients = [
+  "ADNOC",
+  "International Islamic Liquidity Management Corporation",
+  "EPF / KWSP",
+  "Telekom Malaysia",
+  "Tabung Haji",
+  "Tenaga Nasional Berhad",
+  "Mastercard",
+  "Duopharma",
+  "Ministry of Health Malaysia",
+  "KPS",
+  "Hess",
+  "Jentayu Sustainables",
+  "PETRONAS",
+  "Khazanah Nasional",
+  "Prasarana Malaysia",
+  "Institute of Corporate Directors Malaysia",
+  "Bank Rakyat",
+  "Ministry of Tourism, Arts and Culture Malaysia",
+  "Ministry of Communications Malaysia"
+];
+
+const pillars = [
   {
-    title: "Strategic Communications Advisory",
-    copy: "Develop communication strategies that align business objectives, strengthen stakeholder confidence and protect organisational reputation.",
-    icon: Target
+    title: "Proven Track Record",
+    copy: "Senior-level experience managing reputational issues across corporate and public arenas locally, regionally and globally."
   },
   {
-    title: "Executive & Leadership Coaching",
-    copy: "Empower senior leaders with the communication skills, executive presence and strategic mindset needed to lead effectively.",
-    icon: UsersRound
+    title: "Multi-Disciplinary Expertise",
+    copy: "Practical capability spanning communication audits, crisis preparedness, leadership coaching, stakeholder management and reputation strategy."
   },
   {
-    title: "Spokesperson & Media Training",
-    copy: "Prepare executives to engage confidently with media, investors, regulators and public audiences.",
-    icon: MessageSquareText
-  },
-  {
-    title: "Corporate Communication Skills Training",
-    copy: "Build communication capability across organisations through practical, customised and engaging training programmes.",
-    icon: Layers3
-  },
-  {
-    title: "Crisis & Reputation Management",
-    copy: "Support organisations in preparing for and responding to communication challenges that matter most.",
-    icon: ShieldCheck
+    title: "Deep Practical Knowledge",
+    copy: "Hands-on experience managing issues that shape how organisations are viewed internally and externally."
   }
 ];
 
-const expertise = [
-  "Board and C-suite advisory perspective",
-  "Practical, strategic and results-oriented",
-  "Tailored programmes, not generic training",
-  "Strong understanding of reputation, media and stakeholder dynamics",
-  "Experience across corporate, government and public-facing sectors"
+const advisoryServices = [
+  {
+    title: "Strategic Communications Advisory",
+    copy: "Communication strategies aligned with organisational priorities, transformation agendas and stakeholder expectations.",
+    icon: Target
+  },
+  {
+    title: "Reputation & Issues Management",
+    copy: "Early identification, assessment and management of issues that may affect trust, credibility and permission to operate.",
+    icon: ShieldCheck
+  },
+  {
+    title: "Crisis Preparedness & Response",
+    copy: "Crisis frameworks, simulations, leadership preparation and real-time communication support during high-pressure situations.",
+    icon: RadioTower
+  },
+  {
+    title: "Stakeholder & Public Affairs",
+    copy: "Engagement strategies for boards, government, regulators, investors, employees, communities and other critical constituencies.",
+    icon: Landmark
+  },
+  {
+    title: "Communication Audits & Capability Development",
+    copy: "Reviews of communication structures, processes, channels, messaging and team capability, followed by practical recommendations.",
+    icon: MessageSquareText
+  }
 ];
 
-const industries = [
-  "Energy",
-  "Banking & Financial Services",
-  "Government & Public Sector",
-  "Aviation",
+const leadershipProgrammes = [
+  "Spokesperson Media Training",
+  "Effective Communication Skills",
+  "Crisis Communication Management",
+  "Public Speaking Mastery for Leaders",
+  "Emotional Intelligence in Leadership Communication",
+  "Cultural Sensitivity and Inclusive Communication",
+  "Conflict Resolution and Communication Tactics",
+  "Storytelling for Leadership Impact",
+  "Evaluating Communication Effectiveness",
+  "Visionary Leadership Communication"
+];
+
+const communicationsProgrammes = [
+  "Digital Communication and Social Media Management",
+  "Internal Communications Best Practice",
+  "Stakeholder and Issue Management",
+  "Persuasive Writing and Messaging",
+  "Cultural Competence in Communication",
+  "Crisis Communication Simulations",
+  "Building a Communication Strategy",
+  "Change Management Communication",
+  "Reputation Management",
+  "Feedback and Performance Communication",
+  "Visual Communication Techniques",
+  "Listening Skills",
+  "Non-Verbal Communication",
+  "Future Trends in AI and Communications",
+  "AI-Assisted Communication Workflows",
+  "AI in Social Media Strategy",
+  "Measuring Communication Effectiveness with AI Tools"
+];
+
+const lizCredentials = [
+  "More than 30 years of experience",
+  "Certified Senior Coach, Coach Transformation Academy Dubai",
+  "Adjunct Professor at Multimedia University",
+  "Contributor to the Bachelor of Strategic Communication programme",
+  "Board of Studies member for the Master's in Strategic Communication programme",
+  "PRWeek Power Book, 2014 and 2015",
+  "PRWeek Asia Power List, 2014",
+  "The Internationalist of the Year, 2014",
+  "PERMATA Liz Kamaruddin Communication Excellence Award named in recognition of her contribution at MMU"
+];
+
+const reedCredentials = [
+  "More than 20 years of experience",
+  "Former business journalist and producer",
+  "Experience with Bloomberg, The Edge Weekly and ASTRO",
+  "Former communications leadership roles at Standard Chartered and PETRONAS",
+  "Strategic communication, stakeholder management and crisis-response expertise"
+];
+
+const recognition = [
+  "PRWeek Power Book 2014 and 2015",
+  "PRWeek Asia Power List 2014",
+  "The Internationalist of the Year 2014",
+  "Adjunct Professor at Multimedia University",
+  "Contribution to strategic communication curriculum development",
+  "MMU communication excellence award named in Liz's honour"
+];
+
+const supportAreas = [
+  "Boards and C-Suite Leaders",
+  "Corporate Communications Teams",
+  "Government and Public Institutions",
+  "Government-Linked Companies",
+  "Energy and Infrastructure Organisations",
+  "Financial Services",
+  "Healthcare and Pharmaceuticals",
   "Telecommunications",
-  "Education",
-  "Hospitality",
-  "Professional Services"
+  "Organisations Undergoing Transformation",
+  "Organisations Facing Reputational Risk"
 ];
 
-const highlights = [
-  "35+ Years Executive Experience",
-  "Strategic Communications Advisory",
-  "Leadership & Spokesperson Coaching",
-  "Corporate, Government & GLC Experience"
-];
+const organisationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "LizKamaruddin & Associates",
+  alternateName: "LK&A",
+  description:
+    "Boutique strategic communications advisory supporting boards, senior leaders and communication teams in reputation management, crisis preparedness, stakeholder engagement, coaching and capability development.",
+  email: "hello@lizkamaruddin.com",
+  url: "https://www.example.com"
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Liz Kamaruddin",
+  jobTitle: "Principal, Adjunct Professor & Lead Expert Trainer",
+  worksFor: {
+    "@type": "Organization",
+    name: "LizKamaruddin & Associates"
+  }
+};
 
 export default function Home() {
   const year = new Date().getFullYear();
 
   return (
     <main className="min-h-screen overflow-hidden">
-      <Header />
+      <Script
+        id="organisation-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }}
+      />
+      <Script
+        id="person-schema-liz"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <SiteHeader />
 
       <section className="relative isolate px-5 pb-14 pt-28 sm:px-8 lg:px-10 lg:pb-20 lg:pt-32">
         <div className="pointer-events-none absolute left-1/2 top-20 -z-10 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-emerald/8 blur-3xl" />
         <div className="pointer-events-none absolute right-0 top-28 -z-10 h-[26rem] w-[26rem] rounded-full bg-gold/10 blur-3xl" />
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.95fr_0.82fr] lg:gap-16">
           <Reveal>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-white/75 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-emerald shadow-[0_1px_0_rgba(8,17,31,0.03)] backdrop-blur-xl">
-              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-              Boutique Executive Advisory
+            <p className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-line bg-white/75 px-4 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-emerald shadow-[0_1px_0_rgba(8,17,31,0.03)] backdrop-blur-xl sm:text-[0.68rem] sm:tracking-[0.22em]">
+              <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              Boutique Strategic Communications Advisory
             </p>
-            <h1 className="max-w-[45rem] font-display text-[2.22rem] leading-[1.04] text-ink sm:text-5xl md:text-6xl lg:text-[4.35rem]">
-              Strategic Communications for Leaders Who Shape the Future
+            <h1 className="max-w-[45rem] font-display text-[2.05rem] leading-[1.06] text-ink sm:text-5xl md:text-6xl lg:text-[4.2rem]">
+              Strategic Communications for Moments That Matter
             </h1>
             <p className="mt-6 max-w-[40rem] text-base leading-8 text-navy/72 sm:text-lg">
-              Liz Kamaruddin & Associates partners with boards, CEOs and leadership teams to
-              strengthen executive communication, stakeholder engagement and organisational
-              reputation.
+              LizKamaruddin & Associates advises boards, senior leaders and communications teams on
+              reputation, stakeholder engagement, transformation and crisis preparedness.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <HeroButtonLink href="#contact" variant="dark">
                 Book a Consultation
               </HeroButtonLink>
-              <HeroButtonLink href="#services" variant="light">
-                View Services
+              <HeroButtonLink href="#expertise" variant="light">
+                Explore Our Expertise
               </HeroButtonLink>
             </div>
           </Reveal>
           <Reveal delay={0.12}>
-            <ExecutiveVisual />
+            <StrategicEcosystem />
           </Reveal>
         </div>
       </section>
 
       <section aria-label="Credibility highlights" className="px-5 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-7xl rounded-[26px] border border-line bg-white/80 px-5 py-5 shadow-soft sm:px-7">
+        <div className="mx-auto max-w-7xl border-y border-line/80 bg-white/55 py-5">
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {highlights.map((item) => (
-              <div key={item} className="flex items-center gap-3 text-sm font-semibold text-navy/75">
-                <BadgeCheck className="h-4 w-4 shrink-0 text-emerald" aria-hidden="true" />
+            {proofPoints.map((item) => (
+              <div key={item} className="flex items-start gap-3 text-sm font-semibold leading-6 text-navy/75">
+                <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald" aria-hidden="true" />
                 <span>{item}</span>
               </div>
             ))}
@@ -124,41 +254,79 @@ export default function Home() {
         </div>
       </section>
 
-      <Section id="about" eyebrow="About" title="Trusted Advisory for High-Stakes Communication">
+      <Section eyebrow="Selected Client Experience" title="Trusted by Leading Organisations">
         <Reveal>
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-            <div className="rounded-[28px] border border-line bg-ink p-8 text-white shadow-premium">
-              <p className="font-display text-5xl">35+</p>
-              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.22em] text-gold">
-                Years of executive experience
-              </p>
-              <p className="mt-8 text-base leading-7 text-white/70">
-                Advisory for moments where clarity, trust and leadership presence carry business
-                consequences.
+          <p className="mb-8 max-w-3xl text-lg leading-8 text-navy/70">
+            Our team has supported prominent organisations across energy, finance, infrastructure,
+            government, healthcare and professional services.
+          </p>
+        </Reveal>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+          {selectedClients.map((client, index) => (
+            <Reveal key={client} delay={index * 0.015}>
+              <div
+                className="flex min-h-24 items-center justify-center border border-line bg-white/72 px-4 py-5 text-center text-xs font-semibold uppercase tracking-[0.12em] text-navy/55 transition hover:border-gold/40 hover:text-ink"
+                aria-label={`${client} selected client experience placeholder`}
+              >
+                {client}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="about" eyebrow="Who We Are" title="Seasoned Communications Counsel for Complex Environments">
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <Reveal>
+            <div className="border-l-2 border-gold bg-white/65 py-2 pl-7">
+              <p className="text-xl leading-9 text-navy/76">
+                LizKamaruddin & Associates is a team of seasoned communications professionals
+                driven by a passion for empowering leadership and communications teams. With more
+                than 50 years of combined experience in senior corporate and public-sector
+                communications roles, we help organisations manage stakeholder relationships,
+                anticipate emerging issues and protect reputation before challenges escalate.
               </p>
             </div>
-            <p className="text-xl leading-9 text-navy/75">
-              With over three decades of experience in strategic communications, executive
-              leadership and organisational transformation, Liz Kamaruddin & Associates provides
-              trusted advisory services to corporations, government agencies and senior executives.
-              We help leaders communicate with confidence, manage reputation, develop executive
-              presence and navigate today&apos;s complex stakeholder landscape.
+          </Reveal>
+          <div className="grid gap-4">
+            {pillars.map((pillar, index) => (
+              <Reveal key={pillar.title} delay={index * 0.04}>
+                <article className="border border-line bg-white p-6 shadow-[0_1px_0_rgba(8,17,31,0.03)]">
+                  <h3 className="text-lg font-semibold text-ink">{pillar.title}</h3>
+                  <p className="mt-3 text-base leading-7 text-navy/70">{pillar.copy}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+        <Reveal>
+          <div className="mt-10 grid gap-6 bg-ink p-7 text-white sm:p-9 lg:grid-cols-[0.34fr_0.66fr] lg:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Our Mantra</p>
+            <p className="font-display text-2xl leading-tight sm:text-3xl">
+              We help clients use communication as a strategic business asset - to manage crises,
+              navigate disruption, articulate their position and preserve trust and permission to
+              operate.
             </p>
           </div>
         </Reveal>
       </Section>
 
-      <Section id="services" eyebrow="Services" title="Strategic support for leaders and organisations">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => {
+      <Section id="expertise" eyebrow="Our Expertise" title="Strategic Support Before, During and After Critical Moments">
+        <div className="grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-2">
+          {advisoryServices.map((service, index) => {
             const Icon = service.icon;
             return (
-              <Reveal key={service.title} delay={index * 0.04}>
-                <article className="group h-full rounded-[24px] border border-line bg-white p-7 shadow-[0_1px_0_rgba(8,17,31,0.03)] transition duration-300 hover:-translate-y-1 hover:shadow-soft">
-                  <div className="mb-7 flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald/10 text-emerald">
+              <Reveal key={service.title} delay={index * 0.035}>
+                <article className="group min-h-64 bg-white p-7 transition duration-300 hover:bg-mist/70 sm:p-8">
+                  <div className="mb-7 flex h-11 w-11 items-center justify-center rounded-full border border-emerald/15 bg-emerald/8 text-emerald">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <h3 className="text-xl font-semibold tracking-[-0.01em] text-ink">{service.title}</h3>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-4 text-2xl font-semibold tracking-[-0.01em] text-ink">
+                    {service.title}
+                  </h3>
                   <p className="mt-4 text-base leading-7 text-navy/70">{service.copy}</p>
                 </article>
               </Reveal>
@@ -167,74 +335,116 @@ export default function Home() {
         </div>
       </Section>
 
-      <section id="expertise" className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-12 rounded-[34px] bg-ink p-6 text-white sm:p-10 lg:grid-cols-[0.84fr_1.16fr] lg:p-14">
-          <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Why work with us</p>
-            <h2 className="mt-5 max-w-lg font-display text-4xl leading-tight sm:text-5xl">
-              Calm judgement for visible, high-trust leadership.
-            </h2>
-          </Reveal>
-          <div className="grid gap-4">
-            {expertise.map((item, index) => (
-              <Reveal key={item} delay={index * 0.04}>
-                <div className="flex gap-4 rounded-[20px] border border-white/10 bg-white/[0.045] p-5">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
-                  <p className="text-base leading-7 text-white/80">{item}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+      <Section id="programmes" eyebrow="Training & Coaching" title="Building Communication Capability at Every Leadership Level">
+        <div className="grid gap-5 lg:grid-cols-2">
+          <ProgrammePanel title="Leadership & C-Suite Programmes" items={leadershipProgrammes} />
+          <ProgrammePanel title="Communications Team Upskilling" items={communicationsProgrammes} />
         </div>
-      </section>
+        <Reveal>
+          <div className="mt-8">
+            <ButtonLink href="#contact" variant="dark">
+              Discuss a Custom Programme
+            </ButtonLink>
+          </div>
+        </Reveal>
+      </Section>
 
-      <Section eyebrow="Industries" title="Experience across sectors where reputation matters">
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          {industries.map((industry, index) => (
-            <Reveal key={industry} delay={index * 0.025}>
-              <div className="rounded-2xl border border-line bg-white px-4 py-5 text-sm font-semibold text-navy/75 transition hover:border-emerald/30 hover:text-emerald">
-                {industry}
+      <Section id="team" title="Meet the Experts" eyebrow="Team">
+        <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+          <Reveal>
+            <article className="grid gap-7 border border-line bg-white p-6 shadow-soft md:grid-cols-[0.72fr_1.28fr] md:p-8">
+              <Portrait />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Principal</p>
+                <h3 className="mt-3 font-display text-4xl text-ink">Liz Kamaruddin</h3>
+                <p className="mt-2 text-sm font-semibold text-emerald">
+                  Principal, Adjunct Professor & Lead Expert Trainer
+                </p>
+                <p className="mt-6 text-base leading-7 text-navy/72">
+                  Liz Kamaruddin is a senior strategic communications specialist with more than 30
+                  years of experience supporting organisations across ASEAN, the Middle East and the
+                  Americas. Her expertise includes reputation management, strategic crisis
+                  communication, ESG communication, corporate social responsibility, branding, media
+                  relations and internal communication.
+                </p>
+                <CredentialList items={lizCredentials.slice(0, 6)} />
+              </div>
+            </article>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <article className="h-full border border-line bg-white p-6 shadow-soft md:p-8">
+              <div className="mb-7 flex min-h-48 items-center justify-center bg-mist text-center">
+                <div>
+                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-emerald/20 bg-white font-display text-2xl text-emerald">
+                    RS
+                  </div>
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-navy/45">
+                    Photo placeholder
+                  </p>
+                </div>
+              </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Expert Trainer</p>
+              <h3 className="mt-3 font-display text-3xl text-ink">Reed Samsudin</h3>
+              <p className="mt-2 text-sm font-semibold text-emerald">
+                Expert Trainer, Communications Advisor, Media & Crisis Expert
+              </p>
+              <p className="mt-6 text-base leading-7 text-navy/72">
+                Reed Samsudin is a senior communications professional with more than 20 years of
+                experience across financial services, energy and FMCG. He has prepared senior
+                leaders at major organisations for media engagement, reputation management and
+                crisis response across ASEAN, the Middle East, North America and Africa.
+              </p>
+              <CredentialList items={reedCredentials} />
+            </article>
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section eyebrow="Recognition" title="Recognition & Academic Contribution">
+        <div className="grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
+          {recognition.map((item, index) => (
+            <Reveal key={item} delay={index * 0.025}>
+              <div className="min-h-32 bg-white p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-4 text-base font-semibold leading-7 text-ink">{item}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      <Section title="Led by Liz Kamaruddin" eyebrow="Leadership">
-        <Reveal>
-          <div className="grid gap-10 rounded-[32px] border border-line bg-white p-6 shadow-soft md:grid-cols-[0.88fr_1.12fr] md:p-9 lg:p-12">
-            <Portrait />
-            <div className="flex flex-col justify-center">
-              <p className="text-xl leading-9 text-navy/75">
-                Liz Kamaruddin is a senior communications advisor, leadership coach and strategic
-                communications practitioner with extensive experience advising leaders and
-                organisations across multiple sectors. Her work focuses on helping leaders
-                communicate with clarity, credibility and influence.
-              </p>
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                {["Clarity", "Credibility", "Influence"].map((item) => (
-                  <div key={item} className="rounded-2xl bg-mist px-4 py-4 text-sm font-semibold text-ink">
-                    {item}
-                  </div>
-                ))}
+      <Section id="clients" eyebrow="Who We Support" title="Who We Support">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {supportAreas.map((item, index) => (
+            <Reveal key={item} delay={index * 0.02}>
+              <div className="min-h-24 border border-line bg-white px-4 py-5 text-sm font-semibold leading-6 text-navy/75 transition hover:border-emerald/30 hover:text-emerald">
+                {item}
               </div>
-            </div>
-          </div>
-        </Reveal>
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       <section className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
         <Reveal>
-          <div className="noise mx-auto max-w-7xl rounded-[34px] border border-line bg-white px-6 py-14 text-center shadow-soft sm:px-12 sm:py-20">
-            <h2 className="mx-auto max-w-3xl font-display text-4xl leading-tight text-ink sm:text-5xl">
-              Ready to strengthen the way your leaders communicate?
+          <div className="noise mx-auto max-w-7xl border border-line bg-white px-6 py-14 text-center shadow-soft sm:px-12 sm:py-20">
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-emerald">
+              Start a Conversation
+            </p>
+            <h2 className="mx-auto max-w-4xl font-display text-4xl leading-tight text-ink sm:text-5xl">
+              Prepare Your Leaders and Organisation for the Moments That Matter
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-navy/70">
-              Let&apos;s discuss how Liz Kamaruddin & Associates can support your organisation&apos;s
-              communication, leadership and reputation goals.
+              Speak with us about strategic communication advisory, crisis preparedness, leadership
+              coaching or a customised capability-building programme.
             </p>
-            <div className="mt-9 flex justify-center">
+            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <ButtonLink href="#contact" variant="dark">
+                Book a Consultation
+              </ButtonLink>
+              <ButtonLink href="#contact" variant="light">
                 Send an Enquiry
               </ButtonLink>
             </div>
@@ -242,10 +452,10 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <Section id="contact" eyebrow="Contact" title="Begin a confidential conversation">
+      <Section id="contact" eyebrow="Contact" title="Begin a Confidential Conversation">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <Reveal>
-            <div className="sticky top-24 rounded-[28px] border border-line bg-white p-7 shadow-soft">
+            <div className="sticky top-24 border border-line bg-white p-7 shadow-soft">
               <h3 className="text-2xl font-semibold tracking-[-0.01em] text-ink">
                 Enquiry details
               </h3>
@@ -255,7 +465,7 @@ export default function Home() {
               </p>
               <div className="mt-8 grid gap-4 text-sm text-navy/70">
                 <ContactLine icon={Mail} text="hello@lizkamaruddin.com" />
-                <ContactLine icon={Phone} text="Phone placeholder" />
+                <ContactLine icon={Phone} text="Telephone placeholder" />
                 <ContactLine icon={Linkedin} text="LinkedIn placeholder" />
               </div>
             </div>
@@ -266,57 +476,8 @@ export default function Home() {
         </div>
       </Section>
 
-      <footer className="border-t border-line bg-white px-5 py-10 sm:px-8 lg:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-7 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-lg font-semibold text-ink">Liz Kamaruddin & Associates</p>
-            <p className="mt-2 text-sm text-navy/60">
-              Strategic Communications. Leadership Advisory. Executive Coaching.
-            </p>
-          </div>
-          <div className="text-sm text-navy/60 md:text-right">
-            <p>hello@lizkamaruddin.com · Phone placeholder · LinkedIn placeholder</p>
-            <p className="mt-2">© {year} Liz Kamaruddin & Associates. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer year={year} />
     </main>
-  );
-}
-
-function Header() {
-  const navItems = [
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Expertise", href: "#expertise" },
-    { label: "Contact", href: "#contact" }
-  ];
-
-  return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-line/70 bg-white/75 px-5 backdrop-blur-2xl sm:px-8 lg:px-10">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6">
-        <Link href="#" className="focus-ring text-sm font-semibold tracking-[-0.01em] text-ink sm:text-base">
-          Liz Kamaruddin & Associates
-        </Link>
-        <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="focus-ring text-sm font-medium text-navy/70 transition hover:text-emerald"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <Link
-          href="#contact"
-          className="focus-ring hidden rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-emerald sm:inline-flex"
-        >
-          Book a Consultation
-        </Link>
-      </div>
-    </header>
   );
 }
 
@@ -356,7 +517,7 @@ function ButtonLink({ href, variant, children }: { href: string; variant: "dark"
   return (
     <Link
       href={href}
-      className={`focus-ring group inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold shadow-soft transition hover:-translate-y-0.5 ${
+      className={`focus-ring group inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-soft transition hover:-translate-y-0.5 ${
         isDark
           ? "bg-ink text-white hover:bg-emerald"
           : "border border-line bg-white/85 text-ink hover:border-emerald/35 hover:text-emerald"
@@ -377,27 +538,13 @@ function HeroButtonLink({
   variant: "dark" | "light";
   children: React.ReactNode;
 }) {
-  const isDark = variant === "dark";
-
-  return (
-    <Link
-      href={href}
-      className={`focus-ring group inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-[0_14px_36px_rgba(8,17,31,0.08)] transition hover:-translate-y-0.5 ${
-        isDark
-          ? "bg-ink text-white hover:bg-emerald"
-          : "border border-line bg-white/78 text-ink backdrop-blur-xl hover:border-emerald/35 hover:text-emerald"
-      }`}
-    >
-      {children}
-      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
-    </Link>
-  );
+  return <ButtonLink href={href} variant={variant}>{children}</ButtonLink>;
 }
 
-function ExecutiveVisual() {
+function StrategicEcosystem() {
   return (
-    <div className="relative mx-auto w-full max-w-[34rem] rounded-[36px] border border-line bg-white p-3 shadow-premium sm:aspect-[0.92] sm:p-4 lg:mr-0">
-      <div className="relative h-auto overflow-hidden rounded-[28px] bg-[linear-gradient(145deg,#f8faf9_0%,#eaf1ed_48%,#d7e4de_100%)] p-4 sm:h-full sm:p-6">
+    <div className="relative mx-auto w-full max-w-[34rem] rounded-[32px] border border-line bg-white p-3 shadow-premium sm:aspect-[0.92] sm:p-4 lg:mr-0">
+      <div className="relative h-auto overflow-hidden rounded-[24px] bg-[linear-gradient(145deg,#f8faf9_0%,#eaf1ed_48%,#d7e4de_100%)] p-4 sm:h-full sm:p-6">
         <div className="absolute inset-x-10 top-9 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-white/90 to-transparent" />
         <div className="relative flex h-full flex-col sm:justify-between">
@@ -406,26 +553,36 @@ function ExecutiveVisual() {
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal/70">
                 Strategic signal map
               </p>
-              <p className="mt-3 max-w-[14rem] text-2xl font-semibold leading-tight text-ink">
-                Aligning leaders, stakeholders and reputation.
+              <p className="mt-3 max-w-[14rem] text-xl font-semibold leading-tight text-ink sm:text-2xl">
+                Strategy, message and impact across critical audiences.
               </p>
             </div>
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/80 text-emerald shadow-soft">
               <RadioTower className="h-5 w-5" aria-hidden="true" />
             </div>
           </div>
-          <div className="relative mx-auto mb-4 mt-7 h-64 w-64 sm:mb-8 sm:mt-9 sm:h-72 sm:w-72">
-            <NetworkNode className="left-[42%] top-[3%]" label="CEO" active />
-            <NetworkNode className="left-[6%] top-[34%]" label="Board" />
-            <NetworkNode className="right-[2%] top-[32%]" label="Media" />
-            <NetworkNode className="bottom-[8%] left-[18%]" label="Gov" />
-            <NetworkNode className="bottom-[4%] right-[14%]" label="Investors" />
+          <div className="relative mx-auto mb-4 mt-7 h-[17rem] w-[17rem] sm:mb-8 sm:mt-9 sm:h-72 sm:w-72">
+            <NetworkNode className="left-[41%] top-[1%]" label="CEOs" subLabel="Leaders" active />
+            <NetworkNode className="left-[3%] top-[34%]" label="Board" icon={Building2} />
+            <NetworkNode className="right-[1%] top-[34%]" label="Media" icon={Mic2} />
+            <NetworkNode className="bottom-[6%] left-[14%]" label="Government" icon={Landmark} />
+            <NetworkNode className="bottom-[5%] right-[12%]" label="Investors" icon={UsersRound} />
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 288 288" aria-hidden="true">
-              <path d="M144 32 L48 118 L236 114 Z" fill="none" stroke="#b59358" strokeOpacity="0.55" />
-              <path d="M48 118 L92 238 L144 32 L203 242 L236 114" fill="none" stroke="#0d6b57" strokeOpacity="0.28" />
-              <path d="M92 238 L203 242" fill="none" stroke="#102033" strokeOpacity="0.16" />
+              <path d="M144 32 C80 38 38 80 38 138 C38 202 84 246 144 252 C208 246 250 202 250 138 C250 80 208 38 144 32Z" fill="none" stroke="#b59358" strokeOpacity="0.58" />
+              <path d="M144 32 L144 144 M38 138 L144 144 M250 138 L144 144 M91 235 L144 144 M205 235 L144 144" fill="none" stroke="#0d6b57" strokeDasharray="3 7" strokeOpacity="0.34" />
             </svg>
-            <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/70 bg-white/50 shadow-soft" />
+            <div className="absolute left-1/2 top-1/2 flex h-[6.8rem] w-[6.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-white/80 bg-white/72 text-center shadow-soft sm:h-32 sm:w-32">
+              <Sparkles className="mb-2 h-4 w-4 text-gold" aria-hidden="true" />
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.15em] text-emerald sm:text-xs">
+                Strategy
+              </p>
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.15em] text-emerald sm:text-xs">
+                Message
+              </p>
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.15em] text-emerald sm:text-xs">
+                Impact
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -433,23 +590,71 @@ function ExecutiveVisual() {
   );
 }
 
-function NetworkNode({ className, label, active }: { className: string; label: string; active?: boolean }) {
+function NetworkNode({
+  className,
+  label,
+  subLabel,
+  active,
+  icon: Icon
+}: {
+  className: string;
+  label: string;
+  subLabel?: string;
+  active?: boolean;
+  icon?: typeof UsersRound;
+}) {
   return (
     <div className={`absolute z-10 ${className}`}>
       <div
-        className={`flex h-14 w-14 items-center justify-center rounded-full border text-[0.68rem] font-semibold shadow-soft sm:h-16 sm:w-16 sm:text-xs ${
-          active ? "border-emerald/25 bg-emerald text-white" : "border-white/80 bg-white/80 text-navy"
+        className={`flex h-[3.9rem] w-[3.9rem] flex-col items-center justify-center rounded-full border text-center text-[0.58rem] font-semibold leading-tight shadow-soft sm:h-16 sm:w-16 sm:text-[0.66rem] ${
+          active ? "border-emerald/25 bg-emerald text-white" : "border-white/80 bg-white/88 text-navy"
         }`}
       >
-        {label}
+        {Icon ? <Icon className="mb-1 h-3.5 w-3.5 text-gold" aria-hidden="true" /> : null}
+        <span>{label}</span>
+        {subLabel ? <span>{subLabel}</span> : null}
       </div>
     </div>
   );
 }
 
+function ProgrammePanel({ title, items }: { title: string; items: string[] }) {
+  return (
+    <Reveal>
+      <details className="group border border-line bg-white p-6 shadow-[0_1px_0_rgba(8,17,31,0.03)]" open>
+        <summary className="focus-ring flex cursor-pointer list-none items-center justify-between gap-5 text-left text-xl font-semibold text-ink">
+          {title}
+          <CircleDot className="h-5 w-5 shrink-0 text-emerald transition group-open:rotate-45" aria-hidden="true" />
+        </summary>
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+          {items.map((item) => (
+            <li key={item} className="flex gap-3 text-sm leading-6 text-navy/72">
+              <Check className="mt-1 h-4 w-4 shrink-0 text-emerald" aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </Reveal>
+  );
+}
+
+function CredentialList({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-6 grid gap-3">
+      {items.map((item) => (
+        <li key={item} className="flex gap-3 text-sm leading-6 text-navy/70">
+          <Check className="mt-1 h-4 w-4 shrink-0 text-emerald" aria-hidden="true" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function Portrait() {
   return (
-    <div className="relative min-h-[24rem] overflow-hidden rounded-[28px] bg-[linear-gradient(145deg,#0d1a2a,#164e57)]">
+    <div className="relative min-h-[24rem] overflow-hidden bg-[linear-gradient(145deg,#0d1a2a,#164e57)]">
       <PortraitImage />
       <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/70 to-transparent" />
     </div>
@@ -464,5 +669,50 @@ function ContactLine({ icon: Icon, text }: { icon: typeof Mail; text: string }) 
       </div>
       <span>{text}</span>
     </div>
+  );
+}
+
+function Footer({ year }: { year: number }) {
+  const links = [
+    { label: "About", href: "#about" },
+    { label: "Expertise", href: "#expertise" },
+    { label: "Programmes", href: "#programmes" },
+    { label: "Team", href: "#team" },
+    { label: "Clients", href: "#clients" },
+    { label: "Contact", href: "#contact" }
+  ];
+
+  return (
+    <footer className="border-t border-line bg-white px-5 py-10 sm:px-8 lg:px-10">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-ink font-display text-sm text-gold">
+            LK&A
+          </div>
+          <p className="text-lg font-semibold text-ink">LizKamaruddin & Associates</p>
+          <p className="mt-2 text-sm text-navy/60">
+            Strategic Communications for Moments That Matter
+          </p>
+        </div>
+        <div className="grid gap-6 text-sm text-navy/60 sm:grid-cols-2 lg:text-right">
+          <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-5 gap-y-3 lg:justify-end">
+            {links.map((link) => (
+              <Link key={link.href} href={link.href} className="focus-ring hover:text-emerald">
+                {link.label}
+              </Link>
+            ))}
+            <Link href="#" className="focus-ring hover:text-emerald">
+              Privacy Policy
+            </Link>
+          </nav>
+          <div>
+            <p>hello@lizkamaruddin.com</p>
+            <p className="mt-2">Telephone placeholder</p>
+            <p className="mt-2">LinkedIn placeholder</p>
+            <p className="mt-4">&copy; {year} LizKamaruddin & Associates. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
