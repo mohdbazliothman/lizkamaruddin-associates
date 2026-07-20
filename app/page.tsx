@@ -228,12 +228,6 @@ export default function Home() {
       </section>
 
       <section id="clients" className="relative isolate overflow-hidden bg-mist px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
-        <img
-          src="/lka-signature.png"
-          alt=""
-          className="pointer-events-none absolute right-[-5rem] top-10 -z-10 hidden w-[24rem] opacity-[0.035] lg:block"
-          aria-hidden="true"
-        />
         <div className="mx-auto max-w-7xl">
           <Reveal className="mx-auto max-w-4xl text-center">
             <div className="mx-auto mb-5 h-px w-16 bg-gold/70" aria-hidden="true" />
@@ -263,7 +257,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Section id="about" eyebrow="Who We Are" title="Seasoned Communications Counsel for Complex Environments" watermark>
+      <Section id="about" eyebrow="Who We Are" title="Seasoned Communications Counsel for Complex Environments">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <Reveal>
             <div className="border-l-2 border-gold bg-white/65 py-2 pl-7">
@@ -329,12 +323,6 @@ export default function Home() {
         title="Developing Leaders. Strengthening Organisations."
       >
         <div className="relative overflow-hidden border border-gold/30 bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(250,246,238,0.78))] p-6 shadow-soft sm:p-8 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:p-12">
-          <img
-            src="/lka-signature.png"
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-8 top-4 h-28 w-auto opacity-[0.04] sm:h-40"
-          />
           <Reveal>
             <div className="relative max-w-xl">
               <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
@@ -494,13 +482,11 @@ function Section({
   id,
   eyebrow,
   title,
-  watermark,
   children
 }: {
   id?: string;
   eyebrow?: string;
   title: string;
-  watermark?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -508,14 +494,6 @@ function Section({
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div className="relative mb-12 max-w-3xl">
-            {watermark ? (
-              <img
-                src="/lka-signature.png"
-                alt=""
-                aria-hidden="true"
-                className="pointer-events-none absolute -left-4 -top-12 h-28 w-auto max-w-none opacity-[0.05] sm:-left-8 sm:-top-16 sm:h-40"
-              />
-            ) : null}
             {eyebrow ? (
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-emerald">
                 {eyebrow}
