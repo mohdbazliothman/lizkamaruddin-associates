@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.example.com"
   },
+  icons: {
+    icon: [
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" }
+    ],
+    shortcut: "/favicon-32.png",
+    apple: "/favicon-32.png"
+  },
   keywords: [
     "strategic communications",
     "strategic communications advisory",

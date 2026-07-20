@@ -24,9 +24,12 @@ export function SiteHeader() {
           className="focus-ring flex items-center gap-3 text-sm font-semibold tracking-[-0.01em] text-ink sm:text-base"
           onClick={() => setOpen(false)}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink font-display text-[0.65rem] text-gold sm:hidden">
-            LK&A
-          </span>
+          <img
+            src="/lka-signature.png"
+            alt=""
+            aria-hidden="true"
+            className="h-6 w-auto shrink-0 object-contain sm:h-7"
+          />
           <span className="hidden sm:inline">LizKamaruddin & Associates</span>
           <span className="sm:hidden">LizKamaruddin</span>
         </Link>

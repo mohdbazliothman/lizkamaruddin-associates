@@ -275,7 +275,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section id="about" eyebrow="Who We Are" title="Seasoned Communications Counsel for Complex Environments">
+      <Section id="about" eyebrow="Who We Are" title="Seasoned Communications Counsel for Complex Environments" watermark>
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <Reveal>
             <div className="border-l-2 border-gold bg-white/65 py-2 pl-7">
@@ -485,24 +485,34 @@ function Section({
   id,
   eyebrow,
   title,
+  watermark,
   children
 }: {
   id?: string;
   eyebrow?: string;
   title: string;
+  watermark?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <section id={id} className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="mb-12 max-w-3xl">
+          <div className="relative mb-12 max-w-3xl">
+            {watermark ? (
+              <img
+                src="/lka-signature.png"
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-4 -top-12 h-28 w-auto max-w-none opacity-[0.05] sm:-left-8 sm:-top-16 sm:h-40"
+              />
+            ) : null}
             {eyebrow ? (
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-emerald">
                 {eyebrow}
               </p>
             ) : null}
-            <h2 className="font-display text-4xl leading-tight text-ink sm:text-5xl">{title}</h2>
+            <h2 className="relative font-display text-4xl leading-tight text-ink sm:text-5xl">{title}</h2>
           </div>
         </Reveal>
         {children}
@@ -686,9 +696,11 @@ function Footer({ year }: { year: number }) {
     <footer className="border-t border-line bg-white px-5 py-10 sm:px-8 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-ink font-display text-sm text-gold">
-            LK&A
-          </div>
+          <img
+            src="/lka-signature.png"
+            alt="LizKamaruddin & Associates signature logo"
+            className="mb-6 h-16 w-auto object-contain sm:h-20"
+          />
           <p className="text-lg font-semibold text-ink">LizKamaruddin & Associates</p>
           <p className="mt-2 text-sm text-navy/60">
             Strategic Communications for Moments That Matter
