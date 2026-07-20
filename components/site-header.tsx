@@ -17,21 +17,24 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-line/70 bg-white/78 px-5 backdrop-blur-2xl sm:px-8 lg:px-10">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-line/70 bg-white/78 px-4 backdrop-blur-2xl sm:px-8 lg:px-10">
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 sm:h-20 sm:gap-6">
         <Link
           href="/"
-          className="focus-ring flex items-center gap-3 text-sm font-semibold tracking-[-0.01em] text-ink sm:text-base"
+          className="focus-ring flex min-w-0 flex-1 items-center gap-2.5 text-[15px] font-semibold tracking-[-0.01em] text-ink sm:flex-none sm:gap-3 sm:text-base"
           onClick={() => setOpen(false)}
         >
           <img
             src="/lka-signature.png"
             alt=""
             aria-hidden="true"
-            className="h-6 w-auto shrink-0 object-contain sm:h-7"
+            className="h-7 w-auto shrink-0 object-contain sm:h-7"
           />
           <span className="hidden sm:inline">Liz Kamaruddin & Associates</span>
-          <span className="sm:hidden">Liz Kamaruddin</span>
+          <span className="flex min-w-0 flex-col leading-[1.08] sm:hidden">
+            <span className="whitespace-nowrap">Liz Kamaruddin</span>
+            <span className="whitespace-nowrap">&amp; Associates</span>
+          </span>
         </Link>
         <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex">
           {navItems.map((item) => (
@@ -57,9 +60,13 @@ export function SiteHeader() {
             aria-controls="mobile-menu"
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             onClick={() => setOpen((current) => !current)}
-            className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-ink shadow-soft lg:hidden"
+            className="focus-ring inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-white text-ink shadow-soft lg:hidden"
           >
-            {open ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
+            {open ? (
+              <X className="h-[18px] w-[18px]" aria-hidden="true" />
+            ) : (
+              <Menu className="h-[18px] w-[18px]" aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
