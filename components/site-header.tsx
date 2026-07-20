@@ -5,12 +5,12 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Expertise", href: "#expertise" },
-  { label: "Programmes", href: "#programmes" },
-  { label: "Team", href: "#team" },
-  { label: "Clients", href: "#clients" },
-  { label: "Contact", href: "#contact" }
+  { label: "About", href: "/#about" },
+  { label: "Expertise", href: "/#expertise" },
+  { label: "Comms Academy", href: "/comms-academy" },
+  { label: "Team", href: "/#team" },
+  { label: "Clients", href: "/#clients" },
+  { label: "Contact", href: "/#contact" }
 ];
 
 export function SiteHeader() {
@@ -20,7 +20,7 @@ export function SiteHeader() {
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-line/70 bg-white/78 px-5 backdrop-blur-2xl sm:px-8 lg:px-10">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6">
         <Link
-          href="#"
+          href="/"
           className="focus-ring flex items-center gap-3 text-sm font-semibold tracking-[-0.01em] text-ink sm:text-base"
           onClick={() => setOpen(false)}
         >
@@ -46,7 +46,7 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-3">
           <Link
-            href="#contact"
+            href="/#contact"
             className="focus-ring hidden rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-emerald sm:inline-flex"
           >
             Book a Consultation
@@ -77,7 +77,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link
-              href="#contact"
+              href="/#contact"
               onClick={() => setOpen(false)}
               className="focus-ring mt-2 rounded-full bg-ink px-5 py-3 text-center text-sm font-semibold text-white"
             >

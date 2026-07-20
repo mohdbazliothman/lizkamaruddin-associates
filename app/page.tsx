@@ -3,7 +3,6 @@ import {
   BadgeCheck,
   Building2,
   Check,
-  CircleDot,
   Landmark,
   Linkedin,
   Mail,
@@ -22,6 +21,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { PortraitImage } from "@/components/portrait-image";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
+import { academyDivisions } from "@/lib/comms-academy";
 
 const proofPoints = [
   "50+ Years Combined Experience",
@@ -94,39 +94,6 @@ const advisoryServices = [
     copy: "Reviews of communication structures, processes, channels, messaging and team capability, followed by practical recommendations.",
     icon: MessageSquareText
   }
-];
-
-const leadershipProgrammes = [
-  "Spokesperson Media Training",
-  "Effective Communication Skills",
-  "Crisis Communication Management",
-  "Public Speaking Mastery for Leaders",
-  "Emotional Intelligence in Leadership Communication",
-  "Cultural Sensitivity and Inclusive Communication",
-  "Conflict Resolution and Communication Tactics",
-  "Storytelling for Leadership Impact",
-  "Evaluating Communication Effectiveness",
-  "Visionary Leadership Communication"
-];
-
-const communicationsProgrammes = [
-  "Digital Communication and Social Media Management",
-  "Internal Communications Best Practice",
-  "Stakeholder and Issue Management",
-  "Persuasive Writing and Messaging",
-  "Cultural Competence in Communication",
-  "Crisis Communication Simulations",
-  "Building a Communication Strategy",
-  "Change Management Communication",
-  "Reputation Management",
-  "Feedback and Performance Communication",
-  "Visual Communication Techniques",
-  "Listening Skills",
-  "Non-Verbal Communication",
-  "Future Trends in AI and Communications",
-  "AI-Assisted Communication Workflows",
-  "AI in Social Media Strategy",
-  "Measuring Communication Effectiveness with AI Tools"
 ];
 
 const lizCredentials = [
@@ -335,14 +302,48 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section id="programmes" eyebrow="Training & Coaching" title="Building Communication Capability at Every Leadership Level">
-        <div className="grid gap-5 lg:grid-cols-2">
-          <ProgrammePanel title="Leadership & C-Suite Programmes" items={leadershipProgrammes} />
-          <ProgrammePanel title="Communications Team Upskilling" items={communicationsProgrammes} />
+      <Section
+        id="comms-academy"
+        eyebrow="Comms Academy"
+        title="A Dedicated Division for Strategic Communication Capability"
+      >
+        <Reveal>
+          <div className="mb-8 grid gap-8 border border-gold/30 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(250,246,238,0.72))] p-7 shadow-soft lg:grid-cols-[0.8fr_1.2fr] lg:p-9">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+                LK&A Capability-Building Division
+              </p>
+              <h3 className="mt-4 font-display text-3xl leading-tight text-ink sm:text-4xl">
+                Comms Academy
+              </h3>
+            </div>
+            <p className="text-lg leading-8 text-navy/72">
+              Comms Academy is the dedicated capability-building division of LizKamaruddin &
+              Associates, designed for organisations that want to strengthen leadership
+              communication, communication-team capability and readiness for high-stakes
+              stakeholder environments.
+            </p>
+          </div>
+        </Reveal>
+        <div className="grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2 lg:grid-cols-5">
+          {academyDivisions.map((division, index) => (
+            <Reveal key={division.title} delay={index * 0.025}>
+              <article className="min-h-64 bg-white p-6 transition hover:bg-[#fbf6ec]">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-5 text-xl font-semibold leading-tight text-ink">{division.title}</h3>
+                <p className="mt-4 text-sm leading-6 text-navy/68">{division.summary}</p>
+              </article>
+            </Reveal>
+          ))}
         </div>
         <Reveal>
-          <div className="mt-8">
-            <ButtonLink href="#contact" variant="dark">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href="/comms-academy" variant="dark">
+              Explore Comms Academy
+            </ButtonLink>
+            <ButtonLink href="#contact" variant="light">
               Discuss a Custom Programme
             </ButtonLink>
           </div>
@@ -628,27 +629,6 @@ function NetworkNode({
   );
 }
 
-function ProgrammePanel({ title, items }: { title: string; items: string[] }) {
-  return (
-    <Reveal>
-      <details className="group border border-line bg-white p-6 shadow-[0_1px_0_rgba(8,17,31,0.03)]" open>
-        <summary className="focus-ring flex cursor-pointer list-none items-center justify-between gap-5 text-left text-xl font-semibold text-ink">
-          {title}
-          <CircleDot className="h-5 w-5 shrink-0 text-emerald transition group-open:rotate-45" aria-hidden="true" />
-        </summary>
-        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-          {items.map((item) => (
-            <li key={item} className="flex gap-3 text-sm leading-6 text-navy/72">
-              <Check className="mt-1 h-4 w-4 shrink-0 text-emerald" aria-hidden="true" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </details>
-    </Reveal>
-  );
-}
-
 function CredentialList({ items }: { items: string[] }) {
   return (
     <ul className="mt-6 grid gap-3">
@@ -686,7 +666,7 @@ function Footer({ year }: { year: number }) {
   const links = [
     { label: "About", href: "#about" },
     { label: "Expertise", href: "#expertise" },
-    { label: "Programmes", href: "#programmes" },
+    { label: "Comms Academy", href: "/comms-academy" },
     { label: "Team", href: "#team" },
     { label: "Clients", href: "#clients" },
     { label: "Contact", href: "#contact" }

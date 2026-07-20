@@ -28,7 +28,8 @@ const areasOfInterest = [
   "Communication Audit",
   "Leadership Coaching",
   "Media Training",
-  "Custom Training Programme",
+  "Comms Academy",
+  "Custom Corporate Programme",
   "Other"
 ];
 
