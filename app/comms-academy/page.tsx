@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check, Download, GraduationCap, Layers3, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Download, Layers3, ShieldCheck, Sparkles, Target } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
 import { academyDivisions, futureAcademyAdditions } from "@/lib/comms-academy";
@@ -44,7 +44,7 @@ export default function CommsAcademyPage() {
               <ButtonLink href="#programmes" variant="dark">
                 View Programmes
               </ButtonLink>
-              <ButtonLink href="/#contact" variant="light">
+              <ButtonLink href="/?areaOfInterest=Custom%20Training%20Programme&preferredEngagement=Training#contact" variant="light">
                 Discuss a Custom Programme
               </ButtonLink>
             </div>
@@ -52,7 +52,7 @@ export default function CommsAcademyPage() {
           <Reveal delay={0.1}>
             <div className="border border-gold/30 bg-[linear-gradient(145deg,#fffdf8,#f7efe0)] p-7 shadow-premium sm:p-9">
               <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-full bg-ink text-gold">
-                <GraduationCap className="h-6 w-6" aria-hidden="true" />
+                <Target className="h-6 w-6" aria-hidden="true" />
               </div>
               <p className="font-display text-3xl leading-tight text-ink">
                 Built as a division, not a side offering.
@@ -154,7 +154,7 @@ export default function CommsAcademyPage() {
               spokespersons or communications teams.
             </p>
             <div className="mt-9 flex justify-center">
-              <ButtonLink href="/#contact" variant="dark">
+              <ButtonLink href="/?areaOfInterest=Custom%20Training%20Programme&preferredEngagement=Training#contact" variant="dark">
                 Discuss a Custom Programme
               </ButtonLink>
             </div>

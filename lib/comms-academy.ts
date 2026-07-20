@@ -80,3 +80,22 @@ export const futureAcademyAdditions = [
   "Downloadable brochures",
   "Online registration"
 ];
+
+export const academyCapabilities = [
+  {
+    title: "Executive Leadership",
+    summary: "Leadership communication, executive presence and coaching"
+  },
+  {
+    title: "Communication Teams",
+    summary: "Strategy, writing, stakeholder engagement and team capability"
+  },
+  {
+    title: "Media & Crisis Readiness",
+    summary: "Spokesperson preparation, simulations and crisis communication"
+  },
+  {
+    title: "AI for Communications",
+    summary: "AI-assisted workflows, social media strategy and communication measurement"
+  }
+];

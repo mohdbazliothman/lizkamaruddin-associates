@@ -21,7 +21,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { PortraitImage } from "@/components/portrait-image";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
-import { academyDivisions } from "@/lib/comms-academy";
+import { academyCapabilities } from "@/lib/comms-academy";
 
 const proofPoints = [
   "50+ Years Combined Experience",
@@ -313,50 +313,62 @@ export default function Home() {
 
       <Section
         id="comms-academy"
-        eyebrow="Comms Academy"
-        title="A Dedicated Division for Strategic Communication Capability"
+        eyebrow="Comms Academy by LizKamaruddin & Associates"
+        title="Developing Leaders. Strengthening Organisations."
       >
-        <Reveal>
-          <div className="mb-8 grid gap-8 border border-gold/30 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(250,246,238,0.72))] p-7 shadow-soft lg:grid-cols-[0.8fr_1.2fr] lg:p-9">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-                LK&A Capability-Building Division
+        <div className="relative overflow-hidden border border-gold/30 bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(250,246,238,0.78))] p-6 shadow-soft sm:p-8 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:p-12">
+          <img
+            src="/lka-signature.png"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-8 top-4 h-28 w-auto opacity-[0.04] sm:h-40"
+          />
+          <Reveal>
+            <div className="relative max-w-xl">
+              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+                A division of LK&A
               </p>
-              <h3 className="mt-4 font-display text-3xl leading-tight text-ink sm:text-4xl">
-                Comms Academy
-              </h3>
+              <div className="h-px w-20 bg-gold/60" />
+              <p className="mt-8 text-lg leading-8 text-navy/76">
+                Today&apos;s leaders do not just need to make the right decisions&mdash;they need to
+                communicate them with clarity, confidence and credibility.
+              </p>
+              <p className="mt-5 text-lg leading-8 text-navy/76">
+                Comms Academy is the capability-building division of LizKamaruddin & Associates,
+                designed to equip executives, leadership teams and communication professionals with
+                the skills to navigate transformation, manage stakeholder expectations and lead
+                effectively during moments that matter.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <ButtonLink href="/comms-academy" variant="dark">
+                  Explore Comms Academy
+                </ButtonLink>
+                <Link
+                  href="/?areaOfInterest=Custom%20Training%20Programme&preferredEngagement=Training#contact"
+                  className="focus-ring group inline-flex items-center gap-2 px-1 py-3 text-sm font-semibold text-ink transition hover:text-emerald"
+                >
+                  Discuss a Custom Programme
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
-            <p className="text-lg leading-8 text-navy/72">
-              Comms Academy is the dedicated capability-building division of LizKamaruddin &
-              Associates, designed for organisations that want to strengthen leadership
-              communication, communication-team capability and readiness for high-stakes
-              stakeholder environments.
-            </p>
+          </Reveal>
+          <div className="relative mt-10 border-y border-gold/25 lg:mt-0">
+            {academyCapabilities.map((capability, index) => (
+              <Reveal key={capability.title} delay={index * 0.04}>
+                <article className="group grid gap-4 border-b border-gold/20 py-6 transition last:border-b-0 hover:bg-white/45 sm:grid-cols-[4rem_1fr] sm:px-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <div>
+                    <h3 className="text-lg font-semibold text-ink">{capability.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-navy/68">{capability.summary}</p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
-        </Reveal>
-        <div className="grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2 lg:grid-cols-5">
-          {academyDivisions.map((division, index) => (
-            <Reveal key={division.title} delay={index * 0.025}>
-              <article className="min-h-64 bg-white p-6 transition hover:bg-[#fbf6ec]">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-5 text-xl font-semibold leading-tight text-ink">{division.title}</h3>
-                <p className="mt-4 text-sm leading-6 text-navy/68">{division.summary}</p>
-              </article>
-            </Reveal>
-          ))}
         </div>
-        <Reveal>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/comms-academy" variant="dark">
-              Explore Comms Academy
-            </ButtonLink>
-            <ButtonLink href="#contact" variant="light">
-              Discuss a Custom Programme
-            </ButtonLink>
-          </div>
-        </Reveal>
       </Section>
 
       <Section id="team" title="Meet the Experts" eyebrow="Team">

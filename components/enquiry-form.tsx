@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -29,6 +29,7 @@ const areasOfInterest = [
   "Leadership Coaching",
   "Media Training",
   "Comms Academy",
+  "Custom Training Programme",
   "Custom Corporate Programme",
   "Other"
 ];
@@ -48,6 +49,7 @@ export function EnquiryForm() {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting }
   } = useForm<EnquiryFormValues>({
     resolver: zodResolver(enquirySchema),
@@ -63,6 +65,20 @@ export function EnquiryForm() {
       website: ""
     }
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const areaOfInterest = params.get("areaOfInterest");
+    const preferredEngagement = params.get("preferredEngagement");
+
+    if (areaOfInterest && areasOfInterest.includes(areaOfInterest)) {
+      setValue("areaOfInterest", areaOfInterest, { shouldValidate: true });
+    }
+
+    if (preferredEngagement && preferredEngagements.includes(preferredEngagement)) {
+      setValue("preferredEngagement", preferredEngagement, { shouldValidate: true });
+    }
+  }, [setValue]);
 
   async function onSubmit(data: EnquiryFormValues) {
     // Demo behaviour only: no email service or backend endpoint is connected yet.
