@@ -30,27 +30,27 @@ const proofPoints = [
   "Reputation, Crisis & Leadership Advisory"
 ];
 
-// TODO: Replace text placeholders with approved logo artwork only after client approval and logo usage rights are confirmed.
+// TODO: Add only approved client logo files here after logo usage rights are confirmed.
 const selectedClients = [
-  "ADNOC",
-  "International Islamic Liquidity Management Corporation",
-  "EPF / KWSP",
-  "Telekom Malaysia",
-  "Tabung Haji",
-  "Tenaga Nasional Berhad",
-  "Mastercard",
-  "Duopharma",
-  "Ministry of Health Malaysia",
-  "KPS",
-  "Hess",
-  "Jentayu Sustainables",
-  "PETRONAS",
-  "Khazanah Nasional",
-  "Prasarana Malaysia",
-  "Institute of Corporate Directors Malaysia",
-  "Bank Rakyat",
-  "Ministry of Tourism, Arts and Culture Malaysia",
-  "Ministry of Communications Malaysia"
+  { name: "ANOC Medicare & Diagnostic", logo: "/client-logos/anoc.jpg" },
+  { name: "EPF / KWSP", logo: "/client-logos/kwsp.jpg" },
+  { name: "Telekom Malaysia", logo: "/client-logos/telekom-malaysia.jpg" },
+  { name: "Mastercard", logo: "/client-logos/mastercard.png" },
+  { name: "PETRONAS", logo: "/client-logos/petronas.jpg" },
+  { name: "Khazanah Nasional", logo: "/client-logos/khazanah.jpg" },
+  { name: "Ministry of Tourism, Arts and Culture Malaysia", logo: "/client-logos/motac.jpg" },
+  { name: "International Islamic Liquidity Management Corporation" },
+  { name: "Tabung Haji" },
+  { name: "Tenaga Nasional Berhad" },
+  { name: "Duopharma" },
+  { name: "Ministry of Health Malaysia" },
+  { name: "KPS" },
+  { name: "Hess" },
+  { name: "Jentayu Sustainables" },
+  { name: "Prasarana Malaysia" },
+  { name: "Institute of Corporate Directors Malaysia" },
+  { name: "Bank Rakyat" },
+  { name: "Ministry of Communications Malaysia" }
 ];
 
 const pillars = [
@@ -230,12 +230,21 @@ export default function Home() {
         </Reveal>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
           {selectedClients.map((client, index) => (
-            <Reveal key={client} delay={index * 0.015}>
+            <Reveal key={client.name} delay={index * 0.015}>
               <div
-                className="flex min-h-24 items-center justify-center border border-line bg-white/72 px-4 py-5 text-center text-xs font-semibold uppercase tracking-[0.12em] text-navy/55 transition hover:border-gold/40 hover:text-ink"
-                aria-label={`${client} selected client experience placeholder`}
+                className="flex min-h-28 items-center justify-center border border-line bg-white/72 px-4 py-5 text-center text-xs font-semibold uppercase tracking-[0.12em] text-navy/55 transition hover:border-gold/40 hover:text-ink"
+                aria-label={`${client.name} selected client experience`}
               >
-                {client}
+                {client.logo ? (
+                  <img
+                    src={client.logo}
+                    alt={`${client.name} logo`}
+                    className="max-h-16 w-full max-w-[9rem] object-contain opacity-80 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+                    loading="lazy"
+                  />
+                ) : (
+                  client.name
+                )}
               </div>
             </Reveal>
           ))}
