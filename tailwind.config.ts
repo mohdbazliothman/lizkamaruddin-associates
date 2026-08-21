@@ -18,8 +18,8 @@ const config: Config = {
         soft: "0 14px 40px rgba(8, 17, 31, 0.08)"
       },
       fontFamily: {
-        sans: ["ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
-        display: ["Georgia", "Cambria", "Times New Roman", "serif"]
+        sans: ["Poppins", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        display: ["Poppins", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"]
       }
     }
   },

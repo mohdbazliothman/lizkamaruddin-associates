@@ -8,7 +8,7 @@ const navItems = [
   { label: "About", href: "/#about" },
   { label: "Expertise", href: "/#expertise" },
   { label: "Comms Academy", href: "/comms-academy" },
-  { label: "Team", href: "/#team" },
+  { label: "Team", href: "/team" },
   { label: "Clients", href: "/#clients" },
   { label: "Contact", href: "/#contact" }
 ];
@@ -17,24 +17,18 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-line/70 bg-white/78 px-4 backdrop-blur-2xl sm:px-8 lg:px-10">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-line/70 bg-white/[0.78] px-4 backdrop-blur-2xl sm:px-8 lg:px-10">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 sm:h-20 sm:gap-6">
         <Link
           href="/"
-          className="focus-ring flex min-w-0 flex-1 items-center gap-2.5 text-[15px] font-semibold tracking-[-0.01em] text-ink sm:flex-none sm:gap-3 sm:text-base"
+          className="focus-ring flex min-w-0 flex-1 items-center"
           onClick={() => setOpen(false)}
         >
           <img
-            src="/lka-signature.png"
-            alt=""
-            aria-hidden="true"
-            className="h-7 w-auto shrink-0 object-contain sm:h-7"
+            src="/lka-logo.png"
+            alt="Liz Kamaruddin & Associates"
+            className="h-11 w-auto max-w-[13.5rem] shrink-0 object-contain sm:h-12 sm:max-w-[17rem]"
           />
-          <span className="hidden sm:inline">Liz Kamaruddin & Associates</span>
-          <span className="flex min-w-0 flex-col leading-[1.08] sm:hidden">
-            <span className="whitespace-nowrap">Liz Kamaruddin</span>
-            <span className="whitespace-nowrap">&amp; Associates</span>
-          </span>
         </Link>
         <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex">
           {navItems.map((item) => (

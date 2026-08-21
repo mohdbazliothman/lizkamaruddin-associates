@@ -41,7 +41,7 @@ export function ClientLogoWall({ featuredClients, additionalClients }: ClientLog
         <div className="mt-8 flex justify-center">
           <button
             type="button"
-            className="group inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-white/80 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-gold/55 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald"
+            className="group inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-white/[0.08]0 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-gold/55 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald"
             aria-expanded={expanded}
             aria-controls={expandedId}
             onClick={() => setExpanded((current) => !current)}
@@ -77,7 +77,7 @@ function ClientLogoCell({ client }: { client: ClientExperience }) {
           loading="lazy"
         />
       ) : (
-        <span className="max-w-[10rem] text-center text-[0.68rem] font-semibold uppercase leading-5 tracking-[0.16em] text-navy/58 transition duration-300 group-hover:text-emerald sm:text-xs">
+        <span className="max-w-[10rem] text-center text-[0.68rem] font-semibold uppercase leading-5 tracking-[0.16em] text-navy/[0.58] transition duration-300 group-hover:text-emerald sm:text-xs">
           {client.name}
         </span>
       )}

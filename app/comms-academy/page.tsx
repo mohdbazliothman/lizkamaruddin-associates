@@ -26,17 +26,17 @@ export default function CommsAcademyPage() {
     <main className="min-h-screen overflow-hidden">
       <SiteHeader />
       <section className="relative isolate px-5 pb-16 pt-28 sm:px-8 lg:px-10 lg:pb-24 lg:pt-36">
-        <div className="pointer-events-none absolute right-0 top-24 -z-10 h-[28rem] w-[28rem] rounded-full bg-gold/12 blur-3xl" />
+        <div className="pointer-events-none absolute right-0 top-24 -z-10 h-[28rem] w-[28rem] rounded-full bg-gold/[0.12] blur-3xl" />
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_0.85fr] lg:items-end">
           <Reveal>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-white/80 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold shadow-[0_1px_0_rgba(8,17,31,0.03)]">
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-white/[0.08]0 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold shadow-[0_1px_0_rgba(8,17,31,0.03)]">
               <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
               LK&A Capability-Building Division
             </p>
             <h1 className="max-w-4xl font-display text-[2.3rem] leading-[1.04] text-ink sm:text-6xl lg:text-[4.3rem]">
               Comms Academy
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-navy/72">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-navy/[0.72]">
               Premium communication capability-building for leaders, spokespersons and
               communications teams navigating transformation, scrutiny and moments that matter.
             </p>
@@ -98,7 +98,7 @@ export default function CommsAcademyPage() {
                   </div>
                   <ul className="grid gap-3 sm:grid-cols-2">
                     {division.items.map((item) => (
-                      <li key={item} className="flex gap-3 text-sm leading-6 text-navy/72">
+                      <li key={item} className="flex gap-3 text-sm leading-6 text-navy/[0.72]">
                         <Check className="mt-1 h-4 w-4 shrink-0 text-emerald" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
@@ -132,7 +132,7 @@ export default function CommsAcademyPage() {
                   ) : (
                     <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
                   )}
-                  <p className="text-base leading-7 text-white/80">{item}</p>
+                  <p className="text-base leading-7 text-white/[0.08]0">{item}</p>
                 </div>
               </Reveal>
             ))}
@@ -174,7 +174,7 @@ function ButtonLink({ href, variant, children }: { href: string; variant: "dark"
       className={`focus-ring group inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-soft transition hover:-translate-y-0.5 ${
         isDark
           ? "bg-ink text-white hover:bg-emerald"
-          : "border border-line bg-white/85 text-ink hover:border-gold/45 hover:text-ink"
+          : "border border-line bg-white/[0.08]5 text-ink hover:border-gold/45 hover:text-ink"
       }`}
     >
       {children}
