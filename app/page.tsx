@@ -249,10 +249,9 @@ export default function Home() {
 
           <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {industryExperience.map((industry, index) => {
-              const Icon = industry.icon;
               return (
                 <Reveal key={industry.title} delay={index * 0.035} className="h-full">
-                  <article className="group flex h-full min-h-[23rem] flex-col overflow-hidden border border-line bg-white shadow-[0_1px_0_rgba(8,17,31,0.03)] transition duration-300 hover:border-gold/45 md:min-h-[21rem] xl:min-h-[21.5rem]">
+                  <article className="group flex h-full flex-col overflow-hidden border border-line bg-white shadow-[0_1px_0_rgba(8,17,31,0.03)] transition duration-300 hover:border-gold/45">
                     <div className="relative aspect-[4/3] overflow-hidden bg-ink/[0.04] md:aspect-[16/10]">
                       <Image
                         src={industry.image}
@@ -263,15 +262,12 @@ export default function Home() {
                         style={{ objectPosition: industry.imagePosition }}
                       />
                     </div>
-                    <div className="flex flex-1 items-end justify-between gap-5 p-5 sm:p-6">
+                    <div className="bg-white p-7">
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
                           {String(index + 1).padStart(2, "0")}
                         </p>
                         <h3 className="mt-3 text-xl font-semibold text-ink">{industry.title}</h3>
-                      </div>
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-emerald/15 bg-emerald/[0.08] text-emerald">
-                        <Icon className="h-5 w-5" aria-hidden="true" />
                       </div>
                     </div>
                   </article>
