@@ -10,7 +10,8 @@ import {
   ShieldCheck,
   Sparkles,
   Target,
-  UsersRound
+  UsersRound,
+  Workflow
 } from "lucide-react";
 import Script from "next/script";
 import Link from "next/link";
@@ -67,6 +68,11 @@ const advisoryServices = [
     title: "Communication Audits & Capability Development",
     copy: "Reviews of communication structures, processes, channels, messaging and team capability, followed by practical recommendations.",
     icon: MessageSquareText
+  },
+  {
+    title: "Social Media & AI-Enabled Communications",
+    copy: "Strategic social media advisory, AI-enabled content workflows and communication automation that strengthen reach, responsiveness and measurable impact.",
+    icon: Workflow
   }
 ];
 
@@ -318,12 +324,12 @@ export default function Home() {
       </Section>
 
       <Section id="expertise" eyebrow="Our Expertise" title="Strategic Support Before, During and After Critical Moments">
-        <div className="grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-2">
+        <div className="grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
           {advisoryServices.map((service, index) => {
             const Icon = service.icon;
             return (
-              <Reveal key={service.title} delay={index * 0.035}>
-                <article className="group min-h-64 bg-white p-7 transition duration-300 hover:bg-mist/70 sm:p-8">
+              <Reveal key={service.title} delay={index * 0.035} className="h-full">
+                <article className="group flex h-full min-h-64 flex-col bg-white p-7 transition duration-300 hover:bg-mist/70 sm:p-8">
                   <div className="mb-7 flex h-11 w-11 items-center justify-center rounded-full border border-emerald/15 bg-emerald/[0.08] text-emerald">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
@@ -429,9 +435,9 @@ export default function Home() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src="/images/team/lka-team-group.jpg"
+                  src="/images/team/lka-team-group.png"
                   alt="Liz Kamaruddin & Associates team group portrait"
-                  className="aspect-[4/3] w-full object-cover object-center transition duration-500 group-hover:scale-[1.015]"
+                  className="aspect-[3/2] w-full bg-white object-contain object-center"
                   loading="lazy"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/[0.58] via-ink/10 to-transparent px-5 pb-5 pt-20 opacity-95">

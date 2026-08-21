@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/team/lka-team-group.jpg",
+        url: "/images/team/lka-team-group.png",
         width: 1200,
         height: 900,
         alt: "Liz Kamaruddin & Associates team"

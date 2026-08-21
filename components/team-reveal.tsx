@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 
 type TeamMember = {
   id: string;
@@ -33,12 +33,13 @@ const teamMembers: TeamMember[] = [
   {
     id: "raja-emylia",
     name: "Raja Emylia",
-    role: "Partner",
+    role: "Associate",
     company: "Liz Kamaruddin & Associates",
     image: "/images/team/raja-emylia.png",
     imageAlt: "Raja Emylia executive portrait",
-    bio: "Biography to be provided.",
-    expertise: ["Strategic Communications", "Leadership Advisory", "Stakeholder Engagement"],
+    bio:
+      "Raja Emylia is a communications practitioner with over 25 years of experience. She began her career as a news journalist before transitioning into corporate communications across diverse industries, including infrastructure, services, property and banking.\n\nHer areas of expertise include reputation and crisis management, strategic communications and branding.\n\nShe has developed a strong understanding of the media and corporate landscape, and is passionate about building strong brands and shaping meaningful narratives that connect with the right audience.",
+    expertise: ["Reputation and Crisis Management", "Strategic Communications", "Branding"],
     imagePosition: "center top",
     featured: true
   },
@@ -55,13 +56,21 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: "bazli",
-    name: "Bazli",
+    name: "Mohd Bazli Othman",
     role: "AI, Social Media and Comms Expert",
     company: "Liz Kamaruddin & Associates",
     image: "/images/team/bazli.png",
-    imageAlt: "Bazli executive portrait",
-    bio: "Biography to be provided.",
-    expertise: ["AI for Communications", "Social Media Strategy", "Digital Communications"],
+    imageAlt: "Mohd Bazli Othman executive portrait",
+    bio:
+      "Mohd Bazli is a strategic communications and digital specialist with 15 years of experience spanning Fortune 500 corporations, consulting and entrepreneurship. Trained in software engineering, he brings a distinctive combination of technology, communications and data-driven thinking to complex business and reputational challenges.\n\nHis areas of expertise include strategic communications, digital and social media strategy, analytics, reputation management and stakeholder engagement. He has advised and supported corporate leaders, business owners and political strategists in strengthening reputation, shaping narratives and making more informed decisions in increasingly complex information environments.\n\nWith a strong interest in data, emerging technology and artificial intelligence, Bazli explores how technology and analytics can be translated into practical strategic advantage, particularly in understanding audiences, identifying emerging risks and improving communication effectiveness.\n\nHis experience spans both corporate and entrepreneurial environments, giving him an appreciation of strategy from multiple perspectives, from managing reputation within large organisations to helping businesses navigate growth, transformation and changing stakeholder expectations.\n\nAt the intersection of strategy, communications, data and technology, his work is guided by a simple principle: turn information into insight, insight into strategy, and strategy into measurable impact.",
+    expertise: [
+      "Strategic Communications",
+      "Digital and Social Media Strategy",
+      "Analytics",
+      "Reputation Management",
+      "Stakeholder Engagement",
+      "AI for Communications"
+    ],
     imagePosition: "center top"
   },
   {
@@ -71,8 +80,16 @@ const teamMembers: TeamMember[] = [
     company: "Liz Kamaruddin & Associates",
     image: "/images/team/zul-baba.png",
     imageAlt: "Zul Baba executive portrait",
-    bio: "Biography to be provided.",
-    expertise: ["CSR Communications", "Corporate Communications", "Stakeholder Engagement"],
+    bio:
+      "Zul Baba is an award-winning, highly adaptable Communications and Public Relations Director with over 30 years of global and regional experience leading high-stakes stakeholder relations across the energy, banking, utilities and government sectors. He has a proven track record of providing elite-level corporate board support, drafting high-impact executive talking points, and directing cross-functional logistics for corporate governance assemblies and high-profile stakeholder events.\n\nHe possesses a strong learner mindset, impeccable relationship management skills, and a reputation for flawlessly executing projects that align corporate strategy with stringent regulatory environments.\n\nZul is a trusted advisor to corporate management, C-suite executives and government entities, with deep experience handling confidential corporate governance environments. He is skilled in drafting presentations, strategic talking points and institutional materials for Chairmen, CEOs and corporate leadership.\n\nHis media relations and spokesperson expertise combines strategic communication, crisis management and relationship-building capability with the ability to act as a compelling storyteller and trusted organisational advocate who can engage media professionals and protect brand and corporate reputation.\n\nHe also brings decades of experience aligning multi-tiered stakeholders, third-party vendors, global subsidiaries and government agencies, alongside end-to-end event management, crisis preparedness and strategic alignment for complex corporate assemblies and summits.\n\nHis work includes navigating complex social risks and policy communications within major global energy operations.",
+    expertise: [
+      "Executive Board Support and Advisory",
+      "High-Level Writing and Speechwriting",
+      "Media Relations and Spokesperson Advisory",
+      "Stakeholder and Vendor Coordination",
+      "Large-Scale Event Logistics",
+      "Reputation and Crisis Management"
+    ],
     imagePosition: "center top"
   },
   {
@@ -88,13 +105,21 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: "amani",
-    name: "Amani",
+    name: "Nur Amani Abd Hadi",
     role: "Junior Associate",
     company: "Liz Kamaruddin & Associates",
     image: "/images/team/amani.png",
-    imageAlt: "Amani executive portrait",
-    bio: "Biography to be provided.",
-    expertise: ["Research Support", "Programme Support", "Communications Coordination"],
+    imageAlt: "Nur Amani Abd Hadi executive portrait",
+    bio:
+      "Nur Amani Abd Hadi is a communications and research professional with experience in strategic communications, media intelligence, email marketing, stakeholder engagement, and corporate communications. She specialises in transforming complex information and emerging issues into clear, actionable insights that support strategic decision-making and stakeholder engagement.\n\nHer expertise includes media monitoring, sentiment analysis, issue tracking, content development, and strategic reporting. She has supported communication initiatives by delivering data-driven analyses, monitoring public discourse, and producing reports and presentations that help organisations navigate reputational, policy, and business challenges.\n\nWith a strong foundation in research and communications, Amani brings an analytical and detail-oriented approach to understanding stakeholder sentiment, identifying emerging trends, and developing effective communication strategies.",
+    expertise: [
+      "Media Intelligence",
+      "Sentiment Analysis",
+      "Issue Tracking",
+      "Content Development",
+      "Strategic Reporting",
+      "Stakeholder Engagement"
+    ],
     imagePosition: "center top"
   }
 ];
@@ -105,6 +130,9 @@ export function TeamReveal() {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const selectedMember = teamMembers.find((member) => member.id === selectedId);
+  const bioParagraphs = selectedMember?.bio.split("\n\n") ?? [];
+  const introStatement = bioParagraphs[0];
+  const biographyParagraphs = bioParagraphs.slice(1);
 
   const closeProfile = useCallback(() => {
     const previousId = selectedId;
@@ -145,8 +173,19 @@ export function TeamReveal() {
   }, [closeProfile, selectedId]);
 
   return (
-    <div className="relative">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div
+      className={[
+        "relative transition-[grid-template-columns,gap] duration-500 ease-out motion-reduce:transition-none lg:grid lg:items-start",
+        selectedMember ? "lg:grid-cols-[minmax(0,0.6fr)_minmax(22rem,0.4fr)] lg:gap-8" : "lg:grid-cols-[minmax(0,1fr)]"
+      ].join(" ")}
+    >
+      <div
+        className={[
+          "grid gap-4 transition-[filter,opacity] duration-500 ease-out motion-reduce:transition-none sm:grid-cols-2",
+          selectedMember ? "lg:grid-cols-3" : "lg:grid-cols-4"
+        ].join(" ")}
+        aria-label="Team members"
+      >
         {teamMembers.map((member) => {
           const isSelected = member.id === selectedId;
           const isDimmed = Boolean(selectedId && !isSelected);
@@ -160,24 +199,38 @@ export function TeamReveal() {
               type="button"
               aria-expanded={isSelected}
               aria-controls="expert-profile-panel"
+              aria-pressed={isSelected}
               onClick={() => setSelectedId(member.id)}
               className={[
-                "group text-left outline-none transition duration-300 focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-4 focus-visible:ring-offset-ivory",
-                member.featured ? "lg:col-span-2" : "",
-                isSelected && selectedId ? "pointer-events-none opacity-0" : "",
-                isDimmed ? "opacity-25 grayscale" : "opacity-100"
+                "group text-left outline-none transition duration-500 ease-out focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-4 focus-visible:ring-offset-ivory motion-reduce:transition-none",
+                member.featured && !selectedMember ? "lg:col-span-2" : "",
+                isSelected ? "opacity-100" : "",
+                isDimmed ? "opacity-45 grayscale" : ""
               ].join(" ")}
             >
-              <div className="overflow-hidden border border-line bg-white p-2 shadow-[0_18px_40px_rgba(17,24,39,0.05)] transition duration-300 group-hover:border-gold/60">
+              <div
+                className={[
+                  "overflow-hidden border bg-white p-2 shadow-[0_18px_40px_rgba(17,24,39,0.05)] transition duration-500 ease-out group-hover:border-gold/60 motion-reduce:transition-none",
+                  isSelected ? "border-gold shadow-soft ring-2 ring-gold/25" : "border-line"
+                ].join(" ")}
+              >
                 <img
                   src={member.image}
                   alt={member.imageAlt}
                   loading="lazy"
-                  className="aspect-[4/5] w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                  className={[
+                    "aspect-[4/5] w-full object-cover transition duration-500 ease-out motion-reduce:transition-none",
+                    isSelected ? "scale-[1.01]" : "group-hover:scale-[1.03]"
+                  ].join(" ")}
                   style={{ objectPosition: member.imagePosition ?? "center top" }}
                 />
               </div>
-              <div className="mt-4 border-l border-gold/50 pl-4 transition duration-300 group-hover:border-emerald">
+              <div
+                className={[
+                  "mt-4 border-l pl-4 transition duration-300 group-hover:border-emerald",
+                  isSelected ? "border-emerald" : "border-gold/50"
+                ].join(" ")}
+              >
                 <p className="font-display text-2xl text-ink">{member.name}</p>
                 <p className="mt-1 text-sm font-semibold leading-5 text-navy/[0.68]">{member.role}</p>
               </div>
@@ -187,81 +240,82 @@ export function TeamReveal() {
       </div>
 
       {selectedMember ? (
-        <div
-          ref={panelRef}
-          id="expert-profile-panel"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="expert-profile-name"
-          className="fixed inset-0 z-[60] animate-[fadeUp_0.36s_ease-out] overflow-y-auto bg-ivory px-4 pb-12 pt-0 shadow-[0_24px_80px_rgba(10,21,32,0.22)] sm:px-6 lg:absolute lg:inset-x-0 lg:bottom-auto lg:top-8 lg:z-40 lg:overflow-visible lg:border lg:border-line lg:p-8"
-        >
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(201,162,91,0.12),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(24,76,69,0.10),transparent_30%)]" />
-          <div className="sticky top-0 z-10 -mx-4 mb-6 flex justify-start border-b border-line bg-ivory/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:mb-4 lg:justify-end lg:border-0 lg:bg-transparent lg:p-0">
-            <button
-              ref={closeButtonRef}
-              type="button"
-              onClick={closeProfile}
-              className="inline-flex min-h-11 items-center gap-2 border border-line bg-white px-4 text-sm font-semibold text-ink transition hover:border-gold hover:text-emerald focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-2 lg:min-w-11 lg:justify-center lg:px-3"
-              aria-label="Back to Team"
-            >
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-              <span className="lg:sr-only">Back to Team</span>
-            </button>
-          </div>
-
-          <div className="grid gap-6 lg:mt-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-            <div className="overflow-hidden border border-line bg-white p-2 shadow-soft sm:p-3">
-              <img
-                src={selectedMember.image}
-                alt={selectedMember.imageAlt}
-                className="aspect-[4/5] max-h-[55vh] w-full object-contain lg:max-h-none lg:object-cover"
-                style={{ objectPosition: selectedMember.imagePosition ?? "center top" }}
-              />
+        <>
+          <button
+            type="button"
+            aria-label="Close profile panel"
+            onClick={closeProfile}
+            className="fixed inset-0 z-40 bg-ink/20 transition-opacity duration-500 lg:hidden"
+          />
+          <aside
+            ref={panelRef}
+            id="expert-profile-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="expert-profile-name"
+            className="fixed inset-x-3 bottom-3 z-[60] max-h-[92svh] overflow-y-auto rounded-t-[1.75rem] border border-line bg-white shadow-[0_24px_80px_rgba(10,21,32,0.22)] animate-[fadeUp_0.4s_ease-out] lg:sticky lg:top-28 lg:z-30 lg:max-h-[calc(100svh-8rem)] lg:rounded-none lg:shadow-[0_20px_60px_rgba(8,17,31,0.08)]"
+          >
+            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-line bg-white px-5 py-4 sm:px-7 lg:px-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">Our Team</p>
+              <button
+                ref={closeButtonRef}
+                type="button"
+                onClick={closeProfile}
+                className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line bg-white text-ink transition hover:border-gold hover:text-emerald focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-2"
+                aria-label="Close profile panel"
+              >
+                <X className="h-4 w-4" aria-hidden="true" />
+              </button>
             </div>
 
-            <div className="pb-4">
-              <p className="animate-[fadeUp_0.34s_ease-out_0.08s_both] text-xs font-semibold uppercase tracking-[0.22em] text-gold">
-                {selectedMember.company}
-              </p>
+            <div className="px-5 py-7 sm:px-7 sm:py-8 lg:px-8 lg:py-9">
               <h3
                 id="expert-profile-name"
-                className="mt-3 animate-[fadeUp_0.34s_ease-out_0.14s_both] max-w-full break-words font-display text-[clamp(2.25rem,10vw,3.5rem)] leading-[1.02] text-ink sm:text-6xl lg:text-6xl"
+                className="max-w-full break-words font-display text-[clamp(2.1rem,9vw,3.65rem)] leading-[1.03] text-ink lg:text-[clamp(2.5rem,4vw,4rem)]"
               >
                 {selectedMember.name}
               </h3>
-              <p className="mt-4 animate-[fadeUp_0.34s_ease-out_0.2s_both] text-base font-semibold text-emerald">
-                {selectedMember.role}
-              </p>
-              <div className="mt-7 grid animate-[fadeUp_0.34s_ease-out_0.26s_both] gap-4 text-base leading-7 text-navy/[0.72] sm:text-[1.0625rem] sm:leading-8">
-                {selectedMember.bio.split("\n\n").map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
+              <div className="mt-4 border-l border-gold/70 pl-4">
+                <p className="text-base font-semibold text-emerald">{selectedMember.role}</p>
+                <p className="mt-1 text-sm font-medium text-navy/55">{selectedMember.company}</p>
               </div>
-              <div className="mt-8 animate-[fadeUp_0.34s_ease-out_0.32s_both]">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Areas of Expertise</p>
+
+              <p className="mt-7 max-w-[64ch] text-[1.05rem] font-medium leading-8 text-ink">
+                {introStatement}
+              </p>
+
+              {biographyParagraphs.length > 0 ? (
+                <div className="mt-7 border-t border-line pt-7">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                    Profile
+                  </p>
+                  <div className="grid max-w-[68ch] gap-4 text-sm leading-7 text-navy/[0.72] sm:text-[0.98rem] sm:leading-8">
+                    {biographyParagraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
+              <div className="mt-8 border-t border-line pt-7">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                  Key Expertise
+                </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {selectedMember.expertise.map((item) => (
                     <span
                       key={item}
-                      className="inline-flex items-center gap-2 border border-line bg-white px-3 py-2 text-xs font-semibold text-navy/75"
+                      className="inline-flex items-center gap-2 border border-line bg-mist/70 px-3 py-2 text-xs font-semibold leading-5 text-navy/75"
                     >
-                      <Check className="h-3.5 w-3.5 text-emerald" aria-hidden="true" />
+                      <Check className="h-3.5 w-3.5 shrink-0 text-emerald" aria-hidden="true" />
                       {item}
                     </span>
                   ))}
                 </div>
               </div>
-              <button
-                type="button"
-                onClick={closeProfile}
-                className="group mt-8 hidden animate-[fadeUp_0.34s_ease-out_0.38s_both] items-center gap-2 text-sm font-semibold text-emerald outline-none transition hover:text-gold focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-4 lg:inline-flex"
-              >
-                Back to Team
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
-              </button>
             </div>
-          </div>
-        </div>
+          </aside>
+        </>
       ) : null}
     </div>
   );
