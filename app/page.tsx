@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Script from "next/script";
 import Link from "next/link";
+import Image from "next/image";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
@@ -94,12 +95,48 @@ const supportGroups = [
 ];
 
 const industryExperience = [
-  { title: "Energy", icon: RadioTower },
-  { title: "Financial Services", icon: ShieldCheck },
-  { title: "Infrastructure", icon: Building2 },
-  { title: "Government", icon: Landmark },
-  { title: "Healthcare", icon: Target },
-  { title: "Professional Services", icon: UsersRound }
+  {
+    title: "Energy",
+    icon: RadioTower,
+    image: "/images/sectors/sector-energy.webp",
+    alt: "Energy executives reviewing offshore operations from a control room.",
+    imagePosition: "center"
+  },
+  {
+    title: "Financial Services",
+    icon: ShieldCheck,
+    image: "/images/sectors/sector-financial-services.webp",
+    alt: "Financial services leadership team reviewing market and risk information.",
+    imagePosition: "center"
+  },
+  {
+    title: "Infrastructure",
+    icon: Building2,
+    image: "/images/sectors/sector-infrastructure.webp",
+    alt: "Engineers reviewing a major rail infrastructure development.",
+    imagePosition: "center"
+  },
+  {
+    title: "Government",
+    icon: Landmark,
+    image: "/images/sectors/sector-government.webp",
+    alt: "Public-sector team discussing regional planning and policy.",
+    imagePosition: "center"
+  },
+  {
+    title: "Healthcare",
+    icon: Target,
+    image: "/images/sectors/sector-healthcare.webp",
+    alt: "Healthcare leaders reviewing hospital operations information.",
+    imagePosition: "center"
+  },
+  {
+    title: "Professional Services",
+    icon: UsersRound,
+    image: "/images/sectors/sector-professional-services.webp",
+    alt: "Senior advisers and a client discussing business strategy.",
+    imagePosition: "center"
+  }
 ];
 
 const organisationSchema = {
@@ -204,20 +241,32 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {industryExperience.map((industry, index) => {
               const Icon = industry.icon;
               return (
-                <Reveal key={industry.title} delay={index * 0.035}>
-                  <article className="group flex min-h-40 flex-col justify-between bg-white p-6 transition duration-200 hover:bg-white/90 sm:p-7">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-emerald/15 bg-emerald/[0.08] text-emerald">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
+                <Reveal key={industry.title} delay={index * 0.035} className="h-full">
+                  <article className="group flex h-full min-h-[23rem] flex-col overflow-hidden border border-line bg-white shadow-[0_1px_0_rgba(8,17,31,0.03)] transition duration-300 hover:border-gold/45 md:min-h-[21rem] xl:min-h-[21.5rem]">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-ink/[0.04] md:aspect-[16/10]">
+                      <Image
+                        src={industry.image}
+                        alt={industry.alt}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition duration-500 ease-out group-hover:scale-[1.025]"
+                        style={{ objectPosition: industry.imagePosition }}
+                      />
                     </div>
-                    <div className="mt-8">
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                        {String(index + 1).padStart(2, "0")}
-                      </p>
-                      <h3 className="mt-3 text-xl font-semibold text-ink">{industry.title}</h3>
+                    <div className="flex flex-1 items-end justify-between gap-5 p-5 sm:p-6">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                          {String(index + 1).padStart(2, "0")}
+                        </p>
+                        <h3 className="mt-3 text-xl font-semibold text-ink">{industry.title}</h3>
+                      </div>
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-emerald/15 bg-emerald/[0.08] text-emerald">
+                        <Icon className="h-5 w-5" aria-hidden="true" />
+                      </div>
                     </div>
                   </article>
                 </Reveal>
@@ -314,6 +363,15 @@ export default function Home() {
                 transformation, engage stakeholders effectively, and communicate with impact when
                 it matters most.
               </p>
+              <blockquote className="mt-8 border-l-2 border-gold pl-5">
+                <p className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+                  &ldquo;Your leadership brand is shaped not by the title you hold, but by the
+                  trust you inspire, the clarity you bring, and the impact you leave behind.&rdquo;
+                </p>
+                <cite className="mt-4 block text-sm font-semibold not-italic text-emerald">
+                  Liz Kamaruddin
+                </cite>
+              </blockquote>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <ButtonLink href="/comms-academy" variant="dark">
                   Explore Comms Academy

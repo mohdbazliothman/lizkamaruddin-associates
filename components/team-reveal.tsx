@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 
 type TeamMember = {
   id: string;
@@ -102,6 +102,7 @@ const teamMembers: TeamMember[] = [
 export function TeamReveal() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const selectedMember = teamMembers.find((member) => member.id === selectedId);
 
@@ -116,7 +117,17 @@ export function TeamReveal() {
   useEffect(() => {
     if (!selectedId) return;
 
-    const timeout = window.setTimeout(() => closeButtonRef.current?.focus(), 120);
+    const originalBodyOverflow = document.body.style.overflow;
+    const shouldLockBodyScroll = window.matchMedia("(max-width: 1023px)").matches;
+
+    if (shouldLockBodyScroll) {
+      document.body.style.overflow = "hidden";
+    }
+
+    const timeout = window.setTimeout(() => {
+      panelRef.current?.scrollTo({ top: 0 });
+      closeButtonRef.current?.focus();
+    }, 120);
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         closeProfile();
@@ -127,6 +138,9 @@ export function TeamReveal() {
     return () => {
       window.clearTimeout(timeout);
       window.removeEventListener("keydown", handleKeyDown);
+      if (shouldLockBodyScroll) {
+        document.body.style.overflow = originalBodyOverflow;
+      }
     };
   }, [closeProfile, selectedId]);
 
@@ -150,6 +164,7 @@ export function TeamReveal() {
               className={[
                 "group text-left outline-none transition duration-300 focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-4 focus-visible:ring-offset-ivory",
                 member.featured ? "lg:col-span-2" : "",
+                isSelected && selectedId ? "pointer-events-none opacity-0" : "",
                 isDimmed ? "opacity-25 grayscale" : "opacity-100"
               ].join(" ")}
             >
@@ -173,31 +188,33 @@ export function TeamReveal() {
 
       {selectedMember ? (
         <div
+          ref={panelRef}
           id="expert-profile-panel"
           role="dialog"
-          aria-modal="false"
+          aria-modal="true"
           aria-labelledby="expert-profile-name"
-          className="fixed inset-x-3 bottom-3 top-20 z-40 animate-[fadeUp_0.36s_ease-out] overflow-y-auto border border-line bg-ivory p-4 shadow-[0_24px_80px_rgba(10,21,32,0.22)] sm:inset-x-8 md:absolute md:inset-x-0 md:bottom-auto md:top-8 md:overflow-visible md:p-6 lg:p-8"
+          className="fixed inset-0 z-[60] animate-[fadeUp_0.36s_ease-out] overflow-y-auto bg-ivory px-4 pb-12 pt-0 shadow-[0_24px_80px_rgba(10,21,32,0.22)] sm:px-6 lg:absolute lg:inset-x-0 lg:bottom-auto lg:top-8 lg:z-40 lg:overflow-visible lg:border lg:border-line lg:p-8"
         >
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(201,162,91,0.12),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(24,76,69,0.10),transparent_30%)]" />
-          <div className="flex justify-end">
+          <div className="sticky top-0 z-10 -mx-4 mb-6 flex justify-start border-b border-line bg-ivory/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:mb-4 lg:justify-end lg:border-0 lg:bg-transparent lg:p-0">
             <button
               ref={closeButtonRef}
               type="button"
               onClick={closeProfile}
-              className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line bg-white text-ink transition hover:border-gold hover:text-emerald focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-2"
-              aria-label="Close profile"
+              className="inline-flex min-h-11 items-center gap-2 border border-line bg-white px-4 text-sm font-semibold text-ink transition hover:border-gold hover:text-emerald focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-2 lg:min-w-11 lg:justify-center lg:px-3"
+              aria-label="Back to Team"
             >
-              <X className="h-4 w-4" aria-hidden="true" />
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              <span className="lg:sr-only">Back to Team</span>
             </button>
           </div>
 
-          <div className="mt-4 grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-            <div className="overflow-hidden border border-line bg-white p-3 shadow-soft">
+          <div className="grid gap-6 lg:mt-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <div className="overflow-hidden border border-line bg-white p-2 shadow-soft sm:p-3">
               <img
                 src={selectedMember.image}
                 alt={selectedMember.imageAlt}
-                className="aspect-[4/5] w-full object-cover"
+                className="aspect-[4/5] max-h-[55vh] w-full object-contain lg:max-h-none lg:object-cover"
                 style={{ objectPosition: selectedMember.imagePosition ?? "center top" }}
               />
             </div>
@@ -208,14 +225,14 @@ export function TeamReveal() {
               </p>
               <h3
                 id="expert-profile-name"
-                className="mt-3 animate-[fadeUp_0.34s_ease-out_0.14s_both] font-display text-5xl leading-[0.95] text-ink sm:text-6xl"
+                className="mt-3 animate-[fadeUp_0.34s_ease-out_0.14s_both] max-w-full break-words font-display text-[clamp(2.25rem,10vw,3.5rem)] leading-[1.02] text-ink sm:text-6xl lg:text-6xl"
               >
                 {selectedMember.name}
               </h3>
               <p className="mt-4 animate-[fadeUp_0.34s_ease-out_0.2s_both] text-base font-semibold text-emerald">
                 {selectedMember.role}
               </p>
-              <div className="mt-6 grid animate-[fadeUp_0.34s_ease-out_0.26s_both] gap-4 text-base leading-7 text-navy/[0.72]">
+              <div className="mt-7 grid animate-[fadeUp_0.34s_ease-out_0.26s_both] gap-4 text-base leading-7 text-navy/[0.72] sm:text-[1.0625rem] sm:leading-8">
                 {selectedMember.bio.split("\n\n").map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -237,7 +254,7 @@ export function TeamReveal() {
               <button
                 type="button"
                 onClick={closeProfile}
-                className="group mt-8 inline-flex animate-[fadeUp_0.34s_ease-out_0.38s_both] items-center gap-2 text-sm font-semibold text-emerald outline-none transition hover:text-gold focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-4"
+                className="group mt-8 hidden animate-[fadeUp_0.34s_ease-out_0.38s_both] items-center gap-2 text-sm font-semibold text-emerald outline-none transition hover:text-gold focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-4 lg:inline-flex"
               >
                 Back to Team
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
