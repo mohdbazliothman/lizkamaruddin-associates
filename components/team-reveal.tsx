@@ -12,6 +12,7 @@ type TeamMember = {
   imageAlt: string;
   bio: string;
   expertise: string[];
+  recognition?: string[];
   imagePosition?: string;
   featured?: boolean;
 };
@@ -26,6 +27,16 @@ const teamMembers: TeamMember[] = [
     imageAlt: "Liz Kamaruddin executive portrait",
     bio:
       "Liz Kamaruddin is a leading Malaysian communications strategist with more than 30 years of experience across ASEAN, the Middle East, and the Americas. Her career spans the energy, banking, aviation, transportation, telecommunications, and hospitality sectors.\n\nShe advises organisations and senior leaders on reputation management, crisis communications, corporate and government stakeholder engagement, sustainability, branding, media relations, and internal communications. Known for her strategic insight and deep understanding of the geopolitical landscape, Liz has built a strong track record of developing high-impact reputation campaigns and helping organisations navigate complex business challenges, transformation, and crisis.\n\nWidely regarded as a turnaround communications specialist, Liz combines global experience with a pragmatic, outcomes-focused approach to protecting reputation, strengthening stakeholder trust, and advancing organisational priorities.\n\nBeyond advisory work, Liz is deeply passionate about education and professional development. She is committed to developing the next generation of communications professionals and equipping senior leaders with the skills to communicate with clarity, confidence, and credibility. Through teaching, coaching, and executive training, she translates decades of industry experience into practical insights that strengthen leadership and communications capabilities.",
+    recognition: [
+      "Adjunct Professor at Multimedia University Malaysia's Faculty of Applied Communication since 2022.",
+      "Industry adviser and architect of MMU's Bachelor of Communication (Strategic Communication) programme from 2016 to 2024.",
+      "Member of the Board of Studies for MMU's Master of Communication programme since 2024.",
+      "Namesake of MMU's Permata Liz Kamaruddin Communications Excellence Award, presented to outstanding students since 2019.",
+      "Named among PRWeek Asia's 50 Most Influential People in PR in 2014.",
+      "Recognised as Internationalist of the Year by The Internationalist, New York, in 2014.",
+      "Listed in the global PRWeek Power Book in 2014 and 2015.",
+      "Keynote speaker at leading communications conferences in Malaysia, Singapore, the United Kingdom, Abu Dhabi, and Dubai."
+    ],
     expertise: ["Reputation Management", "Crisis Communications", "Stakeholder Engagement", "Leadership Coaching"],
     imagePosition: "center top",
     featured: true
@@ -70,25 +81,6 @@ const teamMembers: TeamMember[] = [
       "Reputation Management",
       "Stakeholder Engagement",
       "AI for Communications"
-    ],
-    imagePosition: "center top"
-  },
-  {
-    id: "zul-baba",
-    name: "Zul Baba",
-    role: "CSR and Comms Expert",
-    company: "Liz Kamaruddin & Associates",
-    image: "/images/team/zul-baba.png",
-    imageAlt: "Zul Baba executive portrait",
-    bio:
-      "Zul Baba is an award-winning, highly adaptable Communications and Public Relations Director with over 30 years of global and regional experience leading high-stakes stakeholder relations across the energy, banking, utilities and government sectors. He has a proven track record of providing elite-level corporate board support, drafting high-impact executive talking points, and directing cross-functional logistics for corporate governance assemblies and high-profile stakeholder events.\n\nHe possesses a strong learner mindset, impeccable relationship management skills, and a reputation for flawlessly executing projects that align corporate strategy with stringent regulatory environments.\n\nZul is a trusted advisor to corporate management, C-suite executives and government entities, with deep experience handling confidential corporate governance environments. He is skilled in drafting presentations, strategic talking points and institutional materials for Chairmen, CEOs and corporate leadership.\n\nHis media relations and spokesperson expertise combines strategic communication, crisis management and relationship-building capability with the ability to act as a compelling storyteller and trusted organisational advocate who can engage media professionals and protect brand and corporate reputation.\n\nHe also brings decades of experience aligning multi-tiered stakeholders, third-party vendors, global subsidiaries and government agencies, alongside end-to-end event management, crisis preparedness and strategic alignment for complex corporate assemblies and summits.\n\nHis work includes navigating complex social risks and policy communications within major global energy operations.",
-    expertise: [
-      "Executive Board Support and Advisory",
-      "High-Level Writing and Speechwriting",
-      "Media Relations and Spokesperson Advisory",
-      "Stakeholder and Vendor Coordination",
-      "Large-Scale Event Logistics",
-      "Reputation and Crisis Management"
     ],
     imagePosition: "center top"
   },
@@ -294,6 +286,19 @@ export function TeamReveal() {
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
+                </div>
+              ) : null}
+
+              {selectedMember.recognition?.length ? (
+                <div className="mt-8 border-t border-line pt-7">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                    Selected Recognition and Contributions
+                  </p>
+                  <ul className="grid max-w-[68ch] list-disc gap-3 pl-5 text-sm leading-7 text-navy/[0.72] marker:text-gold sm:text-[0.98rem] sm:leading-8">
+                    {selectedMember.recognition.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
                 </div>
               ) : null}
 
