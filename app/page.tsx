@@ -104,6 +104,7 @@ const industryExperience = [
   {
     title: "Energy",
     icon: RadioTower,
+    description: "Reputation and stakeholder communications in complex operating environments.",
     image: "/images/sectors/sector-energy.webp",
     alt: "Energy executives reviewing offshore operations from a control room.",
     imagePosition: "center"
@@ -111,6 +112,7 @@ const industryExperience = [
   {
     title: "Financial Services",
     icon: ShieldCheck,
+    description: "Building trust and clarity in highly regulated environments.",
     image: "/images/sectors/sector-financial-services.webp",
     alt: "Financial services leadership team reviewing market and risk information.",
     imagePosition: "center"
@@ -118,6 +120,7 @@ const industryExperience = [
   {
     title: "Infrastructure",
     icon: Building2,
+    description: "Communicating major projects, transformation and stakeholder priorities.",
     image: "/images/sectors/sector-infrastructure.webp",
     alt: "Engineers reviewing a major rail infrastructure development.",
     imagePosition: "center"
@@ -125,6 +128,7 @@ const industryExperience = [
   {
     title: "Government",
     icon: Landmark,
+    description: "Strategic communications for public institutions and policy environments.",
     image: "/images/sectors/sector-government.webp",
     alt: "Public-sector team discussing regional planning and policy.",
     imagePosition: "center"
@@ -132,6 +136,7 @@ const industryExperience = [
   {
     title: "Healthcare",
     icon: Target,
+    description: "Protecting trust through clear leadership and stakeholder communications.",
     image: "/images/sectors/sector-healthcare.webp",
     alt: "Healthcare leaders reviewing hospital operations information.",
     imagePosition: "center"
@@ -139,6 +144,7 @@ const industryExperience = [
   {
     title: "Professional Services",
     icon: UsersRound,
+    description: "Positioning expertise, leadership and reputation for knowledge-led firms.",
     image: "/images/sectors/sector-professional-services.webp",
     alt: "Senior advisers and a client discussing business strategy.",
     imagePosition: "center"
@@ -228,7 +234,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="clients" className="relative isolate overflow-hidden bg-mist px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+      <section id="clients" className="relative isolate overflow-hidden bg-mist px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mx-auto max-w-4xl text-center">
             <div className="mx-auto mb-5 h-px w-16 bg-gold/70" aria-hidden="true" />
@@ -238,16 +244,13 @@ export default function Home() {
             <h2 className="mt-5 font-display text-4xl leading-tight text-ink sm:text-5xl lg:text-6xl">
               Trusted Across Sectors and Mission-Critical Environments
             </h2>
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-navy/70">
-              Our team has advised and supported leading organisations across the energy,
-              financial services, infrastructure, government, healthcare, and professional services
-              sectors. We bring deep cross-sector experience to complex, high-stakes
-              environments&mdash;helping clients navigate critical challenges, strengthen
-              organisational resilience, and deliver sustainable outcomes.
+            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-navy/70">
+              Our team has advised and supported leading organisations across energy, financial
+              services, infrastructure, government, healthcare and professional services.
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {industryExperience.map((industry, index) => {
               return (
                 <Reveal key={industry.title} delay={index * 0.035} className="h-full">
@@ -262,13 +265,14 @@ export default function Home() {
                         style={{ objectPosition: industry.imagePosition }}
                       />
                     </div>
-                    <div className="bg-white p-7">
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                          {String(index + 1).padStart(2, "0")}
-                        </p>
-                        <h3 className="mt-3 text-xl font-semibold text-ink">{industry.title}</h3>
-                      </div>
+                    <div className="bg-white p-6 sm:p-7">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                        {String(index + 1).padStart(2, "0")}
+                      </p>
+                      <h3 className="mt-3 text-xl font-semibold text-ink">{industry.title}</h3>
+                      <p className="mt-3 text-sm italic leading-6 text-navy/[0.64]">
+                        {industry.description}
+                      </p>
                     </div>
                   </article>
                 </Reveal>
@@ -325,14 +329,14 @@ export default function Home() {
             const Icon = service.icon;
             return (
               <Reveal key={service.title} delay={index * 0.035} className="h-full">
-                <article className="group flex h-full min-h-64 flex-col bg-white p-7 transition duration-300 hover:bg-mist/70 sm:p-8">
-                  <div className="mb-7 flex h-11 w-11 items-center justify-center rounded-full border border-emerald/15 bg-emerald/[0.08] text-emerald">
+                <article className="group flex h-full min-h-[15rem] flex-col bg-white p-6 transition duration-300 hover:bg-mist/70 sm:p-7">
+                  <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full border border-emerald/15 bg-emerald/[0.08] text-emerald">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="mt-4 text-2xl font-semibold tracking-[-0.01em] text-ink">
+                  <h3 className="mt-4 text-xl font-semibold tracking-[-0.01em] text-ink sm:text-2xl">
                     {service.title}
                   </h3>
                   <p className="mt-4 text-base leading-7 text-navy/70">{service.copy}</p>
@@ -469,9 +473,9 @@ export default function Home() {
         </div>
       </Section>
 
-      <section className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
+      <section className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
         <Reveal>
-          <div className="noise mx-auto max-w-7xl border border-line bg-white px-6 py-14 text-center shadow-soft sm:px-12 sm:py-20">
+          <div className="noise mx-auto max-w-7xl border border-line bg-white px-6 py-12 text-center shadow-soft sm:px-12 sm:py-16">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-emerald">
               Start a Conversation
             </p>
@@ -479,8 +483,8 @@ export default function Home() {
               Prepare Your Leaders and Organisation for the Moments That Matter
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-navy/70">
-              Speak with us about strategic communication advisory, crisis preparedness, leadership
-              coaching or a customised capability-building programme.
+              Engage LK&A for strategic communications counsel, reputation advisory, stakeholder
+              strategy and leadership preparedness.
             </p>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <ButtonLink href="#contact" variant="dark">
@@ -533,10 +537,10 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
+    <section id={id} className="px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="relative mb-12 max-w-3xl">
+          <div className="relative mb-10 max-w-3xl">
             {eyebrow ? (
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-emerald">
                 {eyebrow}
