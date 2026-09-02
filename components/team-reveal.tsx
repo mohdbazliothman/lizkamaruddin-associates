@@ -158,7 +158,9 @@ export function TeamReveal() {
     if (!selectedId) return;
 
     const originalBodyOverflow = document.body.style.overflow;
+    const originalDocumentOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
 
     const timeout = window.setTimeout(() => {
       panelRef.current?.scrollTo({ top: 0 });
@@ -175,6 +177,7 @@ export function TeamReveal() {
       window.clearTimeout(timeout);
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalDocumentOverflow;
     };
   }, [closeProfile, selectedId]);
 
@@ -206,7 +209,13 @@ export function TeamReveal() {
               aria-expanded={isSelected}
               aria-controls="expert-profile-panel"
               aria-pressed={isSelected}
-              onClick={() => setSelectedId(member.id)}
+              onClick={() => {
+                if (isSelected) {
+                  closeProfile();
+                  return;
+                }
+                setSelectedId(member.id);
+              }}
               className={[
                 "group text-left outline-none transition duration-500 ease-out focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-4 focus-visible:ring-offset-ivory motion-reduce:transition-none",
                 member.featured && !selectedMember ? "lg:col-span-2" : "",
@@ -258,27 +267,30 @@ export function TeamReveal() {
             className="fixed inset-0 z-40 bg-ink/20 transition-opacity duration-500 lg:hidden"
           />
           <aside
-            ref={panelRef}
             id="expert-profile-panel"
             role="dialog"
             aria-modal="true"
             aria-labelledby="expert-profile-name"
-            className="fixed inset-x-3 bottom-3 z-[60] max-h-[92svh] overflow-y-auto rounded-t-[1.75rem] border border-line bg-white shadow-[0_24px_80px_rgba(10,21,32,0.22)] animate-[fadeUp_0.4s_ease-out] lg:sticky lg:top-28 lg:z-30 lg:max-h-[calc(100svh-8rem)] lg:rounded-none lg:shadow-[0_20px_60px_rgba(8,17,31,0.08)]"
+            className="fixed inset-x-3 bottom-3 z-[60] flex max-h-[92svh] flex-col overflow-hidden rounded-t-[1.75rem] border border-line bg-white shadow-[0_24px_80px_rgba(10,21,32,0.22)] animate-[fadeUp_0.4s_ease-out] lg:fixed lg:bottom-8 lg:left-auto lg:right-8 lg:top-28 lg:z-30 lg:w-[min(40vw,32rem)] lg:max-h-none lg:rounded-none lg:shadow-[0_20px_60px_rgba(8,17,31,0.08)] 2xl:right-[calc((100vw-80rem)/2)]"
           >
-            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-line bg-white px-5 py-4 sm:px-7 lg:px-8">
+            <div className="sticky top-0 z-50 flex shrink-0 items-center justify-between border-b border-line bg-white px-5 py-4 sm:px-7 lg:px-8">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">Our Team</p>
               <button
                 ref={closeButtonRef}
                 type="button"
                 onClick={closeProfile}
-                className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line bg-white text-ink transition hover:border-gold hover:text-emerald focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-2"
+                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-white text-ink transition hover:border-gold hover:bg-mist hover:text-emerald focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-2"
                 aria-label="Close profile panel"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
 
-            <div className="px-5 py-7 sm:px-7 sm:py-8 lg:px-8 lg:py-9">
+            <div
+              ref={panelRef}
+              data-profile-scroll
+              className="min-h-0 flex-1 overflow-y-auto px-5 py-7 sm:px-7 sm:py-8 lg:px-8 lg:py-9"
+            >
               <h3
                 id="expert-profile-name"
                 className="max-w-full break-words font-display text-[clamp(2.1rem,9vw,3.65rem)] leading-[1.03] text-ink lg:text-[clamp(2.5rem,4vw,4rem)]"
