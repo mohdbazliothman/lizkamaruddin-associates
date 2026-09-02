@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Check, X } from "lucide-react";
+import { ArrowRight, Check, X } from "lucide-react";
 
 type TeamMember = {
   id: string;
@@ -28,16 +28,23 @@ const teamMembers: TeamMember[] = [
     bio:
       "Liz Kamaruddin is a leading Malaysian communications strategist with more than 30 years of experience across ASEAN, the Middle East, and the Americas. Her career spans the energy, banking, aviation, transportation, telecommunications, and hospitality sectors.\n\nShe advises organisations and senior leaders on reputation management, crisis communications, corporate and government stakeholder engagement, sustainability, branding, media relations, and internal communications. Known for her strategic insight and deep understanding of the geopolitical landscape, Liz has built a strong track record of developing high-impact reputation campaigns and helping organisations navigate complex business challenges, transformation, and crisis.\n\nWidely regarded as a turnaround communications specialist, Liz combines global experience with a pragmatic, outcomes-focused approach to protecting reputation, strengthening stakeholder trust, and advancing organisational priorities.\n\nBeyond advisory work, Liz is deeply passionate about education and professional development. She is committed to developing the next generation of communications professionals and equipping senior leaders with the skills to communicate with clarity, confidence, and credibility. Through teaching, coaching, and executive training, she translates decades of industry experience into practical insights that strengthen leadership and communications capabilities.",
     recognition: [
-      "Adjunct Professor at Multimedia University Malaysia's Faculty of Applied Communication since 2022.",
-      "Industry adviser and architect of MMU's Bachelor of Communication (Strategic Communication) programme from 2016 to 2024.",
-      "Member of the Board of Studies for MMU's Master of Communication programme since 2024.",
-      "Namesake of MMU's Permata Liz Kamaruddin Communications Excellence Award, presented to outstanding students since 2019.",
-      "Named among PRWeek Asia's 50 Most Influential People in PR in 2014.",
-      "Recognised as Internationalist of the Year by The Internationalist, New York, in 2014.",
-      "Listed in the global PRWeek Power Book in 2014 and 2015.",
-      "Keynote speaker at leading communications conferences in Malaysia, Singapore, the United Kingdom, Abu Dhabi, and Dubai."
+      "Adjunct Professor at Multimedia University Malaysia's Faculty of Applied Communication since 2022",
+      "Industry adviser and architect of MMU's Bachelor of Communication (Strategic Communication) programme from 2016 to 2024",
+      "Member of the Board of Studies for MMU's Master of Communication programme since 2024",
+      "Namesake of MMU's Permata Liz Kamaruddin Communications Excellence Award, presented to outstanding students since 2019",
+      "Named among PRWeek Asia's 50 Most Influential People in PR in 2014",
+      "Recognised as Internationalist of the Year by The Internationalist, New York, in 2014",
+      "Listed in the global PRWeek Power Book in 2014 and 2015",
+      "Keynote speaker at leading communications conferences in Malaysia, Singapore, the United Kingdom, Abu Dhabi, and Dubai"
     ],
-    expertise: ["Reputation Management", "Crisis Communications", "Stakeholder Engagement", "Leadership Coaching"],
+    expertise: [
+      "Reputation Management",
+      "Crisis Communications",
+      "Leadership Communications",
+      "Stakeholder Engagement",
+      "Transformation",
+      "Executive Coaching"
+    ],
     imagePosition: "center top",
     featured: true
   },
@@ -57,12 +64,21 @@ const teamMembers: TeamMember[] = [
   {
     id: "reed",
     name: "Reed Samsudin",
-    role: "Crisis and Comms Expert",
+    role: "Crisis & Communications Specialist",
     company: "Liz Kamaruddin & Associates",
     image: "/images/team/reed-samsudin.png",
     imageAlt: "Reed Samsudin executive portrait",
-    bio: "Biography to be provided.",
-    expertise: ["Crisis Readiness", "Media Training", "Communications Advisory"],
+    bio:
+      "Reed Samsudin is a senior communications professional with more than 20 years of experience spanning corporate communications, journalism, media training, reputation management, and crisis communications.\n\nHe specialises in communications advisory, executive media preparedness, crisis and reputation management, helping organisations and senior leaders communicate effectively in complex and high-stakes environments.\n\nThroughout his career, Reed has prepared and supported senior leadership teams at major organisations including TM, FGV, TNB, Hess, Prasarana and EPF in media handling, executive communications and reputation management.\n\nHis sector experience spans financial services, energy and FMCG, with professional exposure across ASEAN, the Middle East, North America and Africa.\n\nEarlier in his career, Reed held a senior role at a Washington-based business consultancy and worked as a business journalist and producer with Bloomberg, The Edge Weekly and ASTRO. He subsequently moved into senior corporate communications roles, including positions with Standard Chartered and PETRONAS.\n\nThis combination of newsroom experience, corporate leadership exposure and advisory work gives Reed a strong understanding of how organisations, leaders and the media operate during periods of heightened scrutiny, change and crisis.",
+    expertise: [
+      "Crisis Communications",
+      "Reputation Management",
+      "Media Training",
+      "Executive Communications",
+      "Issues Management",
+      "Media Relations",
+      "Communications Advisory"
+    ],
     imagePosition: "center top"
   },
   {
@@ -125,6 +141,10 @@ export function TeamReveal() {
   const bioParagraphs = selectedMember?.bio.split("\n\n") ?? [];
   const introStatement = bioParagraphs[0];
   const biographyParagraphs = bioParagraphs.slice(1);
+  const selectedProfileTitle =
+    selectedMember?.id === "liz"
+      ? "Founder and Principal, Liz Kamaruddin & Associates"
+      : selectedMember?.role;
 
   const closeProfile = useCallback(() => {
     const previousId = selectedId;
@@ -138,11 +158,7 @@ export function TeamReveal() {
     if (!selectedId) return;
 
     const originalBodyOverflow = document.body.style.overflow;
-    const shouldLockBodyScroll = window.matchMedia("(max-width: 1023px)").matches;
-
-    if (shouldLockBodyScroll) {
-      document.body.style.overflow = "hidden";
-    }
+    document.body.style.overflow = "hidden";
 
     const timeout = window.setTimeout(() => {
       panelRef.current?.scrollTo({ top: 0 });
@@ -158,9 +174,7 @@ export function TeamReveal() {
     return () => {
       window.clearTimeout(timeout);
       window.removeEventListener("keydown", handleKeyDown);
-      if (shouldLockBodyScroll) {
-        document.body.style.overflow = originalBodyOverflow;
-      }
+      document.body.style.overflow = originalBodyOverflow;
     };
   }, [closeProfile, selectedId]);
 
@@ -225,6 +239,10 @@ export function TeamReveal() {
               >
                 <p className="font-display text-2xl text-ink">{member.name}</p>
                 <p className="mt-1 text-sm font-semibold leading-5 text-navy/[0.68]">{member.role}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald transition group-hover:text-gold">
+                  Read Full Profile
+                  <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" aria-hidden="true" />
+                </span>
               </div>
             </button>
           );
@@ -268,8 +286,10 @@ export function TeamReveal() {
                 {selectedMember.name}
               </h3>
               <div className="mt-4 border-l border-gold/70 pl-4">
-                <p className="text-base font-semibold text-emerald">{selectedMember.role}</p>
-                <p className="mt-1 text-sm font-medium text-navy/55">{selectedMember.company}</p>
+                <p className="text-base font-semibold text-emerald">{selectedProfileTitle}</p>
+                {selectedMember.id !== "liz" ? (
+                  <p className="mt-1 text-sm font-medium text-navy/55">{selectedMember.company}</p>
+                ) : null}
               </div>
 
               <p className="mt-7 max-w-[64ch] text-[1.05rem] font-medium leading-8 text-ink">
