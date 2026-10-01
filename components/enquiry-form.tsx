@@ -2,16 +2,16 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const enquirySchema = z.object({
-  fullName: z.string().min(2, "Please enter your full name."),
-  organisation: z.string().min(2, "Please enter your organisation."),
-  workEmail: z.string().email("Please enter a valid work email address."),
-  areaOfInterest: z.string().min(1, "Please select an area of interest."),
-  message: z.string().min(10, "Please share a brief context."),
+  fullName: z.string().trim().min(2, "Please enter your full name.").max(120),
+  organisation: z.string().trim().min(2, "Please enter your organisation.").max(200),
+  workEmail: z.string().trim().max(254).email("Please enter a valid work email address."),
+  areaOfInterest: z.string().trim().min(1, "Please select an area of interest.").max(160),
+  message: z.string().trim().min(10, "Please share a brief context.").max(5000),
   website: z.string().max(0, "Spam protection triggered.")
 });
 
@@ -32,11 +32,13 @@ const areasOfInterest = [
 ];
 
 export function EnquiryForm() {
+  const submissionLock = useRef(false);
   const [submitted, setSubmitted] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
   const {
     register,
     handleSubmit,
+    reset,
     setValue,
     formState: { errors, isSubmitting }
   } = useForm<EnquiryFormValues>({
@@ -60,45 +62,55 @@ export function EnquiryForm() {
     }
   }, [setValue]);
 
-  function onSubmit(data: EnquiryFormValues) {
+  async function onSubmit(data: EnquiryFormValues) {
+    if (submissionLock.current) return;
+    submissionLock.current = true;
     setSubmissionError("");
 
     try {
-      const subject = encodeURIComponent(`Website enquiry: ${data.areaOfInterest}`);
-      const body = encodeURIComponent([
-        `Full Name: ${data.fullName}`,
-        `Organisation: ${data.organisation}`,
-        `Work Email: ${data.workEmail}`,
-        `Area of Interest: ${data.areaOfInterest}`,
-        "",
-        data.message
-      ].join("\n"));
-      window.location.href = `mailto:hello@lizkamaruddinassociates.com?subject=${subject}&body=${body}`;
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.fullName,
+          email: data.workEmail,
+          phone: "",
+          company: data.organisation,
+          inquiryType: data.areaOfInterest,
+          message: data.message,
+          website: data.website
+        })
+      });
+      const result = await response.json();
+      if (!response.ok || result?.success !== true) throw new Error("Submission failed");
+      reset();
       setSubmitted(true);
     } catch {
-      setSubmissionError("Please email hello@lizkamaruddinassociates.com with your enquiry.");
+      setSubmissionError("We couldn't submit your enquiry. Please try again.");
+    } finally {
+      submissionLock.current = false;
     }
   }
 
   return (
     <div className="glass-panel rounded-[24px] p-5 sm:p-8 lg:p-10">
       {submitted ? (
-        <div className="flex min-h-[26rem] flex-col items-start justify-center">
+        <div role="status" className="flex min-h-[26rem] flex-col items-start justify-center">
           <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-emerald/10 text-emerald">
             <CheckCircle2 aria-hidden="true" />
           </div>
           <h3 className="font-display text-3xl text-ink">
-            Your enquiry is ready to email.
+            Thank you. Your enquiry has been received.
           </h3>
           <p className="mt-4 max-w-xl text-base leading-7 text-navy/70">
-            Please send the draft in your email app to complete your enquiry. If your email app did not open, contact hello@lizkamaruddinassociates.com directly. Your form details are still available below.
+            Our team will be in touch shortly.
           </p>
           <button
             type="button"
             onClick={() => setSubmitted(false)}
             className="focus-ring mt-8 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-emerald/35 hover:text-emerald"
           >
-            Back to enquiry
+            Send another enquiry
           </button>
         </div>
       ) : (
@@ -146,7 +158,7 @@ export function EnquiryForm() {
             disabled={isSubmitting}
             className="focus-ring group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-emerald disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {isSubmitting ? "Opening email..." : "Email Enquiry"}
+            {isSubmitting ? "Sending..." : "Submit Enquiry"}
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
           </button>
         </form>
