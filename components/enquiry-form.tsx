@@ -33,6 +33,7 @@ const areasOfInterest = [
 
 export function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submissionError, setSubmissionError] = useState("");
   const {
     register,
     handleSubmit,
@@ -61,12 +62,32 @@ export function EnquiryForm() {
   }, [setValue]);
 
   async function onSubmit(data: EnquiryFormValues) {
-    // Demo behaviour only: no email service or backend endpoint is connected yet.
-    // Ready to connect later to Resend, Formspree or a Next.js API route.
-    await new Promise((resolve) => setTimeout(resolve, 450));
-    console.log("Demo enquiry submission", data);
-    setSubmitted(true);
-    reset();
+    setSubmissionError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: data.fullName,
+          organisation: data.organisation,
+          email: data.workEmail,
+          areaOfInterest: data.areaOfInterest,
+          message: data.message,
+          website: data.website
+        })
+      });
+
+      const result: { success?: boolean } = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error("Enquiry submission failed.");
+      }
+
+      setSubmitted(true);
+      reset();
+    } catch {
+      setSubmissionError("We couldn't submit your enquiry. Please try again.");
+    }
   }
 
   return (
@@ -76,10 +97,11 @@ export function EnquiryForm() {
           <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-emerald/10 text-emerald">
             <CheckCircle2 aria-hidden="true" />
           </div>
-          <h3 className="font-display text-3xl text-ink">Thank you for your enquiry.</h3>
+          <h3 className="font-display text-3xl text-ink">
+            Thank you. Your enquiry has been received. We'll be in touch shortly.
+          </h3>
           <p className="mt-4 max-w-xl text-base leading-7 text-navy/70">
-            This demo form has logged your enquiry in the browser console. Connect it to Resend,
-            Formspree or an API endpoint before using it for live email delivery.
+            Our team will review your message and follow up with you shortly.
           </p>
           <button
             type="button"
@@ -124,12 +146,17 @@ export function EnquiryForm() {
           {errors.website?.message ? (
             <p className="text-xs font-medium text-red-700">{errors.website.message}</p>
           ) : null}
+          {submissionError ? (
+            <p role="alert" className="text-sm font-medium text-red-700">
+              {submissionError}
+            </p>
+          ) : null}
           <button
             type="submit"
             disabled={isSubmitting}
             className="focus-ring group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-emerald disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {isSubmitting ? "Preparing enquiry..." : "Submit Enquiry"}
+            {isSubmitting ? "Sending..." : "Submit Enquiry"}
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
           </button>
         </form>
