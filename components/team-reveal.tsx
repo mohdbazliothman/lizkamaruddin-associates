@@ -107,7 +107,8 @@ const teamMembers: TeamMember[] = [
     company: "Liz Kamaruddin & Associates",
     image: "/images/team/ilya-harith.png",
     imageAlt: "Ilya Harith executive portrait",
-    bio: "Biography to be provided.",
+    bio:
+      "Ilya is an experienced strategic planner with a career spanning the oil & gas and financial services sectors, across both public and private institutions. An accountant by training, she brings extensive experience in corporate strategy, industry research, public policy and regulation, having served as an internal strategic advisor to some of Malaysia’s largest institutions.\n\nWhile corporate strategy has been the cornerstone of her career, Ilya’s experience extends beyond the corporate environment. Driven by a strong interest in developmental policy, she has contributed to government policy think tanks and industry-enabling initiatives, working at the intersection of business, policy and stakeholder interests.\n\nHer experience has reinforced her belief that even the strongest strategy requires effective communication and stakeholder engagement to succeed. For Ilya, strategic communications is not simply about delivering a message — it is about building understanding, creating alignment and moving people towards a shared objective.\n\nIlya is particularly passionate about long-term sustainable growth, equitable stakeholder management and identifying new opportunities through blue-ocean thinking. She approaches each project with the belief that the right strategy, supported by the right people and conversations, has the potential to become the next game changer.",
     expertise: ["Communications Strategy", "Message Development", "Stakeholder Communications"],
     imagePosition: "center top"
   },
