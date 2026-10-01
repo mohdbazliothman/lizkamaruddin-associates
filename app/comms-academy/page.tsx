@@ -5,6 +5,31 @@ import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
 import { academyDivisions, futureAcademyAdditions } from "@/lib/comms-academy";
 
+const academyCapabilities = [
+  {
+    number: "01",
+    title: "THINK STRATEGICALLY.",
+    description:
+      "Understand what the organisation is trying to achieve — and how communication can help move it forward."
+  },
+  {
+    number: "02",
+    title: "UNDERSTAND STAKEHOLDERS.",
+    description: "Know who matters, what matters to them, and why."
+  },
+  {
+    number: "03",
+    title: "TELL MEANINGFUL STORIES.",
+    description:
+      "Turn information, ideas and complexity into narratives people understand, remember and act on."
+  },
+  {
+    number: "04",
+    title: "BE READY WHEN IT MATTERS.",
+    description:
+      "Communicate with clarity, confidence and sound judgement when the pressure is on."
+  }
+];
 export const metadata: Metadata = {
   title: "Comms Academy | Liz Kamaruddin & Associates",
   description:
@@ -67,12 +92,70 @@ export default function CommsAcademyPage() {
         </div>
       </section>
 
+      <section
+        aria-labelledby="academy-foundation-title"
+        className="border-y border-line bg-mist/40 px-5 py-20 sm:px-8 sm:py-24 lg:px-10"
+      >
+        <div className="mx-auto max-w-7xl">
+          <Reveal>
+            <div className="grid gap-8 border-b border-line pb-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16 lg:pb-16">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+                  LK&amp;A Comms Academy
+                </p>
+                <p className="mt-5 text-sm font-semibold uppercase tracking-[0.18em] text-emerald">
+                  What We Build
+                </p>
+              </div>
+
+              <div>
+                <h2
+                  id="academy-foundation-title"
+                  className="max-w-4xl font-display text-4xl leading-tight text-ink sm:text-5xl lg:text-6xl"
+                >
+                  Building the Communicators Organisations Need.
+                </h2>
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-navy/70">
+                  Great communication is more than writing well or speaking confidently. It
+                  requires the ability to understand the organisation, read the environment,
+                  shape meaningful narratives and respond with judgement when it matters most.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:mt-16">
+            {academyCapabilities.map((capability, index) => (
+              <Reveal key={capability.number} delay={index * 0.05}>
+                <article className="group h-full bg-white px-6 py-8 transition-colors duration-300 hover:bg-mist/60 sm:px-8 sm:py-10 lg:px-10">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                    {capability.number}
+                  </p>
+                  <h3 className="mt-6 text-xl font-semibold leading-7 text-ink sm:text-2xl">
+                    {capability.title}
+                  </h3>
+                  <p className="mt-4 max-w-xl text-base leading-7 text-navy/70">
+                    {capability.description}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <p className="mt-10 max-w-3xl border-l border-gold/70 pl-5 text-base leading-7 text-navy/70">
+              These four capabilities form the foundation of every LK&amp;A Comms Academy
+              learning journey.
+            </p>
+          </Reveal>
+        </div>
+      </section>
       <section id="programmes" className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <div className="mb-12 max-w-3xl">
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-                Programme Architecture
+                How We Build It
               </p>
               <h2 className="font-display text-4xl leading-tight text-ink sm:text-5xl">
                 Five Capability Pathways

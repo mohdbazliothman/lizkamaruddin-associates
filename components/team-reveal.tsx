@@ -8,6 +8,7 @@ type TeamMember = {
   name: string;
   role: string;
   company: string;
+  email?: string;
   image: string;
   imageAlt: string;
   bio: string;
@@ -23,10 +24,11 @@ const teamMembers: TeamMember[] = [
     name: "Liz Kamaruddin",
     role: "Founder and Principal",
     company: "Liz Kamaruddin & Associates",
+    email: "liz@lizkamaruddinassociates.com",
     image: "/images/team/liz-kamaruddin.png",
     imageAlt: "Liz Kamaruddin executive portrait",
     bio:
-      "Liz Kamaruddin is a leading Malaysian communications strategist with more than 30 years of experience across ASEAN, the Middle East, and the Americas. Her career spans the energy, banking, aviation, transportation, telecommunications, and hospitality sectors.\n\nShe advises organisations and senior leaders on reputation management, crisis communications, corporate and government stakeholder engagement, sustainability, branding, media relations, and internal communications. Known for her strategic insight and deep understanding of the geopolitical landscape, Liz has built a strong track record of developing high-impact reputation campaigns and helping organisations navigate complex business challenges, transformation, and crisis.\n\nWidely regarded as a turnaround communications specialist, Liz combines global experience with a pragmatic, outcomes-focused approach to protecting reputation, strengthening stakeholder trust, and advancing organisational priorities.\n\nBeyond advisory work, Liz is deeply passionate about education and professional development. She is committed to developing the next generation of communications professionals and equipping senior leaders with the skills to communicate with clarity, confidence, and credibility. Through teaching, coaching, and executive training, she translates decades of industry experience into practical insights that strengthen leadership and communications capabilities.",
+      "Liz Kamaruddin is a strategic communications advisor with more than 30 years of experience helping organisations and leaders navigate reputation, change and some of their most complex communications challenges.\n\nHer career has taken her across ASEAN, the Middle East and the Americas, spanning the energy, banking, aviation, transportation, telecommunications and hospitality sectors.\n\nOver the years, Liz has advised organisations and senior leaders on reputation management, crisis communications, corporate and government stakeholder engagement, sustainability, branding, media relations and internal communications. She is particularly recognised for her ability to step into complex situations, understand the wider business and stakeholder landscape, and translate that understanding into clear communications strategies that deliver outcomes.\n\nOften brought in during periods of change, challenge or heightened scrutiny, Liz has developed a reputation as a turnaround communications specialist. Her approach combines strategic thinking with pragmatism — understanding not only what an organisation needs to say, but what it needs to achieve through communications.\n\nAt the heart of her work is a simple belief: communications should never operate in isolation from the business. Effective communicators must understand the organisation, its stakeholders and the environment in which it operates before deciding what to communicate.\n\nToday, alongside her advisory work, Liz is increasingly focused on something she cares deeply about — developing the next generation of communications professionals and leaders.\n\nThrough coaching, training and the LK&A Comms Academy, she brings more than three decades of real-world experience into the classroom, helping communicators develop the judgement, confidence and strategic thinking required to move beyond simply executing communications to becoming trusted advisors to the organisations they serve.\n\nFor Liz, the goal is not simply to create better communications.\n\nIt is to build better communicators.",
     recognition: [
       "Adjunct Professor at Multimedia University Malaysia's Faculty of Applied Communication since 2022",
       "Industry adviser and architect of MMU's Bachelor of Communication (Strategic Communication) programme from 2016 to 2024",
@@ -53,10 +55,11 @@ const teamMembers: TeamMember[] = [
     name: "Raja Emylia",
     role: "Associate",
     company: "Liz Kamaruddin & Associates",
+    email: "rajaemy@lizkamaruddinassociates.com",
     image: "/images/team/raja-emylia.png",
     imageAlt: "Raja Emylia executive portrait",
     bio:
-      "Raja Emylia is a communications practitioner with over 25 years of experience. She began her career as a news journalist before transitioning into corporate communications across diverse industries, including infrastructure, services, property and banking.\n\nHer areas of expertise include reputation and crisis management, strategic communications and branding.\n\nShe has developed a strong understanding of the media and corporate landscape, and is passionate about building strong brands and shaping meaningful narratives that connect with the right audience.",
+      "Raja Emylia is a seasoned communications practitioner with more than 25 years of experience spanning journalism and corporate communications.\n\nBeginning her career as a news journalist, Emylia developed an instinct for what makes a story matter — understanding the news agenda, identifying the right narrative and recognising how messages are received beyond the organisation.\n\nShe later transitioned into corporate communications, building extensive experience across infrastructure, services, property and banking. Her areas of expertise include strategic communications, reputation and crisis management, media relations and branding.\n\nHer experience on both sides of the media–corporate divide gives Emylia a valuable perspective on how organisations communicate and how those messages are interpreted by the media, stakeholders and the wider public.\n\nShe is particularly passionate about building strong brands and shaping narratives that are clear, credible and relevant to the audiences they need to reach.\n\nAt the heart of her approach is a belief that effective communications begins with understanding your audience — **because a message only matters when it connects.**",
     expertise: ["Reputation and Crisis Management", "Strategic Communications", "Branding"],
     imagePosition: "center top",
     featured: true
@@ -69,7 +72,7 @@ const teamMembers: TeamMember[] = [
     image: "/images/team/reed-samsudin.png",
     imageAlt: "Reed Samsudin executive portrait",
     bio:
-      "Reed Samsudin is a senior communications professional with more than 20 years of experience spanning corporate communications, journalism, media training, reputation management, and crisis communications.\n\nHe specialises in communications advisory, executive media preparedness, crisis and reputation management, helping organisations and senior leaders communicate effectively in complex and high-stakes environments.\n\nThroughout his career, Reed has prepared and supported senior leadership teams at major organisations including TM, FGV, TNB, Hess, Prasarana and EPF in media handling, executive communications and reputation management.\n\nHis sector experience spans financial services, energy and FMCG, with professional exposure across ASEAN, the Middle East, North America and Africa.\n\nEarlier in his career, Reed held a senior role at a Washington-based business consultancy and worked as a business journalist and producer with Bloomberg, The Edge Weekly and ASTRO. He subsequently moved into senior corporate communications roles, including positions with Standard Chartered and PETRONAS.\n\nThis combination of newsroom experience, corporate leadership exposure and advisory work gives Reed a strong understanding of how organisations, leaders and the media operate during periods of heightened scrutiny, change and crisis.",
+      "Reed Samsudin is a senior communications advisor with more than 20 years of experience across corporate communications, journalism, media training, reputation management and crisis communications.\n\nHe specialises in preparing organisations and senior leaders to communicate effectively when the stakes are high — from critical media engagements and periods of heightened scrutiny to complex reputational issues and crisis situations.\n\nThroughout his career, Reed has advised, trained and supported senior leadership teams at major organisations including TM, FGV, TNB, Hess, Prasarana and EPF, helping executives strengthen their media preparedness, communications effectiveness and ability to manage reputational challenges.\n\nHis experience spans financial services, energy and FMCG, with professional exposure across ASEAN, the Middle East, North America and Africa.\n\nReed began his career in journalism, working as a business journalist and producer with Bloomberg, The Edge Weekly and ASTRO. He later held a senior role with a Washington-based business consultancy before moving into senior corporate communications positions with organisations including Standard Chartered and PETRONAS.\n\nThis combination of newsroom experience, corporate leadership exposure and advisory work gives Reed a distinctive understanding of what happens when **the media, the organisation and its leaders converge — particularly when the pressure is on.**\n\nHis approach to communications is grounded in preparation, clarity and credibility, helping leaders not simply deliver the right message, but remain effective communicators when it matters most.",
     expertise: [
       "Crisis Communications",
       "Reputation Management",
@@ -89,7 +92,7 @@ const teamMembers: TeamMember[] = [
     image: "/images/team/bazli.png",
     imageAlt: "Mohd Bazli Othman executive portrait",
     bio:
-      "Mohd Bazli is a strategic communications and digital specialist with 15 years of experience spanning Fortune 500 corporations, consulting and entrepreneurship. Trained in software engineering, he brings a distinctive combination of technology, communications and data-driven thinking to complex business and reputational challenges.\n\nHis areas of expertise include strategic communications, digital and social media strategy, analytics, reputation management and stakeholder engagement. He has advised and supported corporate leaders, business owners and political strategists in strengthening reputation, shaping narratives and making more informed decisions in increasingly complex information environments.\n\nWith a strong interest in data, emerging technology and artificial intelligence, Bazli explores how technology and analytics can be translated into practical strategic advantage, particularly in understanding audiences, identifying emerging risks and improving communication effectiveness.\n\nHis experience spans both corporate and entrepreneurial environments, giving him an appreciation of strategy from multiple perspectives, from managing reputation within large organisations to helping businesses navigate growth, transformation and changing stakeholder expectations.\n\nAt the intersection of strategy, communications, data and technology, his work is guided by a simple principle: turn information into insight, insight into strategy, and strategy into measurable impact.",
+      "Mohd Bazli is a strategic communications and digital specialist with 15 years of experience spanning Fortune 500 corporations, consulting and entrepreneurship. With a background in software engineering, he brings a distinctive combination of technology, communications and data-driven thinking to complex business and reputational challenges.\n\nHis expertise spans strategic communications, digital and social media strategy, analytics, reputation management and stakeholder engagement. Over the course of his career, Bazli has advised corporate leaders, business owners and strategists on strengthening reputation, shaping narratives and making better-informed decisions in increasingly complex information environments.\n\nWith a strong interest in data, emerging technologies and artificial intelligence, Bazli focuses on a question that is becoming increasingly important for communicators: **how do we turn the enormous amount of information available to us into better communications decisions?**\n\nHis work explores how data and technology can help organisations better understand their audiences, identify emerging issues and reputational risks, measure communication effectiveness and respond more intelligently to changing stakeholder expectations.\n\nHaving worked across both corporate and entrepreneurial environments, Bazli also brings a practical understanding of how strategy must adapt to different organisations, resources and stages of growth.\n\nSitting at the intersection of **strategy, communications, data and technology**, his approach is grounded in a simple principle:\n\n**Turn information into insight. Insight into strategy. And strategy into measurable impact.**",
     expertise: [
       "Strategic Communications",
       "Digital and Social Media Strategy",
@@ -133,6 +136,17 @@ const teamMembers: TeamMember[] = [
   }
 ];
 
+function renderProfileText(text: string) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={`${part}-${index}`} className="font-semibold text-ink">
+        {part.slice(2, -2)}
+      </strong>
+    ) : (
+      part
+    )
+  );
+}
 export function TeamReveal() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -305,7 +319,15 @@ export function TeamReveal() {
                 ) : null}
               </div>
 
-              <p className="mt-7 max-w-[64ch] text-[1.05rem] font-medium leading-8 text-ink">
+              {selectedMember.email ? (
+                <a
+                  href={`mailto:${selectedMember.email}`}
+                  className="mt-4 inline-flex text-sm font-semibold text-emerald underline decoration-gold/60 underline-offset-4 transition hover:text-gold"
+                >
+                  {selectedMember.email}
+                </a>
+              ) : null}
+              <p className="mt-7 max-w-[64ch] text-[1.05rem] font-semibold leading-8 text-ink">
                 {introStatement}
               </p>
 
@@ -316,7 +338,7 @@ export function TeamReveal() {
                   </p>
                   <div className="grid max-w-[68ch] gap-4 text-sm leading-7 text-navy/[0.72] sm:text-[0.98rem] sm:leading-8">
                     {biographyParagraphs.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
+                      <p key={paragraph}>{renderProfileText(paragraph)}</p>
                     ))}
                   </div>
                 </div>
