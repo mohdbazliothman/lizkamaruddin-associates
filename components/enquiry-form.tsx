@@ -37,7 +37,6 @@ export function EnquiryForm() {
   const {
     register,
     handleSubmit,
-    reset,
     setValue,
     formState: { errors, isSubmitting }
   } = useForm<EnquiryFormValues>({
@@ -61,32 +60,23 @@ export function EnquiryForm() {
     }
   }, [setValue]);
 
-  async function onSubmit(data: EnquiryFormValues) {
+  function onSubmit(data: EnquiryFormValues) {
     setSubmissionError("");
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: data.fullName,
-          organisation: data.organisation,
-          email: data.workEmail,
-          areaOfInterest: data.areaOfInterest,
-          message: data.message,
-          website: data.website
-        })
-      });
-
-      const result: { success?: boolean } = await response.json();
-      if (!response.ok || !result.success) {
-        throw new Error("Enquiry submission failed.");
-      }
-
+      const subject = encodeURIComponent(`Website enquiry: ${data.areaOfInterest}`);
+      const body = encodeURIComponent([
+        `Full Name: ${data.fullName}`,
+        `Organisation: ${data.organisation}`,
+        `Work Email: ${data.workEmail}`,
+        `Area of Interest: ${data.areaOfInterest}`,
+        "",
+        data.message
+      ].join("\n"));
+      window.location.href = `mailto:hello@lizkamaruddinassociates.com?subject=${subject}&body=${body}`;
       setSubmitted(true);
-      reset();
     } catch {
-      setSubmissionError("We couldn't submit your enquiry. Please try again.");
+      setSubmissionError("Please email hello@lizkamaruddinassociates.com with your enquiry.");
     }
   }
 
@@ -98,17 +88,17 @@ export function EnquiryForm() {
             <CheckCircle2 aria-hidden="true" />
           </div>
           <h3 className="font-display text-3xl text-ink">
-            Thank you. Your enquiry has been received. We'll be in touch shortly.
+            Your enquiry is ready to email.
           </h3>
           <p className="mt-4 max-w-xl text-base leading-7 text-navy/70">
-            Our team will review your message and follow up with you shortly.
+            Please send the draft in your email app to complete your enquiry. If your email app did not open, contact hello@lizkamaruddinassociates.com directly. Your form details are still available below.
           </p>
           <button
             type="button"
             onClick={() => setSubmitted(false)}
             className="focus-ring mt-8 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-emerald/35 hover:text-emerald"
           >
-            Send another enquiry
+            Back to enquiry
           </button>
         </div>
       ) : (
@@ -156,7 +146,7 @@ export function EnquiryForm() {
             disabled={isSubmitting}
             className="focus-ring group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-emerald disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {isSubmitting ? "Sending..." : "Submit Enquiry"}
+            {isSubmitting ? "Opening email..." : "Email Enquiry"}
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
           </button>
         </form>

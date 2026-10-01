@@ -158,7 +158,7 @@ const organisationSchema = {
   alternateName: "LK&A",
   description:
     "Boutique strategic communications advisory supporting boards, senior leaders and communication teams in reputation management, crisis preparedness, stakeholder engagement, coaching and capability development.",
-  email: "hello@lizkamaruddin.com",
+  email: "hello@lizkamaruddinassociates.com",
   url: "https://www.example.com"
 };
 
@@ -510,7 +510,7 @@ export default function Home() {
                 your leadership, communication or reputation goals.
               </p>
               <div className="mt-8 grid gap-4 text-sm text-navy/70">
-                <ContactLine icon={Mail} text="hello@lizkamaruddin.com" />
+                <ContactLine icon={Mail} text="hello@lizkamaruddinassociates.com" />
               </div>
             </div>
           </Reveal>
@@ -709,7 +709,7 @@ function Footer({ year }: { year: number }) {
             </Link>
           </nav>
           <div>
-            <p>hello@lizkamaruddin.com</p>
+            <p>hello@lizkamaruddinassociates.com</p>
             <p className="mt-4">&copy; {year} Liz Kamaruddin & Associates. All rights reserved.</p>
           </div>
         </div>
