@@ -359,6 +359,14 @@ export default function Home() {
                 A division of LK&A
               </p>
               <div className="h-px w-20 bg-gold/60" />
+              <Image
+                src="/comms-academy-logo.png"
+                alt="LK&A Comms Academy"
+                width={1904}
+                height={609}
+                sizes="(min-width: 1024px) 480px, (min-width: 640px) 576px, 100vw"
+                className="mt-6 h-auto w-full"
+              />
               <p className="mt-8 text-lg leading-8 text-navy/[0.76]">
                 Today&rsquo;s leaders must do more than make the right decisions&mdash;they must
                 communicate them with clarity, confidence, and credibility.
