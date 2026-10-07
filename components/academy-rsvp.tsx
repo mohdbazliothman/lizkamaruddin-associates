@@ -37,7 +37,7 @@ export function AcademyRsvp() {
   if (saved) return <div className={styles.confirmation} tabIndex={-1} ref={confirmation} role="status">
     <h3>{saved === "attending" ? "Thank you. We look forward to seeing you." : "Thank you for letting us know."}</h3>
     {saved === "attending" && <><p>11 November 2026 · 3–6 PM · Liberal Latte</p><div className={styles.utilities}>
-      <a href="/academylaunch/calendar" download="lka-comms-academy-launch.ics"><CalendarPlus size={18} aria-hidden="true" />Add to calendar</a>
+      <a href="/rsvp/calendar" download="lka-comms-academy-launch.ics"><CalendarPlus size={18} aria-hidden="true" />Add to calendar</a>
       <a href={academyLaunch.mapsUrl} target="_blank" rel="noopener noreferrer"><MapPin size={18} aria-hidden="true" />Get directions</a>
     </div></>}
   </div>;

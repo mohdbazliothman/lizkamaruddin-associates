@@ -5,9 +5,9 @@ import { academyLaunch as event } from "@/lib/academy-launch";
 import { AcademyRsvp } from "@/components/academy-rsvp";
 import { AcademyEntrance } from "@/components/academy-entrance";
 import { AcademyMusic } from "@/components/academy-music";
-import styles from "./invitation.module.css";
+import styles from "@/app/academylaunch/invitation.module.css";
 
-const url = "https://www.lizkamaruddinassociates.com/academylaunch";
+const url = "https://www.lizkamaruddinassociates.com/rsvp";
 const title = "Comms, Coffee & Conversation | LK&A Comms Academy";
 const description = "An invitation to the launch of LK&A Comms Academy. 11 November 2026, 3–6 PM at Liberal Latte, Damansara Heights.";
 export const metadata: Metadata = {

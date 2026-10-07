@@ -1,7 +1,11 @@
 # Academy launch invitation
 
-Preview: http://localhost:3054/academylaunch
-Public route (not deployed by this change): https://www.lizkamaruddinassociates.com/academylaunch
+Preview: http://localhost:3054/rsvp
+Public route: https://www.lizkamaruddinassociates.com/rsvp
+
+The previous /academylaunch and /academylaunch/calendar URLs redirect permanently
+to /rsvp and /rsvp/calendar. Static assets remain at /academylaunch/; the RSVP API
+and Google Apps Script configuration are unchanged.
 
 ## Separate RSVP storage
 

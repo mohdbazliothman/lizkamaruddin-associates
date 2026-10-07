@@ -8,7 +8,7 @@ export function GET() {
     "LOCATION:Liberal Latte\\, Wisma E&C\\, 2 Lorong Dungun Kiri\\,",
     "  Damansara Heights",
     "DESCRIPTION:Launch of LK&A Comms Academy. By personal invitation.",
-    "URL:https://www.lizkamaruddinassociates.com/academylaunch",
+    "URL:https://www.lizkamaruddinassociates.com/rsvp",
     "END:VEVENT", "END:VCALENDAR", ""
   ];
   return new Response(lines.join("\r\n"), { headers: {

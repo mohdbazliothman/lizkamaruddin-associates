@@ -32,7 +32,8 @@ const send=(body,origin="http://localhost")=>route.POST(new Request("http://loca
   for(const value of ["network","html","rejected"]){mode=value;assert.equal((await send(valid)).status,502);}
   delete env.ACADEMY_RSVP_APPS_SCRIPT_URL;
   assert.equal((await send(valid)).status,503);
-  const calendar=await load("app/academylaunch/calendar/route.ts").GET().text();
+  const calendar=await load("app/rsvp/calendar/route.ts").GET().text();
+  assert.ok(calendar.includes("URL:https://www.lizkamaruddinassociates.com/rsvp\r\n"));
   assert.ok(calendar.includes("DTSTART;TZID=Asia/Kuala_Lumpur:20261111T150000"));
   assert.ok(calendar.includes("DTEND;TZID=Asia/Kuala_Lumpur:20261111T180000"));
   assert.ok(calendar.split("\r\n").every(line=>Buffer.byteLength(line)<=75));
