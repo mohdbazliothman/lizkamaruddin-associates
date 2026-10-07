@@ -5,20 +5,15 @@ Public route (not deployed by this change): https://www.lizkamaruddinassociates.
 
 ## Separate RSVP storage
 
-Do not reuse the contact enquiry webhook. No event credentials have been configured.
-The form returns an error until these are configured; it never simulates a save.
+Do not reuse the contact enquiry webhook. The RSVP integration needs only one
+server-side environment variable. It never simulates a successful save.
 
 1. Create a private Google spreadsheet and a blank tab named **Academy Launch RSVPs**.
 2. Open Extensions > Apps Script. Paste the full contents of `docs/academy-rsvp.gs` into a separate project. Keep `doPost` at the top level.
-3. Under Project Settings > Script Properties, add:
-   - `RSVP_SPREADSHEET_ID`: the ID between /d/ and /edit in the spreadsheet URL.
-   - `RSVP_SHEET_NAME`: Academy Launch RSVPs.
-   - `RSVP_SHARED_SECRET`: a randomly generated secret of at least 32 bytes. Generate with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
-4. Run `setupRsvpSheet` once on the empty tab and authorise access. It creates eight headings in the required order. Never run it over existing data.
-5. Deploy > New deployment > Web app. Execute as owner; access Anyone. The sheet itself stays private. The script authenticates server requests using the shared secret.
-6. Add the following to ignored local `.env.local` and to Vercel Production environment variables:
-   - `ACADEMY_RSVP_APPS_SCRIPT_URL`: the new web app HTTPS URL ending /exec.
-   - `ACADEMY_RSVP_SHARED_SECRET`: exactly the same secret as the script property.
+3. In the function dropdown beside Run, choose `setupRsvpSheet`, click Run and authorise access. Open this script through the spreadsheet, not as a standalone project. Setup automatically remembers that spreadsheet's ID, creates the RSVP tab if needed and adds eight headings. You do not need to enter Script Properties manually.
+4. Setup is safe to rerun with the correct headings: existing responses remain unchanged. If headings differ, it stops without overwriting them. Use a new empty RSVP tab or back up and correct the headings before retrying.
+5. Deploy > New deployment > Web app. Execute as owner; access Anyone. Copy the Web app URL ending `/exec`. The sheet itself stays private.
+6. Add `ACADEMY_RSVP_APPS_SCRIPT_URL` to ignored local `.env.local` and Vercel Production environment variables. Its value is the complete Web app HTTPS URL ending `/exec`, without quotes. No shared-secret environment variable is needed.
 7. Restart the local server. Deploy/redeploy Vercel only when publication is authorised. Apps Script edits require Manage deployments > Edit > New version > Deploy.
 
 The script writes the timestamp itself, formats entries as text, escapes formula prefixes,
@@ -29,8 +24,16 @@ If you already created the previous sheet template, back up existing data and ch
 headings/order to Timestamp, Event identifier, Attendance status, Full name, Email,
 Phone number, Organisation, Designation (use "Submission timestamp" for the first heading).
 Do not overwrite existing dietary data as phone numbers. Update and redeploy the Apps Script.
+If upgrading the earlier secret-based setup, replace all of Code.gs with the current
+`academy-rsvp.gs`, run setup and deploy a new Apps Script version. The website API must
+also be deployed with this update. Old shared-secret properties/variables are unused and
+may be removed; leave all contact-form configuration unchanged.
+
 Email is a deduplication key, not identity verification. The shared link and noindex metadata
-are not access control. Never put webhook URLs or secrets in NEXT_PUBLIC variables.
+are not access control. Never put the webhook URL in NEXT_PUBLIC variables.
+This simplified webhook has no shared-secret authentication: anyone who obtains its URL
+can send requests directly, bypass the website's spam checks and update an RSVP if they
+know its email address. Keep the URL private; the event ID is not a security credential.
 Best-effort per-instance API rate limiting supplements the honeypot; this is not a global rate limit.
 No emails are sent.
 

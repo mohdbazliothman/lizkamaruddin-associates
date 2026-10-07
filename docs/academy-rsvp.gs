@@ -5,14 +5,6 @@ const HEADERS = ["Submission timestamp", "Event identifier", "Attendance status"
 function json(value) {
   return ContentService.createTextOutput(JSON.stringify(value)).setMimeType(ContentService.MimeType.JSON);
 }
-function sameSecret(actual, expected) {
-  if (typeof actual !== "string" || !expected) return false;
-  const a = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, actual);
-  const b = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, expected);
-  let difference = 0;
-  for (let i = 0; i < a.length; i++) difference |= a[i] ^ b[i];
-  return difference === 0;
-}
 function clean(value, max, required) {
   if (typeof value !== "string") throw new Error("Invalid value");
   const result = value.trim();
@@ -31,18 +23,32 @@ function getSheet() {
   return sheet;
 }
 function setupRsvpSheet() {
-  const sheet = getSheet();
-  if (sheet.getLastRow() !== 0) throw new Error("Setup requires an empty sheet");
-  sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+  // Run once from the editor opened through the RSVP spreadsheet's Extensions menu.
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  if (!spreadsheet) throw new Error("Open Apps Script from your RSVP spreadsheet via Extensions > Apps Script.");
+  const properties = PropertiesService.getScriptProperties();
+  const name = properties.getProperty("RSVP_SHEET_NAME") || "Academy Launch RSVPs";
+  const sheet = spreadsheet.getSheetByName(name) || spreadsheet.insertSheet(name);
+  ensureHeaders(sheet);
   sheet.setFrozenRows(1);
+  properties.setProperties({ RSVP_SPREADSHEET_ID:spreadsheet.getId(), RSVP_SHEET_NAME:name });
+}
+function ensureHeaders(sheet) {
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+    return;
+  }
+  const headers = sheet.getRange(1,1,1,HEADERS.length).getValues()[0];
+  if (!HEADERS.every((heading,index) => heading === headers[index])) {
+    throw new Error("Existing headings differ. Use an empty RSVP tab; existing data has not been overwritten.");
+  }
 }
 function doPost(e) {
   let lock;
   try {
     if (!e || !e.postData || e.postData.contents.length > 12000) return json({ success:false });
     const data = JSON.parse(e.postData.contents);
-    const secret = PropertiesService.getScriptProperties().getProperty("RSVP_SHARED_SECRET");
-    if (!sameSecret(data.secret, secret) || data.eventId !== EVENT_ID) return json({ success:false });
+    if (data.eventId !== EVENT_ID) return json({ success:false });
     if (data.attendance !== "attending" && data.attendance !== "declined") return json({ success:false });
     const name = clean(data.name,160,true);
     const email = clean(data.email,254,true).toLowerCase();
@@ -53,8 +59,7 @@ function doPost(e) {
     lock = LockService.getScriptLock();
     if (!lock.tryLock(10000)) return json({ success:false });
     const sheet = getSheet();
-    const headers = sheet.getRange(1,1,1,HEADERS.length).getValues()[0];
-    if (!HEADERS.every((heading,index) => heading === headers[index])) throw new Error("Unexpected headers");
+    ensureHeaders(sheet);
     const count = sheet.getLastRow();
     const records = count > 1 ? sheet.getRange(2,2,count-1,4).getDisplayValues() : [];
     const existing = records.findIndex(row => row[0] === EVENT_ID && row[3].trim().replace(/^'/,"").toLowerCase() === email);

@@ -36,9 +36,8 @@ export async function POST(request:Request) {
   } catch { return failure(400); }
   const parsed = academyRsvpSchema.safeParse(input);
   if (!parsed.success) return failure(400);
-  const endpoint = process.env.ACADEMY_RSVP_APPS_SCRIPT_URL;
-  const secret = process.env.ACADEMY_RSVP_SHARED_SECRET;
-  if (!endpoint || !secret) return failure(503);
+  const endpoint = process.env.ACADEMY_RSVP_APPS_SCRIPT_URL?.trim();
+  if (!endpoint) return failure(503);
   try {
     const url = new URL(endpoint);
     if (url.protocol !== "https:" || url.hostname !== "script.google.com" || !/^\/macros\/s\/[^/]+\/exec$/.test(url.pathname)) return failure(503);
@@ -46,7 +45,7 @@ export async function POST(request:Request) {
     const upstream = await fetch(endpoint, {
       method:"POST", headers: { "Content-Type":"application/json" }, cache:"no-store",
       signal:AbortSignal.timeout(20000),
-      body:JSON.stringify({ secret, eventId:academyLaunch.id, timestamp:new Date().toISOString(), attendance,name,email,phone,organisation,designation })
+      body:JSON.stringify({ eventId:academyLaunch.id, timestamp:new Date().toISOString(), attendance,name,email,phone,organisation,designation })
     });
     if (!upstream.ok) return failure(502);
     const result = await upstream.json();
