@@ -4,6 +4,7 @@ import { CalendarDays, MapPin, UserRound } from "lucide-react";
 import { academyLaunch as event } from "@/lib/academy-launch";
 import { AcademyRsvp } from "@/components/academy-rsvp";
 import { AcademyEntrance } from "@/components/academy-entrance";
+import { AcademyMusic } from "@/components/academy-music";
 import styles from "./invitation.module.css";
 
 const url = "https://www.lizkamaruddinassociates.com/academylaunch";
@@ -19,10 +20,10 @@ export const metadata: Metadata = {
 function Frame() {
   return <div className={styles.frame} aria-hidden="true"><b /><b /><b /><b /><i /><i /><i /><i /></div>;
 }
-function Divider({ opening = false }: { opening?: boolean }) { return <div className={styles.divider} aria-hidden="true" data-entrance={opening ? "fade" : undefined} data-delay={opening ? "0.22" : undefined}><span /></div>; }
+function Divider({ opening = false }: { opening?: boolean }) { return <div className={styles.divider} aria-hidden="true" data-entrance={opening ? "fade" : undefined} data-delay={opening ? "0.42" : undefined}><span /></div>; }
 function Title({ main = false }: { main?: boolean }) {
   const text = <>Comms, Coffee <em>&amp;</em><br />Conversation</>;
-  return main ? <h1 className={styles.title}><span className={styles.titleLine} data-entrance="line" data-delay="0.1">Comms, Coffee <em>&amp;</em></span><br /><span className={styles.titleLine} data-entrance="line" data-delay="0.22">Conversation</span></h1> : <h2 className={styles.title}>{text}</h2>;
+  return main ? <h1 className={styles.title}><span className={styles.titleLine} data-entrance="line" data-delay="0.18">Comms, Coffee <em>&amp;</em></span><br /><span className={styles.titleLine} data-entrance="line" data-delay="0.36">Conversation</span></h1> : <h2 className={styles.title}>{text}</h2>;
 }
 function Logo({ navy = false }: { navy?: boolean }) {
   return <Image src={`/academylaunch/logo-${navy ? "navy" : "cream"}.svg`} alt="LK&A Comms Academy" width={660} height={148} className={styles.logo} data-entrance={navy ? undefined : "logo"} unoptimized />;
@@ -37,15 +38,16 @@ const programme = [
 
 export default function AcademyLaunchPage() {
   return <AcademyEntrance className={styles.page}>
+    <AcademyMusic />
     <a href="#rsvp" className={styles.skip}>Skip to RSVP</a>
     <section className={`${styles.sheet} ${styles.invitation}`} aria-label="Invitation">
       <Image src="/academylaunch/coffee-library.webp" alt="" fill priority sizes="(max-width: 900px) 100vw, 900px" className={styles.background} data-entrance="background" />
       <div className={styles.shade} /><Frame />
       <div className={styles.invitationContent}>
         <Logo /><Title main />
-        <p className={styles.subtitle} data-entrance="fade" data-delay="0.18">An invitation to the launch of <strong>LK&amp;A Comms Academy</strong></p>
+        <p className={styles.subtitle} data-entrance="fade" data-delay="0.32">An invitation to the launch of <strong>LK&amp;A Comms Academy</strong></p>
         <Divider opening />
-        <p className={styles.salutation}>{event.salutation}</p>
+        <p className={styles.salutation} data-reveal>{event.salutation}</p>
         <div className={styles.letter} data-reveal-group="paragraphs">
           <p>You know the brief. You know the crisis call.<br /> And you’ve probably heard, <strong><em>“So... what’s our message?”</em></strong><br /> more times than you care to remember.</p>
           <p>On <strong>11 November</strong>, let’s talk about what it really takes to do Comms today.<br /> Join <strong>Liz Kamaruddin</strong> and a small gathering of communications and business leaders for good coffee, candid conversation and<br /> <strong>Comms Unscripted</strong> — a conversation between a CEO, a media powerhouse and a communicator.</p>
@@ -56,10 +58,10 @@ export default function AcademyLaunchPage() {
           <div><MapPin aria-hidden="true" /><h2>LIBERAL LATTE</h2><p>WISMA E&amp;C, 2 LORONG DUNGUN KIRI, DAMANSARA HEIGHTS</p></div>
           <div><UserRound aria-hidden="true" /><h2>BY PERSONAL</h2><p>INVITATION</p></div>
         </div>
-        <p className={styles.tableLine}>I’d love to have you at the table.</p>
-        <p className={styles.signature}><strong>Liz Kamaruddin</strong><br />Founder, LizKamaruddin&amp;Associates</p>
-        <a className={styles.rsvpLink} href="#rsvp">RSVP</a>
-        {event.rsvpDeadline && <p>Kindly respond by {event.rsvpDeadline}.</p>}
+        <p className={styles.tableLine} data-reveal>I’d love to have you at the table.</p>
+        <p className={styles.signature} data-reveal><strong>Liz Kamaruddin</strong><br />Founder, LizKamaruddin&amp;Associates</p>
+        <a className={styles.rsvpLink} href="#rsvp" data-reveal="fade">RSVP</a>
+        {event.rsvpDeadline && <p data-reveal>Kindly respond by {event.rsvpDeadline}.</p>}
       </div>
     </section>
     <section className={`${styles.sheet} ${styles.programme}`} aria-labelledby="programme-title" data-reveal="fade">

@@ -10,12 +10,14 @@ export function AcademyEntrance({ children, className }: { children: ReactNode; 
     if (!page) return;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const running = new Map<HTMLElement, ReturnType<typeof animate>>();
+    const pending = new Set<HTMLElement>();
     const revealed = new WeakSet<HTMLElement>();
     const ease = [0.22, 1, 0.36, 1] as const;
     let observer: IntersectionObserver | undefined;
     function show(element: HTMLElement) {
       running.get(element)?.stop();
       running.delete(element);
+      pending.delete(element);
       element.style.removeProperty("opacity");
       element.style.removeProperty("transform");
       revealed.add(element);
@@ -24,14 +26,16 @@ export function AcademyEntrance({ children, className }: { children: ReactNode; 
     function reveal(element: HTMLElement, duration: number, delay = 0, distance = 0) {
       if (revealed.has(element)) return;
       revealed.add(element);
+      pending.delete(element);
       running.set(element, animate(element,
         distance ? { opacity: [0, 1], y: [distance, 0] } : { opacity: [0, 1] },
-        { duration, delay, ease, onComplete: () => show(element) }
+        { duration, delay, ease, opacity: { duration, delay, ease: [0.33, 0, 0.4, 1] }, onComplete: () => show(element) }
       ));
     }
     function stopMotion() {
       observer?.disconnect();
       for (const element of [...running.keys()]) show(element);
+      for (const element of [...pending]) show(element);
     }
     function preferenceChanged() { if (preference.matches) stopMotion(); }
     const scrollElements = [...page.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-group] > *")];
@@ -43,8 +47,9 @@ export function AcademyEntrance({ children, className }: { children: ReactNode; 
     if (!preference.matches) {
       for (const element of page.querySelectorAll<HTMLElement>("[data-entrance]")) {
         const kind = element.dataset.entrance;
-        reveal(element, kind === "background" || kind === "line" ? 0.8 : 0.7,
-          Number(element.dataset.delay || 0), kind === "line" ? 12 : 0);
+        element.style.opacity = "0";
+        reveal(element, kind === "line" ? 1.15 : 1,
+          Number(element.dataset.delay || 0), kind === "line" ? 10 : 0);
       }
       if ("IntersectionObserver" in window) {
         observer = new IntersectionObserver(entries => {
@@ -53,13 +58,18 @@ export function AcademyEntrance({ children, className }: { children: ReactNode; 
               const element = entry.target as HTMLElement;
               const group = element.parentElement;
               const stagger = group?.dataset.revealGroup === "stagger"
-                ? Math.min([...group.children].indexOf(element) * 0.1, 0.4) : 0;
-              reveal(element, 0.55, stagger, element.dataset.reveal === "fade" ? 0 : 10);
+                ? Math.min([...group.children].indexOf(element) * 0.12, 0.36) : 0;
+              reveal(element, 0.95, stagger, element.dataset.reveal === "fade" ? 0 : 8);
               observer?.unobserve(element);
             }
           }
         }, { threshold: 0.12 });
-        for (const element of scrollElements) observer.observe(element);
+        // Hide only after JS is active, before observing, to avoid a visible-to-hidden flash.
+        for (const element of scrollElements) {
+          element.style.opacity = "0";
+          pending.add(element);
+          observer.observe(element);
+        }
       }
     }
     preference.addEventListener("change", preferenceChanged);
